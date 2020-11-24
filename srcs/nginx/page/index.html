@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<head>
+	<!--<link rel="stylesheet" href="styles.css">-->
+	<style>
+		/* THIS PART MANAGE THE MAIN PAGE BODY*/
+		body {
+			background-image: url("background.jpg");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+			background-position: center;
+		}
+
+		body p {
+			color: cyan;
+			text-align: center;
+			font-family: cursive;
+			font-style: oblique;
+			position: absolute;
+			top: -140px;
+			right: 32%;
+			font-size: 900%;
+		}
+
+		input[type=submit] {
+			width: 70%;
+			height: 70%;
+			background-color: purple;
+			color: black;
+			font-weight: bolder;
+			font-size: 140%;
+		}
+
+		/* THIS PART MANAGE THE NGINX PANEL*/
+		.nginx {
+			border: 6px ridge purple;
+			padding: 15px;
+			position: absolute;
+			top: 30%;
+			left: 5%;
+			right: 82.5%;
+			background-color: rgba(0, 255, 255, 0.6);
+		}
+
+		.nginx h2 {
+			text-align: center;
+			position: relative;
+			top: -28%;
+		}
+
+		.nginx form {
+			text-align: center;
+			position: relative;
+			top: -45%;
+		}
+
+		/* THIS PART MANAGE THE WORDPRESS PANEL*/
+		.subject {
+			border: 6px ridge purple;
+			padding: 15px;
+			position: absolute;
+			top: 55%;
+			left: 7.5%;
+			right: 80%;
+			background-color: rgba(0, 255, 255, 0.6);
+		}
+
+		.subject h2 {
+			text-align: center;
+			position: relative;
+			top: -20%;
+		}
+
+		.subject form {
+			text-align: center;
+			position: relative;
+			top: -25%;
+		}
+
+		/* THIS PART MANAGE THE KUBERNETES PANEL*/
+		.wordpress {
+			border: 6px ridge purple;
+			padding: 15px;
+			position: absolute;
+			top: 30%;
+			left: 82.5%;
+			right: 5%;
+			background-color: rgba(0, 255, 255, 0.6);
+		}
+
+		.wordpress h2 {
+			text-align: center;
+			position: relative;
+			top: -28%;
+		}
+
+		.wordpress form {
+			text-align: center;
+			position: relative;
+			top: -45%;
+		}
+
+		/* THIS PART MANAGE THE GRAFANA PANEL*/
+		.grafana {
+			border: 6px ridge purple;
+			padding: 15px;
+			position: absolute;
+			top: 55%;
+			left: 80%;
+			right: 7.5%;
+			background-color: rgba(0, 255, 255, 0.6);
+		}
+
+		.grafana h2 {
+			text-align: center;
+			position: relative;
+			top: -20%;
+		}
+
+		.grafana form {
+			text-align: center;
+			position: relative;
+			top: -25%;
+		}
+	</style>
+	<title>Ft_services</title>
+</head>
+
+<body>
+	<p> Ft Services </p>
+	<div class="subject">
+		<h2> SUBJECT </h2>
+		<form action="https://cdn.intra.42.fr/pdf/pdf/14305/fr.subject.pdf" target="_blank">
+			<input type="submit" value="Subject" />
+		</form>
+	</div>
+
+	<div class="nginx">
+		<h2> NGINX </h2>
+		<form action="http://172.17.0.2:80" target="_blank">
+			<input type="submit" value="Nginx:80" />
+		</form>
+		<br>
+		<form action="https://172.17.0.2:443" target="_blank">
+			<input type="submit" value="Nginx:443" />
+		</form>
+	</div>
+
+	<div class="wordpress">
+		<h2> WORDPRESS </h2>
+		<form action="http://172.17.0.2:5050" target="_blank">
+			<input type="submit" value="Wordpress" />
+		</form>
+		<br>
+		<form action="http://172.17.0.2:5000" target="_blank">
+			<input type="submit" value="phpMyAdmin" />
+		</form>
+	</div>
+
+	<div class="grafana">
+		<h2> GRAFANA </h2>
+		<form action="http://172.17.0.2:3000" target="_blank">
+			<input type="submit" value="Dashboard" />
+		</form>
+	</div>
+</body>

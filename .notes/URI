@@ -1,0 +1,7 @@
+Uniform Ressource Identifier [URI] : Ce terme désigne un élément permettant d'identifier une ressource.
+Uniform Ressource Locator [URL] : Une information permettant de localiser un élément.
+Uniform Ressource Name [URN] : Un identifiant unique dans le temps et l'espace pour une ressource.
+
+Un URI doit permettre d'identifier une ressource de manière permanente.
+Toutes les URL sont des URI, mais toutes les URI ne sont pas des URL.
+Le numéro ISBN d'un livre est par exemple une URN. Comme une URN est un identifiant, c'est donc une URI. En revanche, toutes les URI ne sont pas des URN.

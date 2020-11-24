@@ -1,0 +1,36 @@
+Lorsqu'un logiciel client veut dialoguer avec un logiciel serveur, aussi appelé service,
+									il a besoin de connaître le port écouté par ce dernier.
+
+Les numéros de port de 0 à 1 023 correspondent aux "well-known ports",
+Les numéros de ports de 1 024 à 49 151 correspondent aux "registered ports", assignés par l'IANA (cf. IANA file)
+Les numéros de ports de 49 152 à 65 535 correspondent aux ports dynamiques,
+	utilisables pour tout type de requêtes TCP ou UDP autres que celle citées précédemment.
+
+
+20/21	: pour l'échange de fichiers via FTP
+22		: pour l'accès à un shell sécurisé Secure SHell, également utilisé pour l'échange de fichiers sécurisés SFTP
+25		: pour l'envoi d'un courrier électronique via un serveur dédié SMTP
+53		: pour la résolution de noms de domaine en adresses IP : DNS.
+80		: pour la consultation d'un serveur HTTP par le biais d'un navigateur web
+110		: pour la récupération de son courrier électronique via POP.
+143		: pour la récupération de son courrier électronique via IMAP
+443		: pour les connexions HTTP utilisant une surcouche de sécurité de type SSL : HTTPS
+465		: pour l'envoi d'un courrier électronique via un serveur dédié utilisant une surcouche de sécurité 
+																						de type SSL : SMTPS
+
+1433	: serveur de base de données MS SQL
+1521	: serveur de base de données Oracle Database
+3306	: serveur de base de données MySQL
+6667	: pour la connexion aux serveurs IRC
+7777	: port souvent utilisé pour des serveurs de jeux-vidéo telle que Terraria ou Unreal Tournament
+25565	: port par défaut des serveurs Minecraft
+
+Toutefois, les conventions ci-dessus peuvent ne pas être respectées pourvu que le client
+		et le serveur soient cohérents entre eux et que le nouveau numéro choisi ne soit
+		pas déjà utilisé par ailleurs (on peut ainsi activer différentes versions d'un même service
+		sur des numéros de ports différents, pour des tests). La plupart des logiciels
+		de communication permettent d'effectuer ce réglage. 
+
+# POINT INTERESSANT #
+Il y a un fichier services dans /etc qui reference tout les ports de chaque service.
+Officiellement un port a deux entree [UDP|TCP] meme si le protocol ne supporte pas les opperation UDP.

@@ -1,0 +1,9 @@
+Docker est un logiciel libre permettant de lancer des applications dans des conteneurs logiciels. 
+
+« Docker est un outil qui peut empaqueter une application et ses dépendances dans un conteneur isolé,
+	qui pourra être exécuté sur n'importe quel serveur ». Il ne s'agit pas de virtualisation,
+	mais de conteneurisation, une forme plus légère qui s'appuie sur certaines parties
+	de la machine hôte pour son fonctionnement.
+
+Contrairement aux machines virtuelles traditionnelles, un conteneur Docker n'inclut pas de système d'exploitation,
+	mais s'appuie au contraire sur les fonctionnalités du système d’exploitation fournies par la machine hôte

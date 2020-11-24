@@ -1,0 +1,21 @@
+-x509               Output a x509 structure instead of a cert request
+                     (Required by some CA's)
+
+	--> X.509 est une norme spécifiant les formats pour les certificats à clé publique,
+			les listes de révocation de certificat, les attributs de certificat,
+			et un algorithme de validation du chemin de certification,
+			définie par l'Union internationale des télécommunications (UIT)1.
+			X.509 établit entre autres un format standard de certificat électronique
+			et un algorithme pour la validation de chemin de certification. 
+
+-nodes              Don't encrypt the output key.
+
+-subj val           Set or modify request subject.
+
+-days +int          Number of days cert is valid for.
+
+-newkey val         Specify as type:bits.
+
+-keyout outfile     File to send the key to.
+
+-out outfile        Output file.
