@@ -1,0 +1,20 @@
+kubectl delete pods --all -jeudi 3 décembre 2020, 17:07:12 (UTC+0100)
+pod "nginx-785b56b869-wh2dk" deleted
+pod "wordpress-688bf46b8f-252dm" deleted
+kubectl delete deployments --all -jeudi 3 décembre 2020, 17:07:12 (UTC+0100)
+deployment.apps "nginx" deleted
+deployment.apps "wordpress" deleted
+kubectl delete svc --all -jeudi 3 décembre 2020, 17:07:13 (UTC+0100)
+service "kubernetes" deleted
+service "nginx-service" deleted
+service "wordpress-service" deleted
+kubectl delete pvc --all -jeudi 3 décembre 2020, 17:07:13 (UTC+0100)
+No resources found
+kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -jeudi 3 décembre 2020, 17:07:27 (UTC+0100)
+configmap/config unchanged
+kubectl apply -f srcs/nginx/nginx-deployment.yaml -jeudi 3 décembre 2020, 17:07:27 (UTC+0100)
+deployment.apps/nginx created
+service/nginx-service created
+kubectl apply -f srcs/wordpress/wordpress-deployment.yaml -jeudi 3 décembre 2020, 17:07:28 (UTC+0100)
+deployment.apps/wordpress created
+service/wordpress-service created

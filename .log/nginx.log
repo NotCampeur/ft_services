@@ -1,19 +1,16 @@
+docker build srcs/nginx -t nginx -jeudi 3 décembre 2020, 17:07:14 (UTC+0100)
 Sending build context to Docker daemon   1.08MB
 Step 1/11 : FROM 	alpine:latest
 latest: Pulling from library/alpine
-188c0c94c7c5: Pulling fs layer
-188c0c94c7c5: Verifying Checksum
-188c0c94c7c5: Download complete
-188c0c94c7c5: Pull complete
 Digest: sha256:c0e9560cda118f9ec63ddefb4a173a2b2a0347082d7dff7dc14272e7841a5b5a
 Status: Downloaded newer image for alpine:latest
  ---> d6e46aa2470d
 Step 2/11 : RUN 	apk update 		&& apk add nginx 					openssl
- ---> Running in f637e202767d
+ ---> Running in e91696afc1b2
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
-v3.12.1-67-ge0f25e8e68 [http://dl-cdn.alpinelinux.org/alpine/v3.12/main]
-v3.12.1-65-gda4c4bae78 [http://dl-cdn.alpinelinux.org/alpine/v3.12/community]
+v3.12.1-74-g54165f73d3 [http://dl-cdn.alpinelinux.org/alpine/v3.12/main]
+v3.12.1-71-gfc587ffaa2 [http://dl-cdn.alpinelinux.org/alpine/v3.12/community]
 OK: 12746 distinct packages available
 (1/3) Installing pcre (8.44-r0)
 (2/3) Installing nginx (1.18.0-r1)
@@ -21,42 +18,42 @@ Executing nginx-1.18.0-r1.pre-install
 (3/3) Installing openssl (1.1.1g-r0)
 Executing busybox-1.31.1-r19.trigger
 OK: 8 MiB in 17 packages
-Removing intermediate container f637e202767d
- ---> bac7942bd76b
+Removing intermediate container e91696afc1b2
+ ---> c9ab21f75955
 Step 3/11 : COPY 	nginx.conf		/etc/nginx/
- ---> 0602dcd0a56a
+ ---> d5b5f7154ac4
 Step 4/11 : COPY	nginx_setup.sh	setup.sh
- ---> b578e59e4790
+ ---> ec9da0d1b90d
 Step 5/11 : RUN		chmod +x 		setup.sh
- ---> Running in 4af76071ebb7
-Removing intermediate container 4af76071ebb7
- ---> df9de7b41180
+ ---> Running in 5fcf170ef690
+Removing intermediate container 5fcf170ef690
+ ---> 9e0b2cf1d31c
 Step 6/11 : RUN		mkdir -p /etc/nginx/certs
- ---> Running in a77a038f3aaa
-Removing intermediate container a77a038f3aaa
- ---> 539c823d3064
+ ---> Running in 88d6d8e40ff2
+Removing intermediate container 88d6d8e40ff2
+ ---> 579e6b2e7c54
 Step 7/11 : RUN		mkdir -p /run/nginx
- ---> Running in 1e3be8b7f698
-Removing intermediate container 1e3be8b7f698
- ---> f0724f4840cb
+ ---> Running in 12dc16e94907
+Removing intermediate container 12dc16e94907
+ ---> 20f217e6fa6f
 Step 8/11 : COPY	page /page/
- ---> 2b99a34191a6
+ ---> f7161df3aa86
 Step 9/11 : RUN openssl req -x509 -nodes 	-subj '/C=FR/ST=PARIS/L=PARIS/O=42/CN=localhost' 	-days 1 -newkey rsa:1024 	-keyout /etc/ssl/private/nginx-selfsigned.key 	-out /etc/nginx/certs/nginx-selfsigned.crt
- ---> Running in c5e0073690bc
+ ---> Running in 08e1e01f4802
 [91mGenerating a RSA private key
-[0m[91m...+++++
-[0m[91m...[0m[91m.[0m[91m...........[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m...[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m..[0m[91m.+++++
-writing new private key to '/etc/ssl/private/nginx-selfsigned.key'
+[0m[91m...[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m...[0m[91m..[0m[91m..[0m[91m..[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m..[0m[91m...[0m[91m..[0m[91m..[0m[91m..[0m[91m..[0m[91m.+++++
+[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m..[0m[91m..[0m[91m..[0m[91m..[0m[91m..[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+[0m[91m+
+[0m[91mwriting new private key to '/etc/ssl/private/nginx-selfsigned.key'
 [0m[91m-----
-[0mRemoving intermediate container c5e0073690bc
- ---> dd24cf8b5f54
+[0mRemoving intermediate container 08e1e01f4802
+ ---> 0cd0b8e18d73
 Step 10/11 : EXPOSE 22 35:80 36:443
- ---> Running in b955c6bbe1fb
-Removing intermediate container b955c6bbe1fb
- ---> 1031b854abce
+ ---> Running in a9701587765a
+Removing intermediate container a9701587765a
+ ---> 4aa2877f0710
 Step 11/11 : CMD ["sh", "./setup.sh"]
- ---> Running in 06091115f106
-Removing intermediate container 06091115f106
- ---> b77cc97eba65
-Successfully built b77cc97eba65
+ ---> Running in 2ba9bf4c86b1
+Removing intermediate container 2ba9bf4c86b1
+ ---> 529d00bce01f
+Successfully built 529d00bce01f
 Successfully tagged nginx:latest
