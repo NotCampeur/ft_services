@@ -7,3 +7,55 @@ Docker est un logiciel libre permettant de lancer des applications dans des cont
 
 Contrairement aux machines virtuelles traditionnelles, un conteneur Docker n'inclut pas de système d'exploitation,
 	mais s'appuie au contraire sur les fonctionnalités du système d’exploitation fournies par la machine hôte
+
+"docker info" to see the actual infos
+"sudo dockerd" to start the docker daemon.
+"docker ps" to show running containers. (-all to show all containers)(--quiet to only displqy IDs)
+"docker images" to list all build images
+
+Si tu ajoute une commande au moment de run -> "docker run [image_name] hostname"
+L'instruction CMD sera remplacee par la commande "hostname" dans l'exemple.
+
+Si tu utilise un EntryPoint plutot qu'un CMD et que tu rajoute un parametre
+"docker run [container_name] KnowledgeBase" alors le parametre sera rajouter
+a la fin de la commande existante sans override.
+(Tu pourra toujours override l'entrypoint
+--> "docker run --entrypoint [container_name] KnowledgeBase" )
+
+Containers are designed for running specific tasks and processes,
+not for hosting operating systems.
+You create a container to serve a single unit task.
+Once it completes the given task, it stops.
+Therefore, the container life-cycle depends on the ongoing
+process inside of it. Once the process stops, the container stops as well.
+
+Docker run :
+
+-a=[]           : Attach to `STDIN`, `STDOUT` and/or `STDERR`
+-t              : Allocate a pseudo-tty
+--sig-proxy=true: Proxy all received signals to the process (non-TTY mode only)
+-i              : Keep STDIN open even if not attached
+
+To start a container in detached mode, you use -d=true or just -d option.
+By design, containers started in detached mode exit
+when the root process used to run the container exits,
+unless you also specify the --rm option.
+If you use -d with --rm, the container is removed
+when it exits or when the daemon exits, whichever happens first.
+
+To do input/output with a detached container use
+network connections or shared volumes.
+These are required because the container is no longer
+listening to the command line where docker run was run.
+
+To reattach to a detached container, use docker attach command.
+
+"docker run -d my_image nginx -g 'daemon off;'"
+
+API REST (Representational State Transfer Application Program Interface)
+est un style architectural qui permet aux logiciels de communiquer
+entre eux sur un réseau ou sur un même appareil.
+Le plus souvent les développeurs utilisent des API REST pour créer
+des services web. Souvent appelés services web RESTful,
+REST utilise des méthodes HTTP pour récupérer et publier
+des données entre un périphérique client et un serveur.

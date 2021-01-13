@@ -14,14 +14,17 @@ RUN		mkdir -p /etc/nginx/certs
 # NEEDED BY THE COMMAND 'NGINX' IN THE NGINX'S SETUP.SH
 RUN		mkdir -p /run/nginx
 
+# WILL KEEP THE NGINX PROCESS IN THE FOREGROUND AVOIDING A EARLY STOP.
+RUN		echo "daemon off;" >> /etc/nginx/nginx.conf
+
 COPY	page /page/
 
 RUN openssl req -x509 -nodes \
 	-subj '/C=FR/ST=PARIS/L=PARIS/O=42/CN=localhost' \
-	-days 1 -newkey rsa:1024 \
+	-days 365 -newkey rsa:2048 \
 	-keyout /etc/ssl/private/nginx-selfsigned.key \
 	-out /etc/nginx/certs/nginx-selfsigned.crt
 
 EXPOSE 22 35:80 36:443 
 
-CMD ["sh", "./setup.sh"]
+ENTRYPOINT ["sh", "./setup.sh"]

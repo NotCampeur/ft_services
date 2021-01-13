@@ -1,59 +1,67 @@
-docker build srcs/nginx -t nginx -jeudi 3 décembre 2020, 17:07:14 (UTC+0100)
+docker build srcs/nginx -t nginx -jeudi 17 décembre 2020, 16:41:30 (UTC+0100)
 Sending build context to Docker daemon   1.08MB
-Step 1/11 : FROM 	alpine:latest
+Step 1/12 : FROM 	alpine:latest
 latest: Pulling from library/alpine
-Digest: sha256:c0e9560cda118f9ec63ddefb4a173a2b2a0347082d7dff7dc14272e7841a5b5a
+801bfaa63ef2: Pulling fs layer
+801bfaa63ef2: Verifying Checksum
+801bfaa63ef2: Download complete
+801bfaa63ef2: Pull complete
+Digest: sha256:3c7497bf0c7af93428242d6176e8f7905f2201d8fc5861f45be7a346b5f23436
 Status: Downloaded newer image for alpine:latest
- ---> d6e46aa2470d
-Step 2/11 : RUN 	apk update 		&& apk add nginx 					openssl
- ---> Running in e91696afc1b2
+ ---> 389fef711851
+Step 2/12 : RUN 	apk update 		&& apk add nginx 					openssl
+ ---> Running in 161b9f595630
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
-v3.12.1-74-g54165f73d3 [http://dl-cdn.alpinelinux.org/alpine/v3.12/main]
-v3.12.1-71-gfc587ffaa2 [http://dl-cdn.alpinelinux.org/alpine/v3.12/community]
-OK: 12746 distinct packages available
+v3.12.3-12-g15f1da04e4 [http://dl-cdn.alpinelinux.org/alpine/v3.12/main]
+v3.12.3-12-g15f1da04e4 [http://dl-cdn.alpinelinux.org/alpine/v3.12/community]
+OK: 12745 distinct packages available
 (1/3) Installing pcre (8.44-r0)
 (2/3) Installing nginx (1.18.0-r1)
 Executing nginx-1.18.0-r1.pre-install
-(3/3) Installing openssl (1.1.1g-r0)
+(3/3) Installing openssl (1.1.1i-r0)
 Executing busybox-1.31.1-r19.trigger
 OK: 8 MiB in 17 packages
-Removing intermediate container e91696afc1b2
- ---> c9ab21f75955
-Step 3/11 : COPY 	nginx.conf		/etc/nginx/
- ---> d5b5f7154ac4
-Step 4/11 : COPY	nginx_setup.sh	setup.sh
- ---> ec9da0d1b90d
-Step 5/11 : RUN		chmod +x 		setup.sh
- ---> Running in 5fcf170ef690
-Removing intermediate container 5fcf170ef690
- ---> 9e0b2cf1d31c
-Step 6/11 : RUN		mkdir -p /etc/nginx/certs
- ---> Running in 88d6d8e40ff2
-Removing intermediate container 88d6d8e40ff2
- ---> 579e6b2e7c54
-Step 7/11 : RUN		mkdir -p /run/nginx
- ---> Running in 12dc16e94907
-Removing intermediate container 12dc16e94907
- ---> 20f217e6fa6f
-Step 8/11 : COPY	page /page/
- ---> f7161df3aa86
-Step 9/11 : RUN openssl req -x509 -nodes 	-subj '/C=FR/ST=PARIS/L=PARIS/O=42/CN=localhost' 	-days 1 -newkey rsa:1024 	-keyout /etc/ssl/private/nginx-selfsigned.key 	-out /etc/nginx/certs/nginx-selfsigned.crt
- ---> Running in 08e1e01f4802
+Removing intermediate container 161b9f595630
+ ---> 7bbe27b813b0
+Step 3/12 : COPY 	nginx.conf		/etc/nginx/
+ ---> d65810f19c9e
+Step 4/12 : COPY	nginx_setup.sh	setup.sh
+ ---> 199e0de44657
+Step 5/12 : RUN		chmod +x 		setup.sh
+ ---> Running in e760554da5be
+Removing intermediate container e760554da5be
+ ---> d7c923f5748f
+Step 6/12 : RUN		mkdir -p /etc/nginx/certs
+ ---> Running in 67f5c478b6bd
+Removing intermediate container 67f5c478b6bd
+ ---> 8f193b1c3a9c
+Step 7/12 : RUN		mkdir -p /run/nginx
+ ---> Running in 7b2419cdce54
+Removing intermediate container 7b2419cdce54
+ ---> 034cee61fddb
+Step 8/12 : RUN		echo "daemon off;" >> /etc/nginx/nginx.conf
+ ---> Running in 9de65054cab3
+Removing intermediate container 9de65054cab3
+ ---> 89d781f45099
+Step 9/12 : COPY	page /page/
+ ---> d6f73a3e7d0a
+Step 10/12 : RUN openssl req -x509 -nodes 	-subj '/C=FR/ST=PARIS/L=PARIS/O=42/CN=localhost' 	-days 365 -newkey rsa:2048 	-keyout /etc/ssl/private/nginx-selfsigned.key 	-out /etc/nginx/certs/nginx-selfsigned.crt
+ ---> Running in 00b378c517ef
 [91mGenerating a RSA private key
-[0m[91m...[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m...[0m[91m..[0m[91m..[0m[91m..[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m..[0m[91m...[0m[91m..[0m[91m..[0m[91m..[0m[91m..[0m[91m.+++++
-[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m..[0m[91m..[0m[91m..[0m[91m..[0m[91m..[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+[0m[91m+
-[0m[91mwriting new private key to '/etc/ssl/private/nginx-selfsigned.key'
+[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.....[0m[91m++++[0m[91m+
+[0m[91m.[0m[91m++[0m[91m+++
+writing new private key to '/etc/ssl/private/nginx-selfsigned.key'
 [0m[91m-----
-[0mRemoving intermediate container 08e1e01f4802
- ---> 0cd0b8e18d73
-Step 10/11 : EXPOSE 22 35:80 36:443
- ---> Running in a9701587765a
-Removing intermediate container a9701587765a
- ---> 4aa2877f0710
-Step 11/11 : CMD ["sh", "./setup.sh"]
- ---> Running in 2ba9bf4c86b1
-Removing intermediate container 2ba9bf4c86b1
- ---> 529d00bce01f
-Successfully built 529d00bce01f
+[0mRemoving intermediate container 00b378c517ef
+ ---> f5fd99745d6a
+Step 11/12 : EXPOSE 22 35:80 36:443
+ ---> Running in e91a9b0c95a9
+Removing intermediate container e91a9b0c95a9
+ ---> 569bc2b6348f
+Step 12/12 : ENTRYPOINT ["sh", "./setup.sh"]
+ ---> Running in 0e987f052fa8
+Removing intermediate container 0e987f052fa8
+ ---> 5778604a43f3
+Successfully built 5778604a43f3
 Successfully tagged nginx:latest

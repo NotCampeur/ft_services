@@ -1,0 +1,22 @@
+Un nœud est une machine virtuelle ou un ordinateur physique
+servant d’ordinateur de travail dans un cluster Kubernetes.
+Chaque nœud est doté d’un Kubelet, qui est un agent permettant
+de gérer le nœud et de communiquer avec le maître Kubernetes.
+Le nœud doit également disposer d'outils permettant de gérer
+les opérations de conteneur, telles que Docker ou rkt.
+Un cluster Kubernetes qui gère le trafic de production doit
+comporter au moins trois nœuds.
+
+Un cluster Kubernetes peut être déployé sur des machines physiques
+ou virtuelles. Pour démarrer avec le développement de Kubernetes,
+vous pouvez utiliser Minikube. Minikube est une implémentation
+Kubernetes légère qui crée une machine virtuelle sur votre machine
+locale et déploie un cluster simple contenant un seul nœud
+
+kubectl cluster-info
+kubectl get nodes
+kubectl get deployments
+kubectl get svc
+
+echo -e "\n\n\n\e[92mStarting Proxy.
+After starting it will not output a response.\n"; kubectl proxy
