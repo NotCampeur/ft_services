@@ -4,17 +4,36 @@ kubelet: Running
 apiserver: Running
 kubeconfig: Configured
 
-kubectl delete pods --all -jeudi 17 décembre 2020, 16:41:27 (UTC+0100)
-pod "nginx-785b56b869-264nf" deleted
-kubectl delete deployments --all -jeudi 17 décembre 2020, 16:41:28 (UTC+0100)
+kubectl delete pods --all -jeudi 14 janvier 2021, 15:16:03 (UTC+0100)
+pod "mysql-7fcb4c7699-6ctg6" deleted
+pod "nginx-785b56b869-4c9x7" deleted
+pod "phpmyadmin-d9dd6789d-rbts7" deleted
+pod "wordpress-688bf46b8f-r7g9s" deleted
+kubectl delete deployments --all -jeudi 14 janvier 2021, 15:17:00 (UTC+0100)
+deployment.apps "mysql" deleted
 deployment.apps "nginx" deleted
-kubectl delete svc --all -jeudi 17 décembre 2020, 16:41:28 (UTC+0100)
+deployment.apps "phpmyadmin" deleted
+deployment.apps "wordpress" deleted
+kubectl delete svc --all -jeudi 14 janvier 2021, 15:17:03 (UTC+0100)
 service "kubernetes" deleted
+service "mysql-service" deleted
 service "nginx-service" deleted
-kubectl delete pvc --all -jeudi 17 décembre 2020, 16:41:28 (UTC+0100)
-No resources found
-kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -jeudi 17 décembre 2020, 16:41:29 (UTC+0100)
+service "phpmyadmin-service" deleted
+service "wordpress-service" deleted
+kubectl delete pvc --all -jeudi 14 janvier 2021, 15:17:07 (UTC+0100)
+persistentvolumeclaim "mysql" deleted
+kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -jeudi 14 janvier 2021, 15:17:13 (UTC+0100)
 configmap/config unchanged
-kubectl apply -f srcs/nginx/nginx-deployment.yaml -jeudi 17 décembre 2020, 16:41:43 (UTC+0100)
+kubectl apply -f srcs/nginx/nginx-deployment.yaml -jeudi 14 janvier 2021, 15:17:18 (UTC+0100)
 deployment.apps/nginx created
 service/nginx-service created
+kubectl apply -f srcs/wordpress/wordpress-deployment.yaml -jeudi 14 janvier 2021, 15:17:19 (UTC+0100)
+deployment.apps/wordpress created
+service/wordpress-service created
+kubectl apply -f srcs/phpmyadmin/phpmyadmin-deployment.yaml -jeudi 14 janvier 2021, 15:17:19 (UTC+0100)
+deployment.apps/phpmyadmin created
+service/phpmyadmin-service created
+kubectl apply -f srcs/mysql/mysql-deployment.yaml -jeudi 14 janvier 2021, 15:17:20 (UTC+0100)
+persistentvolumeclaim/mysql created
+deployment.apps/mysql created
+service/mysql-service created

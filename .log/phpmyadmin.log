@@ -1,0 +1,27 @@
+docker build srcs/phpmyadmin -t phpmyadmin -jeudi 14 janvier 2021, 15:17:17 (UTC+0100)
+Sending build context to Docker daemon  6.144kB
+Step 1/8 : FROM alpine:latest
+ ---> 389fef711851
+Step 2/8 : RUN apk update 	&& apk add wget php7 php7-fpm 		php7-opcache php7-gd php7-mysqli 		php7-zlib php7-curl php7-mbstring 		php7-json php7-session
+ ---> Using cache
+ ---> e39426aac012
+Step 3/8 : RUN wget http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-all-languages.tar.gz 	&& tar zxvf phpMyAdmin-5.0.2-all-languages.tar.gz 	&& rm phpMyAdmin-5.0.2-all-languages.tar.gz 	&& mkdir /www && mv phpMyAdmin-5.0.2-all-languages /www/phpmyadmin
+ ---> Using cache
+ ---> 0a8b8f4dd655
+Step 4/8 : ADD setup.sh 			.
+ ---> Using cache
+ ---> 58f6103d4899
+Step 5/8 : ADD config.inc.php		/www/phpmyadmin
+ ---> Using cache
+ ---> 41f845274e85
+Step 6/8 : RUN chmod +x setup.sh
+ ---> Using cache
+ ---> 1ab6db9eae02
+Step 7/8 : EXPOSE 5000
+ ---> Using cache
+ ---> 0d435627fc0d
+Step 8/8 : CMD ["sh", "setup.sh"]
+ ---> Using cache
+ ---> 40770dab4e8a
+Successfully built 40770dab4e8a
+Successfully tagged phpmyadmin:latest

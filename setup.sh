@@ -6,7 +6,7 @@ BLUE="\e[1;34m"
 PURPLE="\e[35m"
 DEFAULT="\e[0m"
 
-services="nginx"
+services="nginx wordpress phpmyadmin mysql"
 
 ft_start_minikube()
 {
@@ -93,3 +93,5 @@ echo -e ${BLUE}"[ GET DEPLOYMENTS ]"${DEFAULT}
 kubectl get deployments
 echo -e ${BLUE}"[ GET SVC ]"${DEFAULT}
 kubectl get svc
+echo -e ${BLUE}"[ STARTING DASHBOARD ]"${DEFAULT}
+minikube dashboard
