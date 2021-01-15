@@ -1,0 +1,27 @@
+USERS : PASSWORDS
+
+nginx-ssh:
+user42 | user42
+
+ftps:
+admin | password
+
+wordpress:
+admin | password
+
+phpmyadmin:
+admin | password
+
+grafana:
+admin | password
+
+SERVICES : APP
+
+nginx      | nginx
+ftps  	   | pureftp
+wordpress  | php
+phpmyadmin | php
+mysql      | mysql
+influxdb   | influx
+grafana    | grafana
+

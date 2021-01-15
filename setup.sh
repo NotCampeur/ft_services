@@ -10,6 +10,7 @@ services="nginx wordpress phpmyadmin mysql"
 
 ft_start_minikube()
 {
+	minikube config set WantUpdateNotification false;
 	if [[ $(minikube status > .log/setup.log ; cat .log/setup.log | grep -c "Running") == 0 ]]
 	then
 		echo -en ${YELLOW}"\tInstalling minikube ..."${DEFAULT}

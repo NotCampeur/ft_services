@@ -1,42 +1,39 @@
-docker build srcs/nginx -t nginx -jeudi 14 janvier 2021, 15:17:13 (UTC+0100)
+docker build srcs/nginx -t nginx -vendredi 15 janvier 2021, 11:11:45 (UTC+0100)
 Sending build context to Docker daemon   1.08MB
 Step 1/12 : FROM 	alpine:latest
-latest: Pulling from library/alpine
-Digest: sha256:3c7497bf0c7af93428242d6176e8f7905f2201d8fc5861f45be7a346b5f23436
-Status: Downloaded newer image for alpine:latest
- ---> 389fef711851
+ ---> 7731472c3f2a
 Step 2/12 : RUN 	apk update 		&& apk add nginx 					openssl
  ---> Using cache
- ---> a58015f89221
+ ---> 4b00d53c1722
 Step 3/12 : COPY 	nginx.conf		/etc/nginx/
  ---> Using cache
- ---> 74bef9cca3e4
+ ---> 0ef2c925ea2e
 Step 4/12 : COPY	nginx_setup.sh	setup.sh
  ---> Using cache
- ---> a9f6a5f8fc11
+ ---> 77335b325af7
 Step 5/12 : RUN		chmod +x 		setup.sh
  ---> Using cache
- ---> 198112a48ffc
+ ---> d3ff112bef99
 Step 6/12 : RUN		mkdir -p /etc/nginx/certs
  ---> Using cache
- ---> ff498e5c858a
+ ---> d8628b281919
 Step 7/12 : RUN		mkdir -p /run/nginx
  ---> Using cache
- ---> 24e5650679ec
+ ---> 60cae7e0a3ce
 Step 8/12 : RUN		echo "daemon off;" >> /etc/nginx/nginx.conf
  ---> Using cache
- ---> 4325d6f57c77
+ ---> 3f0e9c9a4e71
 Step 9/12 : COPY	page /page/
  ---> Using cache
- ---> 262f95437b78
+ ---> 2499b7f00986
 Step 10/12 : RUN openssl req -x509 -nodes 	-subj '/C=FR/ST=PARIS/L=PARIS/O=42/CN=localhost' 	-days 365 -newkey rsa:2048 	-keyout /etc/ssl/private/nginx-selfsigned.key 	-out /etc/nginx/certs/nginx-selfsigned.crt
  ---> Using cache
- ---> 4555805c2dbc
+ ---> c45592285e50
 Step 11/12 : EXPOSE 22 35:80 36:443
  ---> Using cache
- ---> d15be76d0206
+ ---> 16a7d493b4bb
 Step 12/12 : ENTRYPOINT ["sh", "./setup.sh"]
  ---> Using cache
- ---> c65b85dc73ca
-Successfully built c65b85dc73ca
+ ---> bfb9d085c06a
+Successfully built bfb9d085c06a
 Successfully tagged nginx:latest

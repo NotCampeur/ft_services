@@ -5,9 +5,9 @@ RUN apk update && apk add --no-cache --upgrade bash \
 
 RUN mysql --version
 
-ADD setup.sh .
-ADD init.sh .
-ADD wordpress.sql .
+COPY mysql_setup.sh setup.sh
+COPY init.sh .
+COPY wordpress.sql .
 RUN chmod +x setup.sh
 RUN chmod +x init.sh
 

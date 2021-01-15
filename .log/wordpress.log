@@ -1,33 +1,33 @@
-docker build srcs/wordpress -t wordpress -jeudi 14 janvier 2021, 15:17:17 (UTC+0100)
+docker build srcs/wordpress -t wordpress -vendredi 15 janvier 2021, 11:11:46 (UTC+0100)
 Sending build context to Docker daemon  9.728kB
 Step 1/10 : FROM 	alpine:latest
- ---> 389fef711851
+ ---> 7731472c3f2a
 Step 2/10 : RUN 	apk update 		&& apk add nginx 		&& apk add wget php7 		php7-fpm 		php7-opcache 		php7-gd 		php7-mysqli 		php7-zlib 		php7-curl 		php7-mbstring 		php7-json 		php7-session
  ---> Using cache
- ---> bd9267ddb1c3
+ ---> 50eacfae2620
 Step 3/10 : RUN		wget https://wordpress.org/latest.tar.gz 		&& tar -xvf latest.tar.gz 		&& rm latest.tar.gz
  ---> Using cache
- ---> 70f44a5eeaa3
+ ---> accfbf6a8f76
 Step 4/10 : COPY 	wp-config.php 	/wordpress/wp-config.php
  ---> Using cache
- ---> be5cd3a35541
+ ---> 958d856914b0
 Step 5/10 : COPY 	nginx.conf		/etc/nginx/
  ---> Using cache
- ---> 62eca0a3417f
+ ---> c4394a6b7d63
 Step 6/10 : RUN		mkdir -p /run/nginx
  ---> Using cache
- ---> bf43adcd86be
+ ---> 1746f0a88ba8
 Step 7/10 : COPY	wordpress_setup.sh	setup.sh
  ---> Using cache
- ---> 31a1cbf2a72f
+ ---> 5dd732a47d18
 Step 8/10 : RUN		chmod +x 			setup.sh
  ---> Using cache
- ---> 1951c905e6d7
+ ---> 0271d28deb92
 Step 9/10 : EXPOSE 5050
  ---> Using cache
- ---> 2a0ea07868e1
+ ---> b6684f1fbaca
 Step 10/10 : CMD ["sh", "./setup.sh"]
  ---> Using cache
- ---> 5ebd437179ec
-Successfully built 5ebd437179ec
+ ---> 3103a799ce3f
+Successfully built 3103a799ce3f
 Successfully tagged wordpress:latest

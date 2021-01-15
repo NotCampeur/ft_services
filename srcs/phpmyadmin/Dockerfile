@@ -11,8 +11,8 @@ RUN wget http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-a
 	&& rm phpMyAdmin-5.0.2-all-languages.tar.gz \
 	&& mkdir /www && mv phpMyAdmin-5.0.2-all-languages /www/phpmyadmin
 
-ADD setup.sh 			.
-ADD config.inc.php		/www/phpmyadmin
+COPY pma_setup.sh 		setup.sh
+COPY config.inc.php		/www/phpmyadmin
 
 RUN chmod +x setup.sh
 
