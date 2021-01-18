@@ -1,0 +1,13 @@
+Dans l'environnement plus particulier des réseaux, un serveur proxy,
+	serveur mandataire ou mandataire, est une fonction informatique
+	client-serveur qui a pour fonction de relayer des requêtes
+	entre une fonction cliente et une fonction serveur
+	(couches 5 à 7 du modèle OSI).
+
+Les serveurs proxys sont notamment utilisés pour assurer les fonctions suivantes :
+
+    accélération de la navigation : mémoire cache, compression de données,
+		filtrage des publicités ou des contenus lourds (Java, Flash) ;
+    la journalisation des requêtes (historique) ;
+    la sécurité du réseau local ;
+    le filtrage et l'anonymat.
