@@ -6,7 +6,7 @@ BLUE="\e[1;34m"
 PURPLE="\e[35m"
 DEFAULT="\e[0m"
 
-services="nginx wordpress phpmyadmin mysql"
+services="wordpress" # phpmyadmin mysql"
 
 ft_start_minikube()
 {

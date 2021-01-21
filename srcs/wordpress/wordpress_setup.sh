@@ -1,3 +1,2 @@
-php -S 0.0.0.0:5050 -t /wordpress/
+php-fpm7
 nginx
-tail -f /dev/null

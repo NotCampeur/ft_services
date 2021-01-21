@@ -1,39 +1,33 @@
-docker build srcs/nginx -t nginx -lundi 18 janvier 2021, 14:05:58 (UTC+0100)
+docker build srcs/nginx -t nginx -mardi 19 janvier 2021, 15:52:26 (UTC+0100)
 Sending build context to Docker daemon   1.08MB
-Step 1/12 : FROM 	alpine:latest
+Step 1/10 : FROM 	alpine:latest
  ---> 7731472c3f2a
-Step 2/12 : RUN 	apk update 		&& apk add nginx 					openssl
+Step 2/10 : RUN 	apk update 		&& apk add nginx 					openssl
  ---> Using cache
  ---> 4b00d53c1722
-Step 3/12 : COPY 	nginx.conf		/etc/nginx/
+Step 3/10 : COPY 	nginx.conf		/etc/nginx/
  ---> Using cache
- ---> 0ef2c925ea2e
-Step 4/12 : COPY	nginx_setup.sh	setup.sh
+ ---> e4658aed628d
+Step 4/10 : COPY	nginx_setup.sh	setup.sh
  ---> Using cache
- ---> 54d726e862d3
-Step 5/12 : RUN		chmod +x 		setup.sh
+ ---> 3cc24462ece2
+Step 5/10 : RUN		mkdir -p /etc/nginx/certs
  ---> Using cache
- ---> 05d628b00aa7
-Step 6/12 : RUN		mkdir -p /etc/nginx/certs
+ ---> 91bf8f8a58e9
+Step 6/10 : RUN		mkdir -p /run/nginx
  ---> Using cache
- ---> d96d47eada5f
-Step 7/12 : RUN		mkdir -p /run/nginx
+ ---> 336fbeff0604
+Step 7/10 : COPY	page /page/
  ---> Using cache
- ---> 4d9933639a1d
-Step 8/12 : RUN		echo "daemon off;" >> /etc/nginx/nginx.conf
+ ---> 1e2ab84b986e
+Step 8/10 : RUN openssl req -x509 -nodes 	-subj '/C=FR/ST=PARIS/L=PARIS/O=42/CN=localhost' 	-days 365 -newkey rsa:2048 	-keyout /etc/ssl/private/nginx-selfsigned.key 	-out /etc/nginx/certs/nginx-selfsigned.crt
  ---> Using cache
- ---> 04a88c6fd818
-Step 9/12 : COPY	page /page/
+ ---> 333bb7e60cc0
+Step 9/10 : EXPOSE 22 35:80 36:443
  ---> Using cache
- ---> 45ebf681642c
-Step 10/12 : RUN openssl req -x509 -nodes 	-subj '/C=FR/ST=PARIS/L=PARIS/O=42/CN=localhost' 	-days 365 -newkey rsa:2048 	-keyout /etc/ssl/private/nginx-selfsigned.key 	-out /etc/nginx/certs/nginx-selfsigned.crt
+ ---> 4b8d80b44eb8
+Step 10/10 : ENTRYPOINT ["sh", "./setup.sh"]
  ---> Using cache
- ---> 5f65fc2b5eab
-Step 11/12 : EXPOSE 22 35:80 36:443
- ---> Using cache
- ---> 053242b147ad
-Step 12/12 : ENTRYPOINT ["sh", "./setup.sh"]
- ---> Using cache
- ---> 464edcf2527e
-Successfully built 464edcf2527e
+ ---> 7da8079e825a
+Successfully built 7da8079e825a
 Successfully tagged nginx:latest

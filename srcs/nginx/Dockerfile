@@ -6,7 +6,6 @@ RUN 	apk update \
 
 COPY 	nginx.conf		/etc/nginx/
 COPY	nginx_setup.sh	setup.sh
-RUN		chmod +x 		setup.sh
 
 # NEEDED BY THE COMMAND 'OPENSSL'
 RUN		mkdir -p /etc/nginx/certs

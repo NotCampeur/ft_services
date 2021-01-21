@@ -1,10 +1,20 @@
 m01
-host: Nonexistent
-kubelet: Nonexistent
-apiserver: Nonexistent
-kubeconfig: Nonexistent
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
 
-😄  minikube v1.9.0 on Ubuntu 18.04
-✨  Using the docker driver based on existing profile
-🚜  Pulling base image ...
-🏃  Updating the running docker "minikube" container ...
+kubectl delete pods --all -mercredi 20 janvier 2021, 16:30:40 (UTC+0100)
+pod "wordpress-688bf46b8f-96r8m" deleted
+kubectl delete deployments --all -mercredi 20 janvier 2021, 16:31:23 (UTC+0100)
+deployment.apps "wordpress" deleted
+kubectl delete svc --all -mercredi 20 janvier 2021, 16:31:23 (UTC+0100)
+service "kubernetes" deleted
+service "wordpress-service" deleted
+kubectl delete pvc --all -mercredi 20 janvier 2021, 16:31:23 (UTC+0100)
+No resources found
+kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -mercredi 20 janvier 2021, 16:31:24 (UTC+0100)
+configmap/config unchanged
+kubectl apply -f srcs/wordpress/wordpress-deployment.yaml -mercredi 20 janvier 2021, 16:31:24 (UTC+0100)
+deployment.apps/wordpress created
+service/wordpress-service created
