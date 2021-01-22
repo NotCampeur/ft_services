@@ -1,33 +1,30 @@
-docker build srcs/wordpress -t wordpress -mercredi 20 janvier 2021, 16:31:24 (UTC+0100)
-Sending build context to Docker daemon  10.75kB
-Step 1/10 : FROM 	alpine:latest
+docker build srcs/wordpress -t wordpress -vendredi 22 janvier 2021, 15:05:01 (UTC+0100)
+Sending build context to Docker daemon  7.168kB
+Step 1/9 : FROM 	alpine:latest
  ---> 7731472c3f2a
-Step 2/10 : RUN 	apk update 	&& apk add nginx 				wget 				php7 				php7-fpm 				php7-opcache 				php7-gd 				php7-mysqli 				php7-zlib 				php7-curl 				php7-mbstring 				php7-json 				php7-session 				php7-cgi
+Step 2/9 : RUN 	apk update 	&& apk add nginx 				wget 				php7 				php7-fpm 				php7-opcache 				php7-gd 				php7-mysqli 				php7-zlib 				php7-curl 				php7-mbstring 				php7-json 				php7-session 				php7-cgi
  ---> Using cache
  ---> d188ef3bfd3e
-Step 3/10 : RUN		wget https://wordpress.org/latest.tar.gz 		&& tar -xvf latest.tar.gz 		&& rm latest.tar.gz
+Step 3/9 : RUN		wget https://wordpress.org/latest.tar.gz 		&& tar -xvf latest.tar.gz 		&& rm latest.tar.gz
  ---> Using cache
  ---> 676ccfba13eb
-Step 4/10 : COPY 	test.php 			/wordpress/
+Step 4/9 : COPY 	test.php 			/wordpress/
  ---> Using cache
  ---> 7b3b625c9666
-Step 5/10 : COPY 	wp-config.php 		/wordpress/
+Step 5/9 : COPY 	nginx.conf			/etc/nginx/
  ---> Using cache
- ---> 31955405d6f8
-Step 6/10 : COPY 	nginx.conf			/etc/nginx/
+ ---> be3a9bd8938a
+Step 6/9 : COPY	wordpress_setup.sh	setup.sh
  ---> Using cache
- ---> 802c7266754f
-Step 7/10 : COPY	wordpress_setup.sh	setup.sh
+ ---> b54fde7cb842
+Step 7/9 : RUN		mkdir /run/nginx
  ---> Using cache
- ---> 9f8a6a5e3c32
-Step 8/10 : RUN		mkdir -p /run/nginx
+ ---> fdd8292eb451
+Step 8/9 : EXPOSE 5050
  ---> Using cache
- ---> 59258f827f01
-Step 9/10 : EXPOSE 5050
+ ---> dc32c23e09c2
+Step 9/9 : CMD ["sh", "./setup.sh"]
  ---> Using cache
- ---> 77ae8a157494
-Step 10/10 : CMD ["sh", "./setup.sh"]
- ---> Using cache
- ---> b58c4f22c25f
-Successfully built b58c4f22c25f
+ ---> e26d71fb29b1
+Successfully built e26d71fb29b1
 Successfully tagged wordpress:latest

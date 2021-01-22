@@ -6,7 +6,7 @@ BLUE="\e[1;34m"
 PURPLE="\e[35m"
 DEFAULT="\e[0m"
 
-services="wordpress" # phpmyadmin mysql"
+services="nginx wordpress phpmyadmin mysql"
 
 ft_start_minikube()
 {
@@ -64,8 +64,6 @@ ft_run_container()
 		echo -en ${YELLOW}"\tApplying $service-deployment.yaml..."${DEFAULT}
 		echo -n "kubectl apply -f srcs/$service/$service-deployment.yaml -" >> .log/setup.log
 		date >> .log/setup.log
-		# kubectl create deployment nginx --image=nginx
-		# kubectl create service nodeport nginx --tcp=80:80
 		kubectl apply -f srcs/$service/$service-deployment.yaml >> .log/setup.log
 		echo -e ${GREEN}"DONE"${DEFAULT}
 	done

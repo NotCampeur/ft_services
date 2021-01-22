@@ -1,58 +1,43 @@
 FROM 	alpine:latest
 
-RUN		apk update \
-	&& apk add nginx \
-				wget \
-				php7-fpm \
-				php7-common \
-				php7-iconv \
-				php7-json \
-				php7-opcache \
-				php7-mbstring \
-				php7-zlib \
-				php7-session \
-				php7-gd \
-				php7-curl \
-				php7-xml \
-				php7-mysqli \
-				php7-imap \
-				php7-cgi \
-				fcgi \
-				php7-pdo \
-				php7-pdo_mysql \
-				php7-soap \
-				php7-xmlrpc \
-				php7-posix \
-				php7-mcrypt \
-				php7-gettext \
-				php7-ldap \
-				php7-ctype \
-				php7-dom \
-				# mysql \
-				# mysql-client \
-				php-mysqli \
-				mariadb \
-				mariadb-client \
-				--no-cache --upgrade bash
-
-RUN 	mysql --version
+RUN		apk update
+RUN		apk add nginx
+RUN		apk add wget
+RUN		apk add php7-fpm
+RUN		apk add php7-common
+RUN		apk add php7-iconv
+RUN		apk add php7-json
+RUN		apk add php7-opcache
+RUN		apk add php7-mbstring
+RUN		apk add php7-zlib
+RUN		apk add php7-session
+RUN		apk add php7-gd
+RUN		apk add php7-curl
+RUN		apk add php7-xml
+RUN		apk add php7-mysqli
+RUN		apk add php7-imap
+RUN		apk add php7-cgi
+RUN		apk add php7-pdo
+RUN		apk add php7-pdo_mysql
+RUN		apk add php7-soap
+RUN		apk add php7-xmlrpc
+RUN		apk add php7-posix
+RUN		apk add php7-mcrypt
+RUN		apk add php7-gettext
+RUN		apk add php7-ldap
+RUN		apk add php7-ctype
+RUN		apk add php7-dom
+RUN		apk add fcgi
+# RUN		apk add mariadb
+# RUN		apk add mariadb-client
 
 RUN		wget http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-all-languages.tar.gz \
 		&& tar -zxvf phpMyAdmin-5.0.2-all-languages.tar.gz \
 		&& rm phpMyAdmin-5.0.2-all-languages.tar.gz \
 		&& mv phpMyAdmin-5.0.2-all-languages phpmyadmin
 
-RUN		chmod -R 777 /phpmyadmin/
-
-RUN		ln -s /phpmyadmin/ /var/www/localhost/htdocs/phpmyadmin
-
 COPY	nginx.conf		/etc/nginx/
 COPY	pma_setup.sh	setup.sh
-COPY	mysql_init.sh	init.sh
-COPY	config.inc.php	/phpmyadmin/
-
-RUN		chmod +x setup.sh
-RUN		chmod +x init.sh
 
 RUN		mkdir /run/nginx
 

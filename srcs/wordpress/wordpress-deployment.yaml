@@ -26,7 +26,7 @@ kind: Service
 metadata:
   name: wordpress-service
   annotations:
-    metallb.universe.tf/allow-shared-ip: ekvm
+    metallb.universe.tf/allow-shared-ip: sik
 spec:
   type: LoadBalancer
   ports:
