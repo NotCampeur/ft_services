@@ -8,6 +8,7 @@ admin | password
 
 wordpress:
 admin | password
+ldutriez | xxx12password12xxx
 
 phpmyadmin:
 admin | password

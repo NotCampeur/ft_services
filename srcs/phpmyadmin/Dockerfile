@@ -3,6 +3,7 @@ FROM 	alpine:latest
 RUN		apk update
 RUN		apk add nginx
 RUN		apk add wget
+RUN		apk add php7
 RUN		apk add php7-fpm
 RUN		apk add php7-common
 RUN		apk add php7-iconv
@@ -28,8 +29,6 @@ RUN		apk add php7-ldap
 RUN		apk add php7-ctype
 RUN		apk add php7-dom
 RUN		apk add fcgi
-# RUN		apk add mariadb
-# RUN		apk add mariadb-client
 
 RUN		wget http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-all-languages.tar.gz \
 		&& tar -zxvf phpMyAdmin-5.0.2-all-languages.tar.gz \
@@ -38,6 +37,7 @@ RUN		wget http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-
 
 COPY	nginx.conf		/etc/nginx/
 COPY	pma_setup.sh	setup.sh
+COPY	config.inc.php	/phpmyadmin/
 
 RUN		mkdir /run/nginx
 

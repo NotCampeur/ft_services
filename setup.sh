@@ -10,7 +10,6 @@ services="nginx wordpress phpmyadmin mysql"
 
 ft_start_minikube()
 {
-	minikube config set WantUpdateNotification false;
 	if [[ $(minikube status > .log/setup.log ; cat .log/setup.log | grep -c "Running") == 0 ]]
 	then
 		echo -en ${YELLOW}"\tInstalling minikube ..."${DEFAULT}
@@ -82,9 +81,9 @@ ft_run_container
 
 echo -e ${BLUE}"[ Finished ]"
 
-echo -e ${PURPLE}"\n[ DEBUG INFO IN 10 seconds: ]"
+echo -e ${PURPLE}"\n[ DEBUG INFO IN 30 seconds: ]"
 
-sleep 10
+sleep 30
 
 echo -e ${BLUE}"[ CLUSTER-INFO ]"${DEFAULT}
 kubectl cluster-info

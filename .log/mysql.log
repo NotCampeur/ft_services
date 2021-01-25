@@ -1,24 +1,27 @@
-docker build srcs/mysql -t mysql -vendredi 22 janvier 2021, 15:05:02 (UTC+0100)
-Sending build context to Docker daemon  5.632kB
-Step 1/7 : FROM alpine:latest
+docker build srcs/mysql -t mysql -lundi 25 janvier 2021, 13:36:42 (UTC+0100)
+Sending build context to Docker daemon  57.34kB
+Step 1/8 : FROM alpine:latest
  ---> 7731472c3f2a
-Step 2/7 : RUN 	apk update
+Step 2/8 : RUN 	apk update
  ---> Using cache
  ---> ca5ab5e34a86
-Step 3/7 : RUN		apk add mariadb
+Step 3/8 : RUN		apk add mariadb
  ---> Using cache
  ---> 8d76d671b595
-Step 4/7 : RUN		apk add mariadb-client
+Step 4/8 : RUN		apk add mariadb-client
  ---> Using cache
  ---> 37fc213a3702
-Step 5/7 : COPY 	mysql_setup.sh		setup.sh
+Step 5/8 : COPY 	mysql_setup.sh		setup.sh
  ---> Using cache
- ---> 905191756050
-Step 6/7 : COPY	database_init.sql	init.sql
+ ---> 52bf1f5272d0
+Step 6/8 : COPY	database_init.sql	init.sql
  ---> Using cache
- ---> 7dbb96a77580
-Step 7/7 : CMD ["sh", "./setup.sh"]
+ ---> ee2d8fcedb8c
+Step 7/8 : COPY	wordpress.sql		.
  ---> Using cache
- ---> 12559d172250
-Successfully built 12559d172250
+ ---> 711d7bef866c
+Step 8/8 : CMD ["sh", "./setup.sh"]
+ ---> Using cache
+ ---> eac48b25faac
+Successfully built eac48b25faac
 Successfully tagged mysql:latest

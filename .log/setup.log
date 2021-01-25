@@ -4,33 +4,36 @@ kubelet: Running
 apiserver: Running
 kubeconfig: Configured
 
-kubectl delete pods --all -vendredi 22 janvier 2021, 15:04:11 (UTC+0100)
-pod "nginx-785b56b869-jh5pn" deleted
-pod "phpmyadmin-5b9bd8578b-xf78b" deleted
-pod "wordpress-688bf46b8f-f7pzw" deleted
-kubectl delete deployments --all -vendredi 22 janvier 2021, 15:04:54 (UTC+0100)
+kubectl delete pods --all -lundi 25 janvier 2021, 13:35:11 (UTC+0100)
+pod "mysql-7b9967cb7-dmxxr" deleted
+pod "nginx-785b56b869-psbml" deleted
+pod "phpmyadmin-5b9bd8578b-vr99z" deleted
+pod "wordpress-688bf46b8f-brz45" deleted
+kubectl delete deployments --all -lundi 25 janvier 2021, 13:35:57 (UTC+0100)
+deployment.apps "mysql" deleted
 deployment.apps "nginx" deleted
 deployment.apps "phpmyadmin" deleted
 deployment.apps "wordpress" deleted
-kubectl delete svc --all -vendredi 22 janvier 2021, 15:04:56 (UTC+0100)
+kubectl delete svc --all -lundi 25 janvier 2021, 13:35:57 (UTC+0100)
 service "kubernetes" deleted
+service "mysql-service" deleted
 service "nginx-service" deleted
 service "phpmyadmin-service" deleted
 service "wordpress-service" deleted
-kubectl delete pvc --all -vendredi 22 janvier 2021, 15:04:57 (UTC+0100)
-No resources found
-kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -vendredi 22 janvier 2021, 15:04:59 (UTC+0100)
+kubectl delete pvc --all -lundi 25 janvier 2021, 13:36:08 (UTC+0100)
+persistentvolumeclaim "mysql" deleted
+kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -lundi 25 janvier 2021, 13:36:38 (UTC+0100)
 configmap/config unchanged
-kubectl apply -f srcs/nginx/nginx-deployment.yaml -vendredi 22 janvier 2021, 15:05:02 (UTC+0100)
+kubectl apply -f srcs/nginx/nginx-deployment.yaml -lundi 25 janvier 2021, 13:36:43 (UTC+0100)
 deployment.apps/nginx created
 service/nginx-service created
-kubectl apply -f srcs/wordpress/wordpress-deployment.yaml -vendredi 22 janvier 2021, 15:05:03 (UTC+0100)
+kubectl apply -f srcs/wordpress/wordpress-deployment.yaml -lundi 25 janvier 2021, 13:36:47 (UTC+0100)
 deployment.apps/wordpress created
 service/wordpress-service created
-kubectl apply -f srcs/phpmyadmin/phpmyadmin-deployment.yaml -vendredi 22 janvier 2021, 15:05:04 (UTC+0100)
+kubectl apply -f srcs/phpmyadmin/phpmyadmin-deployment.yaml -lundi 25 janvier 2021, 13:36:52 (UTC+0100)
 deployment.apps/phpmyadmin created
 service/phpmyadmin-service created
-kubectl apply -f srcs/mysql/mysql-deployment.yaml -vendredi 22 janvier 2021, 15:05:05 (UTC+0100)
+kubectl apply -f srcs/mysql/mysql-deployment.yaml -lundi 25 janvier 2021, 13:36:55 (UTC+0100)
 persistentvolumeclaim/mysql created
 deployment.apps/mysql created
 service/mysql-service created
