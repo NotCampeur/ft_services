@@ -21,6 +21,6 @@ RUN openssl req -x509 -nodes \
 	-keyout /etc/ssl/private/nginx-selfsigned.key \
 	-out /etc/nginx/certs/nginx-selfsigned.crt
 
-EXPOSE 22 35:80 36:443
+EXPOSE 35:80 36:443
 
 ENTRYPOINT ["sh", "./setup.sh"]

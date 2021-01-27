@@ -10,5 +10,3 @@ DROP DATABASE test;
 GRANT ALL PRIVILEGES ON wordpress.* TO 'admin' WITH GRANT OPTION;
 
 FLUSH PRIVILEGES;
-
-wordpress -u root < wordpress.sql

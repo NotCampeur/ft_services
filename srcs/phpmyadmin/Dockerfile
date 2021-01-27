@@ -39,7 +39,8 @@ COPY	nginx.conf		/etc/nginx/
 COPY	pma_setup.sh	setup.sh
 COPY	config.inc.php	/phpmyadmin/
 
-RUN		mkdir /run/nginx
+RUN		mkdir			/phpmyadmin/tmp
+RUN		mkdir			/run/nginx
 
 EXPOSE	5000
 

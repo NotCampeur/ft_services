@@ -20,12 +20,14 @@ RUN		wget https://wordpress.org/latest.tar.gz \
 		&& tar -xvf latest.tar.gz \
 		&& rm latest.tar.gz
 
-RUN		mkdir -p /wordpress/wp-content/uploads/2021/02
+RUN		mkdir -p /wordpress/wp-content/uploads/2021/01
+
+RUN		chmod 777 -R /wordpress/
 
 COPY 	wp-config.php		/wordpress/
 COPY 	nginx.conf			/etc/nginx/
 COPY	wordpress_setup.sh	setup.sh
-COPY	qr_code_paypal.png /wordpress/wp-content/uploads/2021/02
+COPY	qr_code_paypal.png /wordpress/wp-content/uploads/2021/01
 
 # NEEDED BYE THE COMMAND 'NGINX' IN THE NGINX'S SETUP.SH
 RUN		mkdir /run/nginx

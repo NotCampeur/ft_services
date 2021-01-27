@@ -1,0 +1,14 @@
+If you add an amperand after a command you will have the ID of the command displayed
+And you will know when did the command stop.
+
+If you add an ampersand in a script it will allow the command to run in background.
+
+sendfile is a command which allow the transfert replacing read and write
+
+the nc (netcat) command deal with the TCP and UDP protocol.
+	It can open TCP connections, send UDP packets,
+     listen on arbitrary TCP and UDP ports, do port scanning, and deal with both IPv4 and
+     IPv6.
+
+	 -v more verbose
+	 -z Just scan listening daemons whitout send data

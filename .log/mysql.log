@@ -1,27 +1,49 @@
-docker build srcs/mysql -t mysql -lundi 25 janvier 2021, 13:36:42 (UTC+0100)
-Sending build context to Docker daemon  57.34kB
+docker build srcs/mysql -t mysql -mercredi 27 janvier 2021, 10:20:34 (UTC+0100)
+Sending build context to Docker daemon  61.95kB
 Step 1/8 : FROM alpine:latest
  ---> 7731472c3f2a
 Step 2/8 : RUN 	apk update
  ---> Using cache
- ---> ca5ab5e34a86
+ ---> 34d111267a8e
 Step 3/8 : RUN		apk add mariadb
- ---> Using cache
- ---> 8d76d671b595
+ ---> Running in fd78b93206b8
+(1/15) Installing mariadb-common (10.5.8-r0)
+(2/15) Installing libaio (0.3.112-r1)
+(3/15) Installing ca-certificates (20191127-r5)
+(4/15) Installing brotli-libs (1.0.9-r3)
+(5/15) Installing nghttp2-libs (1.42.0-r1)
+(6/15) Installing libcurl (7.74.0-r0)
+(7/15) Installing libgcc (10.2.1_pre1-r3)
+(8/15) Installing xz-libs (5.2.5-r0)
+(9/15) Installing ncurses-terminfo-base (6.2_p20210109-r0)
+(10/15) Installing ncurses-libs (6.2_p20210109-r0)
+(11/15) Installing linux-pam (1.5.1-r0)
+(12/15) Installing pcre2 (10.36-r0)
+(13/15) Installing libstdc++ (10.2.1_pre1-r3)
+(14/15) Installing libxml2 (2.9.10-r6)
+(15/15) Installing mariadb (10.5.8-r0)
+Executing mariadb-10.5.8-r0.pre-install
+Executing busybox-1.32.1-r0.trigger
+Executing ca-certificates-20191127-r5.trigger
+OK: 150 MiB in 29 packages
+Removing intermediate container fd78b93206b8
+ ---> c1cac7457a77
 Step 4/8 : RUN		apk add mariadb-client
- ---> Using cache
- ---> 37fc213a3702
+ ---> Running in c5be62253498
+(1/1) Installing mariadb-client (10.5.8-r0)
+Executing busybox-1.32.1-r0.trigger
+OK: 178 MiB in 30 packages
+Removing intermediate container c5be62253498
+ ---> 3f9c92b93801
 Step 5/8 : COPY 	mysql_setup.sh		setup.sh
- ---> Using cache
- ---> 52bf1f5272d0
+ ---> 030cbfcb81bc
 Step 6/8 : COPY	database_init.sql	init.sql
- ---> Using cache
- ---> ee2d8fcedb8c
+ ---> 3d458cda523f
 Step 7/8 : COPY	wordpress.sql		.
- ---> Using cache
- ---> 711d7bef866c
+ ---> f74ef91e06a2
 Step 8/8 : CMD ["sh", "./setup.sh"]
- ---> Using cache
- ---> eac48b25faac
-Successfully built eac48b25faac
+ ---> Running in db4449aab643
+Removing intermediate container db4449aab643
+ ---> 122a63db772e
+Successfully built 122a63db772e
 Successfully tagged mysql:latest

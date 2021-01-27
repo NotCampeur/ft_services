@@ -6,7 +6,7 @@ BLUE="\e[1;34m"
 PURPLE="\e[35m"
 DEFAULT="\e[0m"
 
-services="nginx wordpress phpmyadmin mysql"
+services="nginx wordpress phpmyadmin mysql ftps"
 
 ft_start_minikube()
 {
@@ -89,6 +89,8 @@ echo -e ${BLUE}"[ CLUSTER-INFO ]"${DEFAULT}
 kubectl cluster-info
 echo -e ${BLUE}"[ GET NODES ]"${DEFAULT}
 kubectl get nodes
+echo -e ${BLUE}"[ GET PODS ]"${DEFAULT}
+kubectl get pods
 echo -e ${BLUE}"[ GET DEPLOYMENTS ]"${DEFAULT}
 kubectl get deployments
 echo -e ${BLUE}"[ GET SVC ]"${DEFAULT}
