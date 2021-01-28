@@ -6,10 +6,10 @@ BLUE="\e[1;34m"
 PURPLE="\e[35m"
 DEFAULT="\e[0m"
 
-if [[ $(minikube status | grep -c "Running") == 0 ]]
+if [[ $(minikube status | grep -c "Running") != 3 ]]
 then
 	echo -en ${YELLOW}"\tInstalling minikube ..."${DEFAULT}
-	minikube start --driver=docker --cpus=2 --memory=2200 --extra-config=apiserver.service-node-port-range=1-35000
+	minikube start --driver=docker
 	echo -e ${GREEN}"DONE"${DEFAULT}
 fi
 
@@ -23,7 +23,7 @@ kubectl delete svc --all
 echo -e ${BLUE}"kubectl delete pvc --all -"${DEFAULT}
 kubectl delete pvc --all
 echo -e ${BLUE}"docker system prune -"${DEFAULT}
-echo 'y' | docker system prune
+echo 'y' | docker system prune --all
 echo -e ${GREEN}"DONE"${DEFAULT}
 
 echo -en ${YELLOW}"\tStopping minikube ..."${DEFAULT}

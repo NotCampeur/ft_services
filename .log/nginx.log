@@ -1,4 +1,4 @@
-docker build srcs/nginx -t nginx -jeudi 28 janvier 2021, 10:54:31 (UTC+0100)
+docker build srcs/nginx -t nginx -jeudi 28 janvier 2021, 13:38:32 (UTC+0100)
 Sending build context to Docker daemon   1.08MB
 Step 1/10 : FROM 	alpine:latest
  ---> 7731472c3f2a

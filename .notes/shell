@@ -12,3 +12,5 @@ the nc (netcat) command deal with the TCP and UDP protocol.
 
 	 -v more verbose
 	 -z Just scan listening daemons whitout send data
+
+"gpasswd -d [USERNAME] [GROUP]" is the commande to delete a user from a group

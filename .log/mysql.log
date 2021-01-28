@@ -1,4 +1,4 @@
-docker build srcs/mysql -t mysql -jeudi 28 janvier 2021, 10:54:32 (UTC+0100)
+docker build srcs/mysql -t mysql -jeudi 28 janvier 2021, 13:38:35 (UTC+0100)
 Sending build context to Docker daemon  61.95kB
 Step 1/8 : FROM alpine:latest
  ---> 7731472c3f2a

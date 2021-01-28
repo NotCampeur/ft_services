@@ -6,7 +6,22 @@ BLUE="\e[1;34m"
 PURPLE="\e[35m"
 DEFAULT="\e[0m"
 
+SHUTDOWN=0
+
 services="nginx wordpress phpmyadmin mysql ftps"
+
+ft_check_user_group()
+{
+	if [ $(grep "docker" /etc/group | grep -c "$USER") == 0 ]
+	then
+		echo -en ${YELLOW}"\tUbuntu will restart due to user group modification..."${DEFAULT}
+		echo "user42" | sudo -S usermod -aG docker $USER
+		SHUTDOWN=1
+		sleep 5
+	else
+		echo -en ${YELLOW}"\tThe docker group have the rights needed to properly work"${DEFAULT}
+	fi
+}
 
 ft_start_minikube()
 {
@@ -68,30 +83,43 @@ ft_run_container()
 	done
 }
 
-echo -e ${BLUE}"[ Minikube | Metallb ]"${DEFAULT}
-ft_start_minikube
 
-echo -e ${BLUE}"[ Docker images building ]"${DEFAULT}
-ft_build_image
 
-echo -e ${BLUE}"[ YAML Kubernetes applying ]"${DEFAULT}
-ft_run_container
 
-echo -e ${BLUE}"[ Finished ]"
+echo -e ${BLUE}"[ Check the docker user group ]"${DEFAULT}
+ft_check_user_group
 
-echo -e ${PURPLE}"\n[ DEBUG INFO IN 30 seconds: ]"
+if [ SHUTDOWN == 0 ]
+then
+{
+	echo -e ${BLUE}"[ Minikube | Metallb ]"${DEFAULT}
+	ft_start_minikube
 
-sleep 30
+	echo -e ${BLUE}"[ Docker images building ]"${DEFAULT}
+	ft_build_image
 
-echo -e ${BLUE}"[ CLUSTER-INFO ]"${DEFAULT}
-kubectl cluster-info
-echo -e ${BLUE}"[ GET NODES ]"${DEFAULT}
-kubectl get nodes
-echo -e ${BLUE}"[ GET PODS ]"${DEFAULT}
-kubectl get pods
-echo -e ${BLUE}"[ GET DEPLOYMENTS ]"${DEFAULT}
-kubectl get deployments
-echo -e ${BLUE}"[ GET SVC ]"${DEFAULT}
-kubectl get svc
-echo -e ${BLUE}"[ STARTING DASHBOARD ]"${DEFAULT}
-minikube dashboard
+	echo -e ${BLUE}"[ YAML Kubernetes applying ]"${DEFAULT}
+	ft_run_container
+
+	echo -e ${BLUE}"[ Finished ]"
+
+	echo -e ${PURPLE}"\n[ DEBUG INFO IN 30 seconds: ]"
+
+	sleep 30
+
+	echo -e ${BLUE}"[ CLUSTER-INFO ]"${DEFAULT}
+	kubectl cluster-info
+	echo -e ${BLUE}"[ GET NODES ]"${DEFAULT}
+	kubectl get nodes
+	echo -e ${BLUE}"[ GET PODS ]"${DEFAULT}
+	kubectl get pods
+	echo -e ${BLUE}"[ GET DEPLOYMENTS ]"${DEFAULT}
+	kubectl get deployments
+	echo -e ${BLUE}"[ GET SVC ]"${DEFAULT}
+	kubectl get svc
+	echo -e ${BLUE}"[ STARTING DASHBOARD ]"${DEFAULT}
+	minikube dashboard
+}
+else
+	echo "user42" | sudo -S shutdown -r now
+fi
