@@ -20,3 +20,7 @@ kubectl get svc
 
 echo -e "\n\n\n\e[92mStarting Proxy.
 After starting it will not output a response.\n"; kubectl proxy
+
+To know what happened during the run of the container there is this command :
+
+kubectl logs [POD_NAME]

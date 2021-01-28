@@ -1,60 +1,33 @@
-docker build srcs/nginx -t nginx -mercredi 27 janvier 2021, 10:17:58 (UTC+0100)
+docker build srcs/nginx -t nginx -jeudi 28 janvier 2021, 10:54:31 (UTC+0100)
 Sending build context to Docker daemon   1.08MB
 Step 1/10 : FROM 	alpine:latest
-latest: Pulling from library/alpine
-596ba82af5aa: Pulling fs layer
-596ba82af5aa: Verifying Checksum
-596ba82af5aa: Download complete
-596ba82af5aa: Pull complete
-Digest: sha256:d9a7354e3845ea8466bb00b22224d9116b183e594527fb5b6c3d30bc01a20378
-Status: Downloaded newer image for alpine:latest
  ---> 7731472c3f2a
 Step 2/10 : RUN 	apk update 		&& apk add nginx 					openssl
- ---> Running in 9a03a8bb1c80
-fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
-fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
-v3.13.0-127-g9cfb48d2a1 [https://dl-cdn.alpinelinux.org/alpine/v3.13/main]
-v3.13.0-127-g9cfb48d2a1 [https://dl-cdn.alpinelinux.org/alpine/v3.13/community]
-OK: 13881 distinct packages available
-(1/3) Installing pcre (8.44-r0)
-(2/3) Installing nginx (1.18.0-r13)
-Executing nginx-1.18.0-r13.pre-install
-Executing nginx-1.18.0-r13.post-install
-(3/3) Installing openssl (1.1.1i-r0)
-Executing busybox-1.32.1-r0.trigger
-OK: 8 MiB in 17 packages
-Removing intermediate container 9a03a8bb1c80
- ---> 8140d5fe779c
+ ---> Using cache
+ ---> c4dcf0e4f238
 Step 3/10 : COPY 	nginx.conf		/etc/nginx/
- ---> e57ec3d5d43a
+ ---> Using cache
+ ---> 2d25f53258ce
 Step 4/10 : COPY	nginx_setup.sh	setup.sh
- ---> e525eea01f3c
+ ---> Using cache
+ ---> edcf629e65c7
 Step 5/10 : RUN		mkdir -p /etc/nginx/certs
- ---> Running in b3e2d98ff68c
-Removing intermediate container b3e2d98ff68c
- ---> e224614c6940
+ ---> Using cache
+ ---> 5e507496027f
 Step 6/10 : RUN		mkdir -p /run/nginx
- ---> Running in 55d66e74b7f9
-Removing intermediate container 55d66e74b7f9
- ---> 67508bd18360
+ ---> Using cache
+ ---> 6afb9d21c32b
 Step 7/10 : COPY	page /page/
- ---> 09bc5b76179c
+ ---> Using cache
+ ---> 494a2827d66f
 Step 8/10 : RUN openssl req -x509 -nodes 	-subj '/C=FR/ST=PARIS/L=PARIS/O=42/CN=localhost' 	-days 365 -newkey rsa:2048 	-keyout /etc/ssl/private/nginx-selfsigned.key 	-out /etc/nginx/certs/nginx-selfsigned.crt
- ---> Running in d2d7278802a0
-[91mGenerating a RSA private key
-[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.......[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m...[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+[0m[91m+
-[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+[0m[91m+
-writing new private key to '/etc/ssl/private/nginx-selfsigned.key'
-[0m[91m-----
-[0mRemoving intermediate container d2d7278802a0
- ---> 02abdaee6316
+ ---> Using cache
+ ---> 9de47c75ae62
 Step 9/10 : EXPOSE 35:80 36:443
- ---> Running in 086c38af0dc6
-Removing intermediate container 086c38af0dc6
- ---> 3fa93ccc2ccc
+ ---> Using cache
+ ---> ce6ea0a6d2d0
 Step 10/10 : ENTRYPOINT ["sh", "./setup.sh"]
- ---> Running in e504339b5558
-Removing intermediate container e504339b5558
- ---> 4d7bf1cebdc1
-Successfully built 4d7bf1cebdc1
+ ---> Using cache
+ ---> 295473566239
+Successfully built 295473566239
 Successfully tagged nginx:latest

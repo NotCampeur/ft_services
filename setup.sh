@@ -10,37 +10,37 @@ services="nginx wordpress phpmyadmin mysql ftps"
 
 ft_start_minikube()
 {
-	if [[ $(minikube status > .log/setup.log ; cat .log/setup.log | grep -c "Running") == 0 ]]
+	if [[ $(minikube status > .log/setup.log 2>&1 ; cat .log/setup.log | grep -c "Running") == 0 ]]
 	then
 		echo -en ${YELLOW}"\tInstalling minikube ..."${DEFAULT}
-		minikube start --driver=docker --cpus=2 --memory=2200 --extra-config=apiserver.service-node-port-range=1-35000 >> .log/setup.log ; date >> .log/setup.log
+		minikube start --driver=docker >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
 		echo -e ${GREEN}"DONE"${DEFAULT}
 		# echo -en ${YELLOW}"\tEnabling addons ..."${DEFAULT}
 		# minikube addons enable metrics-server >> .log/setup.log ; date >> .log/setup.log
 		# minikube addons enable dashboard >> .log/setup.log ; date >> .log/setup.log
 		# echo -e ${GREEN}"DONE"${DEFAULT}
 		echo -en ${YELLOW}"\tApplying metallb ..."${DEFAULT}
-		kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml >> .log/setup.log ; date >> .log/setup.log
-		kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml >> .log/setup.log ; date >> .log/setup.log
+		kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
+		kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
 		kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)" > /dev/null
 		echo -e ${GREEN}"DONE"${DEFAULT}
 	else
 		echo -en ${YELLOW}"\tCleaning the previous minikube container..."${DEFAULT}
-		echo -n "kubectl delete pods --all -" >> .log/setup.log ; date >> .log/setup.log
-		kubectl delete pods --all >> .log/setup.log
-		echo -n "kubectl delete deployments --all -" >> .log/setup.log ; date >> .log/setup.log
-		kubectl delete deployments --all >> .log/setup.log
-		echo -n "kubectl delete svc --all -" >> .log/setup.log ; date >> .log/setup.log
-		kubectl delete svc --all >> .log/setup.log
-		echo -n "kubectl delete pvc --all -" >> .log/setup.log ; date >> .log/setup.log
-		kubectl delete pvc --all >> .log/setup.log
+		echo -n "kubectl delete pods --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
+		kubectl delete pods --all >> .log/setup.log 2>&1
+		echo -n "kubectl delete deployments --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
+		kubectl delete deployments --all >> .log/setup.log 2>&1
+		echo -n "kubectl delete svc --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
+		kubectl delete svc --all >> .log/setup.log 2>&1
+		echo -n "kubectl delete pvc --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
+		kubectl delete pvc --all >> .log/setup.log 2>&1
 		echo -e ${GREEN}"DONE"${DEFAULT}
 	fi
 	eval $(minikube -p minikube docker-env)
 	echo -en ${YELLOW}"\tApplying metallb-deployment.yaml..."${DEFAULT}
-	echo -n "kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -" >> .log/setup.log
-	date >> .log/setup.log
-	kubectl apply -f srcs/load_balancer/metallb-deployment.yaml >> .log/setup.log
+	echo -n "kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -" >> .log/setup.log 2>&1
+	date >> .log/setup.log 2>&1
+	kubectl apply -f srcs/load_balancer/metallb-deployment.yaml >> .log/setup.log 2>&1
 	echo -e ${GREEN}"DONE"${DEFAULT}
 }
 
@@ -61,14 +61,12 @@ ft_run_container()
 	for service in $services
 	do
 		echo -en ${YELLOW}"\tApplying $service-deployment.yaml..."${DEFAULT}
-		echo -n "kubectl apply -f srcs/$service/$service-deployment.yaml -" >> .log/setup.log
-		date >> .log/setup.log
-		kubectl apply -f srcs/$service/$service-deployment.yaml >> .log/setup.log
+		echo -n "kubectl apply -f srcs/$service/$service-deployment.yaml -" >> .log/setup.log 2>&1
+		date >> .log/setup.log 2>&1
+		kubectl apply -f srcs/$service/$service-deployment.yaml >> .log/setup.log 2>&1
 		echo -e ${GREEN}"DONE"${DEFAULT}
 	done
 }
-
-yes | docker system prune > /dev/null
 
 echo -e ${BLUE}"[ Minikube | Metallb ]"${DEFAULT}
 ft_start_minikube

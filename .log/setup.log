@@ -1,44 +1,45 @@
-🤷  There is no local cluster named "minikube"
-👉  To fix this, run: minikube start
-😄  minikube v1.9.0 on Ubuntu 18.04
-✨  Using the docker driver based on user configuration
-🚜  Pulling base image ...
-🔥  Creating Kubernetes in docker container with (CPUs=2) (4 available), Memory=2200MB (6026MB available) ...
-🐳  Preparing Kubernetes v1.18.0 on Docker 19.03.2 ...
-    ▪ apiserver.service-node-port-range=1-35000
-🌟  Enabling addons: default-storageclass, storage-provisioner
-🏄  Done! kubectl is now configured to use "minikube"
-mercredi 27 janvier 2021, 10:17:51 (UTC+0100)
-namespace/metallb-system created
-mercredi 27 janvier 2021, 10:17:55 (UTC+0100)
-podsecuritypolicy.policy/controller created
-podsecuritypolicy.policy/speaker created
-serviceaccount/controller created
-serviceaccount/speaker created
-clusterrole.rbac.authorization.k8s.io/metallb-system:controller created
-clusterrole.rbac.authorization.k8s.io/metallb-system:speaker created
-role.rbac.authorization.k8s.io/config-watcher created
-role.rbac.authorization.k8s.io/pod-lister created
-clusterrolebinding.rbac.authorization.k8s.io/metallb-system:controller created
-clusterrolebinding.rbac.authorization.k8s.io/metallb-system:speaker created
-rolebinding.rbac.authorization.k8s.io/config-watcher created
-rolebinding.rbac.authorization.k8s.io/pod-lister created
-daemonset.apps/speaker created
-deployment.apps/controller created
-mercredi 27 janvier 2021, 10:17:56 (UTC+0100)
-kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -mercredi 27 janvier 2021, 10:17:57 (UTC+0100)
-configmap/config created
-kubectl apply -f srcs/nginx/nginx-deployment.yaml -mercredi 27 janvier 2021, 10:21:08 (UTC+0100)
+m01
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+
+kubectl delete pods --all -jeudi 28 janvier 2021, 10:52:44 (UTC+0100)
+pod "ftps-9467dfb7d-td5rv" deleted
+pod "mysql-7b9967cb7-nx29n" deleted
+pod "nginx-785b56b869-nsttc" deleted
+pod "phpmyadmin-5b9bd8578b-wmjp9" deleted
+pod "wordpress-688bf46b8f-675nd" deleted
+kubectl delete deployments --all -jeudi 28 janvier 2021, 10:53:49 (UTC+0100)
+deployment.apps "ftps" deleted
+deployment.apps "mysql" deleted
+deployment.apps "nginx" deleted
+deployment.apps "phpmyadmin" deleted
+deployment.apps "wordpress" deleted
+kubectl delete svc --all -jeudi 28 janvier 2021, 10:53:50 (UTC+0100)
+service "ftps-service" deleted
+service "kubernetes" deleted
+service "mysql-service" deleted
+service "nginx-service" deleted
+service "phpmyadmin-service" deleted
+service "wordpress-service" deleted
+kubectl delete pvc --all -jeudi 28 janvier 2021, 10:53:52 (UTC+0100)
+persistentvolumeclaim "mysql" deleted
+kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -jeudi 28 janvier 2021, 10:54:30 (UTC+0100)
+configmap/config unchanged
+kubectl apply -f srcs/nginx/nginx-deployment.yaml -jeudi 28 janvier 2021, 10:54:32 (UTC+0100)
 deployment.apps/nginx created
 service/nginx-service created
-kubectl apply -f srcs/wordpress/wordpress-deployment.yaml -mercredi 27 janvier 2021, 10:21:09 (UTC+0100)
+kubectl apply -f srcs/wordpress/wordpress-deployment.yaml -jeudi 28 janvier 2021, 10:54:33 (UTC+0100)
 deployment.apps/wordpress created
 service/wordpress-service created
-kubectl apply -f srcs/phpmyadmin/phpmyadmin-deployment.yaml -mercredi 27 janvier 2021, 10:21:10 (UTC+0100)
+kubectl apply -f srcs/phpmyadmin/phpmyadmin-deployment.yaml -jeudi 28 janvier 2021, 10:54:34 (UTC+0100)
 deployment.apps/phpmyadmin created
 service/phpmyadmin-service created
-kubectl apply -f srcs/mysql/mysql-deployment.yaml -mercredi 27 janvier 2021, 10:21:11 (UTC+0100)
+kubectl apply -f srcs/mysql/mysql-deployment.yaml -jeudi 28 janvier 2021, 10:54:35 (UTC+0100)
 persistentvolumeclaim/mysql created
 deployment.apps/mysql created
 service/mysql-service created
-kubectl apply -f srcs/ftps/ftps-deployment.yaml -mercredi 27 janvier 2021, 10:21:12 (UTC+0100)
+kubectl apply -f srcs/ftps/ftps-deployment.yaml -jeudi 28 janvier 2021, 10:54:36 (UTC+0100)
+deployment.apps/ftps created
+service/ftps-service created
