@@ -89,7 +89,7 @@ ft_run_container()
 echo -e ${BLUE}"[ Check the docker user group ]"${DEFAULT}
 ft_check_user_group
 
-if [ SHUTDOWN == 0 ]
+if [ $SHUTDOWN == 0 ]
 then
 {
 	echo -e ${BLUE}"[ Minikube | Metallb ]"${DEFAULT}
