@@ -14,20 +14,20 @@ ft_check_user_group()
 {
 	if [ $(grep "docker" /etc/group | grep -c "$USER") == 0 ]
 	then
-		echo -en ${YELLOW}"\tUbuntu will restart due to user group modification..."${DEFAULT}
+		echo -e ${YELLOW}"\tUbuntu will restart due to user group modification..."${DEFAULT}
 		echo "user42" | sudo -S usermod -aG docker $USER
 		SHUTDOWN=1
 		sleep 5
 	else
-		echo -en ${YELLOW}"\tThe docker group have the rights needed to properly work"${DEFAULT}
+		echo -e ${YELLOW}"\tThe docker group have the rights needed to properly work"${DEFAULT}
 	fi
 }
 
 ft_start_minikube()
 {
-	if [[ $(minikube status > .log/setup.log 2>&1 ; cat .log/setup.log | grep -c "Running") == 0 ]]
+	if [[ $(minikube status > .log/setup.log 2>&1 ; cat .log/setup.log | grep -c "Running") != 3 ]]
 	then
-		echo -en ${YELLOW}"\tInstalling minikube ..."${DEFAULT}
+		echo -en ${YELLOW}"\tInstalling minikube and Load Balancer..."${DEFAULT}
 		minikube start --driver=docker >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
 		echo -e ${GREEN}"DONE"${DEFAULT}
 		# echo -en ${YELLOW}"\tEnabling addons ..."${DEFAULT}
@@ -38,25 +38,24 @@ ft_start_minikube()
 		kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
 		kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
 		kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)" > /dev/null
-		echo -e ${GREEN}"DONE"${DEFAULT}
-	else
-		echo -en ${YELLOW}"\tCleaning the previous minikube container..."${DEFAULT}
-		echo -n "kubectl delete pods --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
-		kubectl delete pods --all >> .log/setup.log 2>&1
-		echo -n "kubectl delete deployments --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
-		kubectl delete deployments --all >> .log/setup.log 2>&1
-		echo -n "kubectl delete svc --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
-		kubectl delete svc --all >> .log/setup.log 2>&1
-		echo -n "kubectl delete pvc --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
-		kubectl delete pvc --all >> .log/setup.log 2>&1
+		echo -n "kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -" >> .log/setup.log 2>&1
+		date >> .log/setup.log 2>&1
+		kubectl apply -f srcs/load_balancer/metallb-deployment.yaml >> .log/setup.log 2>&1
 		echo -e ${GREEN}"DONE"${DEFAULT}
 	fi
-	eval $(minikube -p minikube docker-env)
-	echo -en ${YELLOW}"\tApplying metallb-deployment.yaml..."${DEFAULT}
-	echo -n "kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -" >> .log/setup.log 2>&1
-	date >> .log/setup.log 2>&1
-	kubectl apply -f srcs/load_balancer/metallb-deployment.yaml >> .log/setup.log 2>&1
+
+	echo -en ${YELLOW}"\tCleaning the previous minikube container..."${DEFAULT}
+	echo -n "kubectl delete pods --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
+	kubectl delete pods --all >> .log/setup.log 2>&1
+	echo -n "kubectl delete deployments --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
+	kubectl delete deployments --all >> .log/setup.log 2>&1
+	echo -n "kubectl delete svc --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
+	kubectl delete svc --all >> .log/setup.log 2>&1
+	echo -n "kubectl delete pvc --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
+	kubectl delete pvc --all >> .log/setup.log 2>&1
 	echo -e ${GREEN}"DONE"${DEFAULT}
+
+	eval $(minikube -p minikube docker-env)
 }
 
 ft_build_image()

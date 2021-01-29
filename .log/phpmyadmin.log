@@ -1,117 +1,120 @@
-docker build srcs/phpmyadmin -t phpmyadmin -jeudi 28 janvier 2021, 13:38:35 (UTC+0100)
+docker build srcs/phpmyadmin -t phpmyadmin -vendredi 29 janvier 2021, 14:50:27 (UTC+0100)
 Sending build context to Docker daemon  8.704kB
-Step 1/38 : FROM 	alpine:latest
+Step 1/39 : FROM 	alpine:latest
  ---> 7731472c3f2a
-Step 2/38 : RUN		apk update
+Step 2/39 : RUN		apk update
  ---> Using cache
- ---> b551ed56cf38
-Step 3/38 : RUN		apk add nginx
+ ---> 34de0afe3e97
+Step 3/39 : RUN		apk add nginx
  ---> Using cache
- ---> dcaf04f8b427
-Step 4/38 : RUN		apk add wget
+ ---> 430f32b3bba7
+Step 4/39 : RUN		apk add wget
  ---> Using cache
- ---> 07c7d13ec60b
-Step 5/38 : RUN		apk add php7
+ ---> ffd83f1375dd
+Step 5/39 : RUN		apk add php7
  ---> Using cache
- ---> abca6e08bb71
-Step 6/38 : RUN		apk add php7-fpm
+ ---> 449af273345b
+Step 6/39 : RUN		apk add php7-fpm
  ---> Using cache
- ---> e63013b7556d
-Step 7/38 : RUN		apk add php7-common
+ ---> 65d57a046531
+Step 7/39 : RUN		apk add php7-common
  ---> Using cache
- ---> db9f4e5caa8c
-Step 8/38 : RUN		apk add php7-iconv
+ ---> 3794004f4ed9
+Step 8/39 : RUN		apk add php7-iconv
  ---> Using cache
- ---> a978edcef0fe
-Step 9/38 : RUN		apk add php7-json
+ ---> 3d0ea06be5c6
+Step 9/39 : RUN		apk add php7-json
  ---> Using cache
- ---> 8301869463b6
-Step 10/38 : RUN		apk add php7-opcache
+ ---> 0863a58565bb
+Step 10/39 : RUN		apk add php7-opcache
  ---> Using cache
- ---> a555c5ba8495
-Step 11/38 : RUN		apk add php7-mbstring
+ ---> ef764c289c8e
+Step 11/39 : RUN		apk add php7-mbstring
  ---> Using cache
- ---> 6674f865d601
-Step 12/38 : RUN		apk add php7-zlib
+ ---> 04dcfef00f0e
+Step 12/39 : RUN		apk add php7-zlib
  ---> Using cache
- ---> b943f31e10e8
-Step 13/38 : RUN		apk add php7-session
+ ---> 778d170e83dd
+Step 13/39 : RUN		apk add php7-session
  ---> Using cache
- ---> adb16744f552
-Step 14/38 : RUN		apk add php7-gd
+ ---> 8618bb323443
+Step 14/39 : RUN		apk add php7-gd
  ---> Using cache
- ---> ea9c21ba9447
-Step 15/38 : RUN		apk add php7-curl
+ ---> e44a37e055d8
+Step 15/39 : RUN		apk add php7-curl
  ---> Using cache
- ---> 23355c7a9bdf
-Step 16/38 : RUN		apk add php7-xml
+ ---> 4003ff8f03df
+Step 16/39 : RUN		apk add php7-xml
  ---> Using cache
- ---> 1afb1db34fb2
-Step 17/38 : RUN		apk add php7-mysqli
+ ---> 443968423226
+Step 17/39 : RUN		apk add php7-mysqli
  ---> Using cache
- ---> dd673ae7df59
-Step 18/38 : RUN		apk add php7-imap
+ ---> a45302ef60ea
+Step 18/39 : RUN		apk add php7-imap
  ---> Using cache
- ---> 3cf334afbbb4
-Step 19/38 : RUN		apk add php7-cgi
+ ---> ec358ee23ff6
+Step 19/39 : RUN		apk add php7-cgi
  ---> Using cache
- ---> 249e1722ae73
-Step 20/38 : RUN		apk add php7-pdo
+ ---> af8278a69441
+Step 20/39 : RUN		apk add php7-pdo
  ---> Using cache
- ---> 59ff482c3ca1
-Step 21/38 : RUN		apk add php7-pdo_mysql
+ ---> 3c8c8eab5881
+Step 21/39 : RUN		apk add php7-pdo_mysql
  ---> Using cache
- ---> b3f95ee17d8c
-Step 22/38 : RUN		apk add php7-soap
+ ---> f4e2cb91e486
+Step 22/39 : RUN		apk add php7-soap
  ---> Using cache
- ---> bc2ece9fee9c
-Step 23/38 : RUN		apk add php7-xmlrpc
+ ---> 8b2234d7ec67
+Step 23/39 : RUN		apk add php7-xmlrpc
  ---> Using cache
- ---> 8d590c7f3341
-Step 24/38 : RUN		apk add php7-posix
+ ---> 4ff082d7c575
+Step 24/39 : RUN		apk add php7-posix
  ---> Using cache
- ---> a29eb15a2e10
-Step 25/38 : RUN		apk add php7-mcrypt
+ ---> c6553de815e9
+Step 25/39 : RUN		apk add php7-mcrypt
  ---> Using cache
- ---> 54f052c1ef5c
-Step 26/38 : RUN		apk add php7-gettext
+ ---> a867ac187d1b
+Step 26/39 : RUN		apk add php7-gettext
  ---> Using cache
- ---> 083055fbdd19
-Step 27/38 : RUN		apk add php7-ldap
+ ---> 0f048bae9597
+Step 27/39 : RUN		apk add php7-ldap
  ---> Using cache
- ---> a031e1d89742
-Step 28/38 : RUN		apk add php7-ctype
+ ---> 24cab8d44dfc
+Step 28/39 : RUN		apk add php7-ctype
  ---> Using cache
- ---> 70ee48bbd077
-Step 29/38 : RUN		apk add php7-dom
+ ---> ab0d45ff53be
+Step 29/39 : RUN		apk add php7-dom
  ---> Using cache
- ---> 83aabdbee2ea
-Step 30/38 : RUN		apk add fcgi
+ ---> aba973d5b791
+Step 30/39 : RUN		apk add fcgi
  ---> Using cache
- ---> 47a830b07125
-Step 31/38 : RUN		wget http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-all-languages.tar.gz 		&& tar -zxvf phpMyAdmin-5.0.2-all-languages.tar.gz 		&& rm phpMyAdmin-5.0.2-all-languages.tar.gz 		&& mv phpMyAdmin-5.0.2-all-languages phpmyadmin
+ ---> 84cc1980e730
+Step 31/39 : RUN		wget http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-all-languages.tar.gz 		&& tar -zxvf phpMyAdmin-5.0.2-all-languages.tar.gz 		&& rm phpMyAdmin-5.0.2-all-languages.tar.gz 		&& mv phpMyAdmin-5.0.2-all-languages phpmyadmin
  ---> Using cache
- ---> 167170552f70
-Step 32/38 : COPY	nginx.conf		/etc/nginx/
+ ---> de635a534459
+Step 32/39 : COPY	nginx.conf		/etc/nginx/
  ---> Using cache
- ---> 1a5724322067
-Step 33/38 : COPY	pma_setup.sh	setup.sh
+ ---> 86e9552d7850
+Step 33/39 : COPY	pma_setup.sh	setup.sh
  ---> Using cache
- ---> 7678daeb49e2
-Step 34/38 : COPY	config.inc.php	/phpmyadmin/
+ ---> 685446004849
+Step 34/39 : COPY	config.inc.php	/phpmyadmin/
  ---> Using cache
- ---> 01df6129da5f
-Step 35/38 : RUN		mkdir			/phpmyadmin/tmp
+ ---> 7328dfc026d1
+Step 35/39 : RUN		mkdir			/phpmyadmin/tmp
  ---> Using cache
- ---> 28d250a56f74
-Step 36/38 : RUN		mkdir			/run/nginx
+ ---> 3ce8c06ffc00
+Step 36/39 : RUN		chmod 777 		/phpmyadmin/tmp
  ---> Using cache
- ---> 4f112a293d9f
-Step 37/38 : EXPOSE	5000
+ ---> fd7d8b25fa5c
+Step 37/39 : RUN		mkdir			/run/nginx
  ---> Using cache
- ---> bb773a8e1f97
-Step 38/38 : CMD		["sh", "./setup.sh" ]
+ ---> b7422aae9815
+Step 38/39 : EXPOSE	5000
  ---> Using cache
- ---> 5f0edc9ed44e
-Successfully built 5f0edc9ed44e
+ ---> 98d1b545b1cd
+Step 39/39 : CMD		["sh", "./setup.sh" ]
+ ---> Using cache
+ ---> 1d3bd7c9ba84
+Successfully built 1d3bd7c9ba84
 Successfully tagged phpmyadmin:latest

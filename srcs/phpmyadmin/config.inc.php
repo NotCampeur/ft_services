@@ -1,6 +1,6 @@
 <?php
 
-$cfg['blowfish_secret'] = '';
+$cfg['blowfish_secret'] = 'thisisaveryverylongpassphraselol';
 
 /**
  * Only one server

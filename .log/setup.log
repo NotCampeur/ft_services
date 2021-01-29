@@ -1,15 +1,12 @@
-E0128 13:47:16.269565   18689 kic.go:230] GetState for minikube took longer than normal. Restarting your docker daemon might fix this issue.
-E0128 13:47:16.270104   18689 status.go:115] status error: host: state: inspect minikube timeout
-E0128 13:47:16.270121   18689 status.go:118] The "minikube" host does not exist!
-m01
-host: Nonexistent
-kubelet: Nonexistent
-apiserver: Nonexistent
-kubeconfig: Nonexistent
-
-* minikube v1.9.0 on Ubuntu 18.04
-* Using the docker driver based on existing profile
+* There is no local cluster named "minikube"
+  - To fix this, run: minikube start
+* minikube v1.9.0 on Ubuntu 18.04 (vbox/amd64)
+* Using the docker driver based on user configuration
 
 ! 'docker' driver reported an issue: signal: killed
 * Suggestion: Docker is not running or is responding too slow. Try: restarting docker desktop.
 
+* Pulling base image ...
+* Creating Kubernetes in docker container with (CPUs=2) (4 available), Memory=2200MB (3935MB available) ...
+! StartHost failed, but will try again: creating host: create host timed out in 120.000000 seconds
+* Deleting "minikube" in docker ...

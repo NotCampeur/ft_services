@@ -40,6 +40,8 @@ COPY	pma_setup.sh	setup.sh
 COPY	config.inc.php	/phpmyadmin/
 
 RUN		mkdir			/phpmyadmin/tmp
+RUN		chmod 777 		/phpmyadmin/tmp
+
 RUN		mkdir			/run/nginx
 
 EXPOSE	5000

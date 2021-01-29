@@ -1,27 +1,27 @@
-docker build srcs/ftps -t ftps -jeudi 28 janvier 2021, 13:38:35 (UTC+0100)
+docker build srcs/ftps -t ftps -vendredi 29 janvier 2021, 14:50:30 (UTC+0100)
 Sending build context to Docker daemon  9.728kB
 Step 1/8 : FROM	alpine:latest
  ---> 7731472c3f2a
 Step 2/8 : RUN 	apk update
  ---> Using cache
- ---> b551ed56cf38
+ ---> 34de0afe3e97
 Step 3/8 : RUN		apk add vsftpd
  ---> Using cache
- ---> 950f920c8555
+ ---> 3ffdfb8ce7d6
 Step 4/8 : RUN		apk add openssl
  ---> Using cache
- ---> 685fa5a8fa06
+ ---> 7f64314d8e4b
 Step 5/8 : RUN		apk add pure-ftpd --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
  ---> Using cache
- ---> aed957ac0e8a
+ ---> 195c78c04e32
 Step 6/8 : COPY	ftps_setup.sh	setup.sh
  ---> Using cache
- ---> 1a94ff69ef72
+ ---> 939466ba3c77
 Step 7/8 : EXPOSE 21 1200
  ---> Using cache
- ---> 0f977f08a96d
+ ---> b3a8b9c27797
 Step 8/8 : ENTRYPOINT [ "sh", "./setup.sh" ]
  ---> Using cache
- ---> 2d31d74a03d3
-Successfully built 2d31d74a03d3
+ ---> 1df4cc860880
+Successfully built 1df4cc860880
 Successfully tagged ftps:latest
