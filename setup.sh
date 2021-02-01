@@ -8,7 +8,7 @@ DEFAULT="\e[0m"
 
 SHUTDOWN=0
 
-services="nginx wordpress phpmyadmin mysql ftps"
+services="nginx wordpress phpmyadmin mysql ftps grafana influxdb"
 
 ft_check_user_group()
 {

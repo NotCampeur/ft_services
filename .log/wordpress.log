@@ -1,4 +1,4 @@
-docker build srcs/wordpress -t wordpress -vendredi 29 janvier 2021, 14:50:23 (UTC+0100)
+docker build srcs/wordpress -t wordpress -lundi 1 février 2021, 11:16:11 (UTC+0100)
 Sending build context to Docker daemon  28.16kB
 Step 1/26 : FROM 	alpine:latest
  ---> 7731472c3f2a

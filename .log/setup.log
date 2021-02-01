@@ -1,12 +1,19 @@
-* There is no local cluster named "minikube"
-  - To fix this, run: minikube start
+m01
+host: Running
+kubelet: Stopped
+apiserver: Stopped
+kubeconfig: Configured
+
 * minikube v1.9.0 on Ubuntu 18.04 (vbox/amd64)
-* Using the docker driver based on user configuration
-
-! 'docker' driver reported an issue: signal: killed
-* Suggestion: Docker is not running or is responding too slow. Try: restarting docker desktop.
-
+* Using the docker driver based on existing profile
 * Pulling base image ...
-* Creating Kubernetes in docker container with (CPUs=2) (4 available), Memory=2200MB (3935MB available) ...
-! StartHost failed, but will try again: creating host: create host timed out in 120.000000 seconds
-* Deleting "minikube" in docker ...
+* Updating the running docker "minikube" container ...
+* Preparing Kubernetes v1.18.0 on Docker 19.03.2 ...
+  - kubeadm.pod-network-cidr=10.244.0.0/16
+* Problems detected in kubelet:
+  - Feb 01 10:30:15 minikube kubelet[5492]: E0201 10:30:15.824714    5492 reflector.go:178] object-"default"/"default-token-xxplm": Failed to list *v1.Secret: secrets "default-token-xxplm" is forbidden: User "system:node:minikube" cannot list resource "secrets" in API group "" in the namespace "default": no relationship found between node "minikube" and this object
+  - Feb 01 10:30:15 minikube kubelet[5492]: E0201 10:30:15.824888    5492 reflector.go:178] object-"kube-system"/"kube-proxy": Failed to list *v1.ConfigMap: configmaps "kube-proxy" is forbidden: User "system:node:minikube" cannot list resource "configmaps" in API group "" in the namespace "kube-system": no relationship found between node "minikube" and this object
+  - Feb 01 10:30:15 minikube kubelet[5492]: E0201 10:30:15.825557    5492 reflector.go:178] object-"kubernetes-dashboard"/"kubernetes-dashboard-token-4nfx6": Failed to list *v1.Secret: secrets "kubernetes-dashboard-token-4nfx6" is forbidden: User "system:node:minikube" cannot list resource "secrets" in API group "" in the namespace "kubernetes-dashboard": no relationship found between node "minikube" and this object
+  - Feb 01 10:30:15 minikube kubelet[5492]: E0201 10:30:15.825703    5492 reflector.go:178] object-"kube-system"/"coredns-token-rj6m7": Failed to list *v1.Secret: secrets "coredns-token-rj6m7" is forbidden: User "system:node:minikube" cannot list resource "secrets" in API group "" in the namespace "kube-system": no relationship found between node "minikube" and this object
+  - Feb 01 10:32:12 minikube kubelet[5492]: E0201 10:32:12.501984    5492 pod_workers.go:191] Error syncing pod ecf98c2b-3cd7-4b89-8d07-a54a49a93421 ("ftps-9467dfb7d-jczcz_default(ecf98c2b-3cd7-4b89-8d07-a54a49a93421)"), skipping: failed to "StartContainer" for "ftps" with ErrImageNeverPull: "Container image \"ftps\" is not present with pull policy of Never"
+! Unable to restart cluster, will reset it: apiserver health: controlPlane never updated to v1.18.0

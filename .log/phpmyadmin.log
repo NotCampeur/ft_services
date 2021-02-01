@@ -1,4 +1,4 @@
-docker build srcs/phpmyadmin -t phpmyadmin -vendredi 29 janvier 2021, 14:50:27 (UTC+0100)
+docker build srcs/phpmyadmin -t phpmyadmin -lundi 1 février 2021, 11:16:14 (UTC+0100)
 Sending build context to Docker daemon  8.704kB
 Step 1/39 : FROM 	alpine:latest
  ---> 7731472c3f2a

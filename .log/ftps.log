@@ -1,4 +1,4 @@
-docker build srcs/ftps -t ftps -vendredi 29 janvier 2021, 14:50:30 (UTC+0100)
+docker build srcs/ftps -t ftps -lundi 1 février 2021, 11:16:25 (UTC+0100)
 Sending build context to Docker daemon  9.728kB
 Step 1/8 : FROM	alpine:latest
  ---> 7731472c3f2a
