@@ -1,0 +1,27 @@
+docker build srcs/grafana -t grafana -mercredi 3 février 2021, 12:53:50 (UTC+0100)
+Sending build context to Docker daemon   5.12kB
+Step 1/8 : FROM    alpine:latest
+ ---> e50c909a8df2
+Step 2/8 : RUN     apk update
+ ---> Using cache
+ ---> 1531ac3071df
+Step 3/8 : RUN     apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main libc6-compat
+ ---> Using cache
+ ---> ffdef9937643
+Step 4/8 : RUN     wget https://dl.grafana.com/oss/release/grafana-7.3.7.linux-amd64.tar.gz         && tar -zxvf grafana-7.3.7.linux-amd64.tar.gz         && rm grafana-7.3.7.linux-amd64.tar.gz
+ ---> Using cache
+ ---> 2f1b2c7e5106
+Step 5/8 : COPY    grafana_setup.sh    setup.sh
+ ---> Using cache
+ ---> f2cbaeb2677f
+Step 6/8 : EXPOSE  3000
+ ---> Using cache
+ ---> 74d792dadc63
+Step 7/8 : WORKDIR /grafana-7.3.7/
+ ---> Using cache
+ ---> 71b533cc922e
+Step 8/8 : CMD     ["sh", "/setup.sh"]
+ ---> Using cache
+ ---> 326e15474f0c
+Successfully built 326e15474f0c
+Successfully tagged grafana:latest

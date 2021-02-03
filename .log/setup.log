@@ -1,19 +1,57 @@
 m01
 host: Running
-kubelet: Stopped
-apiserver: Stopped
+kubelet: Running
+apiserver: Running
 kubeconfig: Configured
 
-* minikube v1.9.0 on Ubuntu 18.04 (vbox/amd64)
-* Using the docker driver based on existing profile
-* Pulling base image ...
-* Updating the running docker "minikube" container ...
-* Preparing Kubernetes v1.18.0 on Docker 19.03.2 ...
-  - kubeadm.pod-network-cidr=10.244.0.0/16
-* Problems detected in kubelet:
-  - Feb 01 10:30:15 minikube kubelet[5492]: E0201 10:30:15.824714    5492 reflector.go:178] object-"default"/"default-token-xxplm": Failed to list *v1.Secret: secrets "default-token-xxplm" is forbidden: User "system:node:minikube" cannot list resource "secrets" in API group "" in the namespace "default": no relationship found between node "minikube" and this object
-  - Feb 01 10:30:15 minikube kubelet[5492]: E0201 10:30:15.824888    5492 reflector.go:178] object-"kube-system"/"kube-proxy": Failed to list *v1.ConfigMap: configmaps "kube-proxy" is forbidden: User "system:node:minikube" cannot list resource "configmaps" in API group "" in the namespace "kube-system": no relationship found between node "minikube" and this object
-  - Feb 01 10:30:15 minikube kubelet[5492]: E0201 10:30:15.825557    5492 reflector.go:178] object-"kubernetes-dashboard"/"kubernetes-dashboard-token-4nfx6": Failed to list *v1.Secret: secrets "kubernetes-dashboard-token-4nfx6" is forbidden: User "system:node:minikube" cannot list resource "secrets" in API group "" in the namespace "kubernetes-dashboard": no relationship found between node "minikube" and this object
-  - Feb 01 10:30:15 minikube kubelet[5492]: E0201 10:30:15.825703    5492 reflector.go:178] object-"kube-system"/"coredns-token-rj6m7": Failed to list *v1.Secret: secrets "coredns-token-rj6m7" is forbidden: User "system:node:minikube" cannot list resource "secrets" in API group "" in the namespace "kube-system": no relationship found between node "minikube" and this object
-  - Feb 01 10:32:12 minikube kubelet[5492]: E0201 10:32:12.501984    5492 pod_workers.go:191] Error syncing pod ecf98c2b-3cd7-4b89-8d07-a54a49a93421 ("ftps-9467dfb7d-jczcz_default(ecf98c2b-3cd7-4b89-8d07-a54a49a93421)"), skipping: failed to "StartContainer" for "ftps" with ErrImageNeverPull: "Container image \"ftps\" is not present with pull policy of Never"
-! Unable to restart cluster, will reset it: apiserver health: controlPlane never updated to v1.18.0
+kubectl delete pods --all -mercredi 3 février 2021, 12:53:01 (UTC+0100)
+pod "ftps-9467dfb7d-kdmtd" deleted
+pod "grafana-747dd5985b-tkg8r" deleted
+pod "influxdb-74c5f7c88f-mnv6h" deleted
+pod "mysql-7b9967cb7-djlpb" deleted
+pod "nginx-785b56b869-5sgpk" deleted
+pod "phpmyadmin-5b9bd8578b-qz9fb" deleted
+pod "wordpress-688bf46b8f-fzhk9" deleted
+kubectl delete deployments --all -mercredi 3 février 2021, 12:53:46 (UTC+0100)
+deployment.apps "ftps" deleted
+deployment.apps "grafana" deleted
+deployment.apps "influxdb" deleted
+deployment.apps "mysql" deleted
+deployment.apps "nginx" deleted
+deployment.apps "phpmyadmin" deleted
+deployment.apps "wordpress" deleted
+kubectl delete svc --all -mercredi 3 février 2021, 12:53:46 (UTC+0100)
+service "ftps-service" deleted
+service "grafana-service" deleted
+service "influxdb-service" deleted
+service "kubernetes" deleted
+service "mysql-service" deleted
+service "nginx-service" deleted
+service "phpmyadmin-service" deleted
+service "wordpress-service" deleted
+kubectl delete pvc --all -mercredi 3 février 2021, 12:53:47 (UTC+0100)
+persistentvolumeclaim "influxdb" deleted
+persistentvolumeclaim "mysql" deleted
+kubectl apply -f srcs/nginx/nginx-deployment.yaml -mercredi 3 février 2021, 12:53:50 (UTC+0100)
+deployment.apps/nginx created
+service/nginx-service created
+kubectl apply -f srcs/wordpress/wordpress-deployment.yaml -mercredi 3 février 2021, 12:53:51 (UTC+0100)
+deployment.apps/wordpress created
+service/wordpress-service created
+kubectl apply -f srcs/phpmyadmin/phpmyadmin-deployment.yaml -mercredi 3 février 2021, 12:53:51 (UTC+0100)
+deployment.apps/phpmyadmin created
+service/phpmyadmin-service created
+kubectl apply -f srcs/mysql/mysql-deployment.yaml -mercredi 3 février 2021, 12:53:52 (UTC+0100)
+persistentvolumeclaim/mysql created
+deployment.apps/mysql created
+service/mysql-service created
+kubectl apply -f srcs/ftps/ftps-deployment.yaml -mercredi 3 février 2021, 12:53:53 (UTC+0100)
+deployment.apps/ftps created
+service/ftps-service created
+kubectl apply -f srcs/grafana/grafana-deployment.yaml -mercredi 3 février 2021, 12:53:53 (UTC+0100)
+deployment.apps/grafana created
+service/grafana-service created
+kubectl apply -f srcs/influxdb/influxdb-deployment.yaml -mercredi 3 février 2021, 12:53:54 (UTC+0100)
+persistentvolumeclaim/influxdb created
+deployment.apps/influxdb created
+service/influxdb-service created

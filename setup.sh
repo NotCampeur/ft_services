@@ -1,10 +1,16 @@
 #! /bin/bash
 
+RED="\e[1;31m"
 GREEN="\e[1;32m"
 YELLOW="\e[1;33m"
 BLUE="\e[1;34m"
 PURPLE="\e[35m"
 DEFAULT="\e[0m"
+
+DONE_RETURN=${GREEN}"DONE"${DEFAULT}
+ERROR_RETURN=${RED}"ERROR... check logs for more infos"${DEFAULT}
+
+NEXT_RETURN=0
 
 SHUTDOWN=0
 
@@ -12,12 +18,17 @@ services="nginx wordpress phpmyadmin mysql ftps grafana influxdb"
 
 ft_check_user_group()
 {
-	if [ $(grep "docker" /etc/group | grep -c "$USER") == 0 ]
+	if [ $(grep "docker" /etc/group | grep -c "$USER") -eq 0 ]
 	then
 		echo -e ${YELLOW}"\tUbuntu will restart due to user group modification..."${DEFAULT}
-		echo "user42" | sudo -S usermod -aG docker $USER
-		SHUTDOWN=1
-		sleep 5
+		echo "user42" | sudo -S usermod -aG docker $USER > /dev/null
+		SHUTDOWN=6
+		while [ $SHUTDOWN -ne 1 ]
+		do
+			SHUTDOWN= 'expr $SHUTDOWN - 1'
+			echo $SHUTDOWN
+			sleep 1
+		done
 	else
 		echo -e ${YELLOW}"\tThe docker group have the rights needed to properly work"${DEFAULT}
 	fi
@@ -25,35 +36,74 @@ ft_check_user_group()
 
 ft_start_minikube()
 {
-	if [[ $(minikube status > .log/setup.log 2>&1 ; cat .log/setup.log | grep -c "Running") != 3 ]]
+	if [[ $(minikube status > .log/setup.log 2>&1 ; grep -c "Running" ".log/setup.log") -ne 3 ]]
 	then
 		echo -en ${YELLOW}"\tInstalling minikube and Load Balancer..."${DEFAULT}
 		minikube start --driver=docker >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
-		echo -e ${GREEN}"DONE"${DEFAULT}
+		if [ $? -eq 0 ]
+		then
+			echo -e ${DONE_RETURN}
+		else
+			echo -e ${ERROR_RETURN}
+		fi
 		# echo -en ${YELLOW}"\tEnabling addons ..."${DEFAULT}
 		# minikube addons enable metrics-server >> .log/setup.log ; date >> .log/setup.log
 		# minikube addons enable dashboard >> .log/setup.log ; date >> .log/setup.log
 		# echo -e ${GREEN}"DONE"${DEFAULT}
 		echo -en ${YELLOW}"\tApplying metallb ..."${DEFAULT}
+		NEXT_RETURN=${DONE_RETURN}
 		kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
+		if [ $? -ne 0 ]
+		then
+			NEXT_RETURN=${ERROR_RETURN}
+		fi
 		kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
+		if [ $? -ne 0 ]
+		then
+			NEXT_RETURN=${ERROR_RETURN}
+		fi
 		kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)" > /dev/null
+		if [ $? -ne 0 ]
+		then
+			NEXT_RETURN=${ERROR_RETURN}
+		fi
 		echo -n "kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -" >> .log/setup.log 2>&1
 		date >> .log/setup.log 2>&1
 		kubectl apply -f srcs/load_balancer/metallb-deployment.yaml >> .log/setup.log 2>&1
-		echo -e ${GREEN}"DONE"${DEFAULT}
+		if [ $? -ne 0 ]
+		then
+			NEXT_RETURN=${ERROR_RETURN}
+		fi
+		echo -e ${NEXT_RETURN}
 	fi
 
 	echo -en ${YELLOW}"\tCleaning the previous minikube container..."${DEFAULT}
+	NEXT_RETURN=${DONE_RETURN}
 	echo -n "kubectl delete pods --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
 	kubectl delete pods --all >> .log/setup.log 2>&1
+	if [ $? -ne 0 ]
+	then
+		NEXT_RETURN=${ERROR_RETURN}
+	fi
 	echo -n "kubectl delete deployments --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
 	kubectl delete deployments --all >> .log/setup.log 2>&1
+	if [ $? -ne 0 ]
+	then
+		NEXT_RETURN=${ERROR_RETURN}
+	fi
 	echo -n "kubectl delete svc --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
 	kubectl delete svc --all >> .log/setup.log 2>&1
+	if [ $? -ne 0 ]
+	then
+		NEXT_RETURN=${ERROR_RETURN}
+	fi
 	echo -n "kubectl delete pvc --all -" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
 	kubectl delete pvc --all >> .log/setup.log 2>&1
-	echo -e ${GREEN}"DONE"${DEFAULT}
+	if [ $? -ne 0 ]
+	then
+		NEXT_RETURN=${ERROR_RETURN}
+	fi
+	echo -e ${NEXT_RETURN}
 
 	eval $(minikube -p minikube docker-env)
 }
@@ -66,7 +116,12 @@ ft_build_image()
 		echo -n "docker build srcs/$service -t $service -" > .log/$service.log
 		date >> .log/$service.log
 		docker build srcs/$service -t $service >> .log/$service.log
-		echo -e ${GREEN}"DONE"${DEFAULT}
+		if [ $? -eq 0 ]
+		then
+			echo -e ${DONE_RETURN}
+		else
+			echo -e ${ERROR_RETURN}
+		fi
 	done
 }
 
@@ -78,7 +133,12 @@ ft_run_container()
 		echo -n "kubectl apply -f srcs/$service/$service-deployment.yaml -" >> .log/setup.log 2>&1
 		date >> .log/setup.log 2>&1
 		kubectl apply -f srcs/$service/$service-deployment.yaml >> .log/setup.log 2>&1
-		echo -e ${GREEN}"DONE"${DEFAULT}
+		if [ $? -eq 0 ]
+		then
+			echo -e ${DONE_RETURN}
+		else
+			echo -e ${ERROR_RETURN}
+		fi
 	done
 }
 
@@ -88,7 +148,7 @@ ft_run_container()
 echo -e ${BLUE}"[ Check the docker user group ]"${DEFAULT}
 ft_check_user_group
 
-if [ $SHUTDOWN == 0 ]
+if [ $SHUTDOWN -eq 0 ]
 then
 {
 	echo -e ${BLUE}"[ Minikube | Metallb ]"${DEFAULT}
@@ -120,5 +180,5 @@ then
 	minikube dashboard
 }
 else
-	echo "user42" | sudo -S shutdown -r now
+	echo "user42" | sudo -S shutdown -r now > /dev/null
 fi
