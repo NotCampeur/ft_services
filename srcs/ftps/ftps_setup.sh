@@ -1,8 +1,3 @@
-# vsftpd default
-# vsftpd restart
-# vsftpd start
-# nc -zv 127.0.0.1 21
-
 # pure-ftpd -B
 
 	# FORCE THE USE OF A TLS SESSION FOR PURE_FTPD

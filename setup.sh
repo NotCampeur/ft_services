@@ -14,7 +14,7 @@ NEXT_RETURN=0
 
 SHUTDOWN=0
 
-services="nginx wordpress phpmyadmin mysql ftps grafana influxdb"
+services="nginx wordpress phpmyadmin mysql ftps influxdb grafana"
 
 ft_check_user_group()
 {
@@ -46,10 +46,10 @@ ft_start_minikube()
 		else
 			echo -e ${ERROR_RETURN}
 		fi
-		# echo -en ${YELLOW}"\tEnabling addons ..."${DEFAULT}
-		# minikube addons enable metrics-server >> .log/setup.log ; date >> .log/setup.log
-		# minikube addons enable dashboard >> .log/setup.log ; date >> .log/setup.log
-		# echo -e ${GREEN}"DONE"${DEFAULT}
+		echo -en ${YELLOW}"\tEnabling addons ..."${DEFAULT}
+		minikube addons enable metrics-server >> .log/setup.log ; date >> .log/setup.log
+		minikube addons enable dashboard >> .log/setup.log ; date >> .log/setup.log
+		echo -e ${GREEN}"DONE"${DEFAULT}
 		echo -en ${YELLOW}"\tApplying metallb ..."${DEFAULT}
 		NEXT_RETURN=${DONE_RETURN}
 		kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
@@ -62,7 +62,7 @@ ft_start_minikube()
 		then
 			NEXT_RETURN=${ERROR_RETURN}
 		fi
-		kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)" > /dev/null
+		kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)" >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
 		if [ $? -ne 0 ]
 		then
 			NEXT_RETURN=${ERROR_RETURN}

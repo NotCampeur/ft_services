@@ -4,6 +4,8 @@ RUN 	apk update \
 		&& apk add nginx \
 					openssl
 
+RUN		apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
+
 COPY 	nginx.conf		/etc/nginx/
 COPY	nginx_setup.sh	setup.sh
 
@@ -13,7 +15,8 @@ RUN		mkdir -p /etc/nginx/certs
 # NEEDED BY THE COMMAND 'NGINX' IN THE NGINX'S SETUP.SH
 RUN		mkdir -p /run/nginx
 
-COPY	page /page/
+COPY	page			/page/
+COPY	./telegraf.conf /etc/telegraf/telegraf.conf
 
 RUN openssl req -x509 -nodes \
 	-subj '/C=FR/ST=PARIS/L=PARIS/O=42/CN=localhost' \

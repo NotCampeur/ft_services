@@ -1,7 +1,6 @@
 FROM	alpine:latest
 
 RUN 	apk update
-RUN		apk add vsftpd
 RUN		apk add openssl
 RUN		apk add pure-ftpd --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
 

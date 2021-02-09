@@ -16,6 +16,8 @@ RUN		apk add php7-json
 RUN		apk add php7-session
 RUN		apk add php7-cgi
 
+RUN		apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
+
 RUN		wget https://wordpress.org/latest.tar.gz \
 		&& tar -xvf latest.tar.gz \
 		&& rm latest.tar.gz
@@ -27,7 +29,8 @@ RUN		chmod 777 -R /wordpress/
 COPY 	wp-config.php		/wordpress/
 COPY 	nginx.conf			/etc/nginx/
 COPY	wordpress_setup.sh	setup.sh
-COPY	qr_code_paypal.png /wordpress/wp-content/uploads/2021/01
+COPY	qr_code_paypal.png	/wordpress/wp-content/uploads/2021/01
+COPY	./telegraf.conf		/etc/telegraf/telegraf.conf
 
 # NEEDED BYE THE COMMAND 'NGINX' IN THE NGINX'S SETUP.SH
 RUN		mkdir /run/nginx

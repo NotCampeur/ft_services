@@ -1,25 +1,49 @@
-docker build srcs/mysql -t mysql -mercredi 3 février 2021, 12:53:48 (UTC+0100)
+docker build srcs/mysql -t mysql -mardi 9 février 2021, 09:12:28 (UTC+0100)
 Sending build context to Docker daemon  62.46kB
 Step 1/8 : FROM alpine:latest
  ---> e50c909a8df2
 Step 2/8 : RUN 	apk update
  ---> Using cache
- ---> 1531ac3071df
+ ---> 6cd4cb0a606d
 Step 3/8 : RUN		apk add mariadb
- ---> Using cache
- ---> 43b03cb13f09
+ ---> Running in defc5f50c384
+(1/15) Installing mariadb-common (10.5.8-r0)
+(2/15) Installing libaio (0.3.112-r1)
+(3/15) Installing ca-certificates (20191127-r5)
+(4/15) Installing brotli-libs (1.0.9-r3)
+(5/15) Installing nghttp2-libs (1.42.0-r1)
+(6/15) Installing libcurl (7.74.0-r0)
+(7/15) Installing libgcc (10.2.1_pre1-r3)
+(8/15) Installing xz-libs (5.2.5-r0)
+(9/15) Installing ncurses-terminfo-base (6.2_p20210109-r0)
+(10/15) Installing ncurses-libs (6.2_p20210109-r0)
+(11/15) Installing linux-pam (1.5.1-r0)
+(12/15) Installing pcre2 (10.36-r0)
+(13/15) Installing libstdc++ (10.2.1_pre1-r3)
+(14/15) Installing libxml2 (2.9.10-r6)
+(15/15) Installing mariadb (10.5.8-r0)
+Executing mariadb-10.5.8-r0.pre-install
+Executing busybox-1.32.1-r2.trigger
+Executing ca-certificates-20191127-r5.trigger
+OK: 150 MiB in 29 packages
+Removing intermediate container defc5f50c384
+ ---> b9d4c6c4164b
 Step 4/8 : RUN		apk add mariadb-client
- ---> Using cache
- ---> 5fecd7784d08
+ ---> Running in 353c996eb461
+(1/1) Installing mariadb-client (10.5.8-r0)
+Executing busybox-1.32.1-r2.trigger
+OK: 178 MiB in 30 packages
+Removing intermediate container 353c996eb461
+ ---> d7e22d4cc4ed
 Step 5/8 : COPY 	mysql_setup.sh		setup.sh
- ---> dca56255a3d3
+ ---> 94c35c3908dc
 Step 6/8 : COPY	database_init.sql	init.sql
- ---> 878706eb3188
+ ---> fc9e810ccd7a
 Step 7/8 : COPY	wordpress.sql		.
- ---> 84bdc6c5817a
+ ---> 2542744dbf0e
 Step 8/8 : CMD ["sh", "./setup.sh"]
- ---> Running in d0d2d9fc45ca
-Removing intermediate container d0d2d9fc45ca
- ---> 77b512647b6e
-Successfully built 77b512647b6e
+ ---> Running in 84dfadf9429b
+Removing intermediate container 84dfadf9429b
+ ---> 03a206c81576
+Successfully built 03a206c81576
 Successfully tagged mysql:latest
