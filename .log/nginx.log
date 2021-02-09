@@ -1,73 +1,39 @@
-docker build srcs/nginx -t nginx -mardi 9 février 2021, 09:09:48 (UTC+0100)
+docker build srcs/nginx -t nginx -mardi 9 février 2021, 14:42:39 (UTC+0100)
 Sending build context to Docker daemon  1.317MB
 Step 1/12 : FROM 	alpine:latest
-latest: Pulling from library/alpine
-4c0d98bf9879: Pulling fs layer
-4c0d98bf9879: Verifying Checksum
-4c0d98bf9879: Download complete
-4c0d98bf9879: Pull complete
-Digest: sha256:08d6ca16c60fe7490c03d10dc339d9fd8ea67c6466dea8d558526b1330a85930
-Status: Downloaded newer image for alpine:latest
  ---> e50c909a8df2
 Step 2/12 : RUN 	apk update 		&& apk add nginx 					openssl
- ---> Running in 139f7cd3324f
-fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
-fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
-v3.13.1-78-gb575f39b62 [https://dl-cdn.alpinelinux.org/alpine/v3.13/main]
-v3.13.1-77-gfda3fe526c [https://dl-cdn.alpinelinux.org/alpine/v3.13/community]
-OK: 13878 distinct packages available
-(1/3) Installing pcre (8.44-r0)
-(2/3) Installing nginx (1.18.0-r13)
-Executing nginx-1.18.0-r13.pre-install
-Executing nginx-1.18.0-r13.post-install
-(3/3) Installing openssl (1.1.1i-r0)
-Executing busybox-1.32.1-r2.trigger
-OK: 8 MiB in 17 packages
-Removing intermediate container 139f7cd3324f
- ---> 5769f4ef0707
+ ---> Using cache
+ ---> 83045dcc5db7
 Step 3/12 : RUN		apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
- ---> Running in 9559653add3c
-fetch http://dl-3.alpinelinux.org/alpine/edge/testing/x86_64/APKINDEX.tar.gz
-fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
-fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
-(1/1) Installing telegraf (1.17.0-r0)
-Executing telegraf-1.17.0-r0.pre-install
-Executing busybox-1.32.1-r2.trigger
-OK: 97 MiB in 18 packages
-Removing intermediate container 9559653add3c
- ---> 59f4a930bac1
+ ---> Using cache
+ ---> 8010409f5569
 Step 4/12 : COPY 	nginx.conf		/etc/nginx/
- ---> 305a727bff79
+ ---> Using cache
+ ---> 5a32dbc36ebb
 Step 5/12 : COPY	nginx_setup.sh	setup.sh
- ---> 76b6d893ae67
+ ---> Using cache
+ ---> 24318c62182a
 Step 6/12 : RUN		mkdir -p /etc/nginx/certs
- ---> Running in 58ae5078ba78
-Removing intermediate container 58ae5078ba78
- ---> 166f3a15a713
+ ---> Using cache
+ ---> 9b12c956bed1
 Step 7/12 : RUN		mkdir -p /run/nginx
- ---> Running in caa21db9c6bd
-Removing intermediate container caa21db9c6bd
- ---> 21b7346ca927
+ ---> Using cache
+ ---> 677f8f10fe90
 Step 8/12 : COPY	page			/page/
- ---> ba0bf612544f
+ ---> Using cache
+ ---> f062b57f40e9
 Step 9/12 : COPY	./telegraf.conf /etc/telegraf/telegraf.conf
- ---> 064f99dac342
+ ---> Using cache
+ ---> f0032797ce5b
 Step 10/12 : RUN openssl req -x509 -nodes 	-subj '/C=FR/ST=PARIS/L=PARIS/O=42/CN=localhost' 	-days 365 -newkey rsa:2048 	-keyout /etc/ssl/private/nginx-selfsigned.key 	-out /etc/nginx/certs/nginx-selfsigned.crt
- ---> Running in 7dcb0dd7aeee
-[91mGenerating a RSA private key
-[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+[0m[91m+
-[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+[0m[91m+
-[0m[91mwriting new private key to '/etc/ssl/private/nginx-selfsigned.key'
-[0m[91m-----
-[0mRemoving intermediate container 7dcb0dd7aeee
- ---> f3a6ac75a95f
+ ---> Using cache
+ ---> 5f17d1ce2253
 Step 11/12 : EXPOSE 35:80 36:443
- ---> Running in e52f1f941c75
-Removing intermediate container e52f1f941c75
- ---> 67c035eb8aec
+ ---> Using cache
+ ---> 71e544e94d0f
 Step 12/12 : ENTRYPOINT ["sh", "./setup.sh"]
- ---> Running in 361ef8127c36
-Removing intermediate container 361ef8127c36
- ---> 47f950da342c
-Successfully built 47f950da342c
+ ---> Using cache
+ ---> f1ccd92bb639
+Successfully built f1ccd92bb639
 Successfully tagged nginx:latest

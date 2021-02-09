@@ -47,9 +47,18 @@ ft_start_minikube()
 			echo -e ${ERROR_RETURN}
 		fi
 		echo -en ${YELLOW}"\tEnabling addons ..."${DEFAULT}
+		NEXT_RETURN=${DONE_RETURN}
 		minikube addons enable metrics-server >> .log/setup.log ; date >> .log/setup.log
+		if [ $? -ne 0 ]
+		then
+			NEXT_RETURN=${ERROR_RETURN}
+		fi
 		minikube addons enable dashboard >> .log/setup.log ; date >> .log/setup.log
-		echo -e ${GREEN}"DONE"${DEFAULT}
+		if [ $? -ne 0 ]
+		then
+			NEXT_RETURN=${ERROR_RETURN}
+		fi
+		echo -e ${NEXT_RETURN}
 		echo -en ${YELLOW}"\tApplying metallb ..."${DEFAULT}
 		NEXT_RETURN=${DONE_RETURN}
 		kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1

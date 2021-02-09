@@ -2,6 +2,7 @@
 
 	# FORCE THE USE OF A TLS SESSION FOR PURE_FTPD
 # echo "1" > /etc/pure-ftpd/conf/TLS
+telegraf &
 
 mkdir -p /etc/ssl/private/
 
