@@ -1,24 +1,36 @@
-docker build srcs/influxdb -t influxdb -mardi 9 février 2021, 14:42:48 (UTC+0100)
+docker build srcs/influxdb -t influxdb -mercredi 10 février 2021, 12:10:22 (UTC+0100)
 Sending build context to Docker daemon  241.2kB
 Step 1/7 : FROM    alpine:latest
  ---> e50c909a8df2
 Step 2/7 : RUN     apk update
  ---> Using cache
- ---> 726ef64a36ef
+ ---> 7ca67b9728e6
 Step 3/7 : RUN     apk add influxdb
- ---> Using cache
- ---> 4dafb9da39ce
+ ---> Running in 0fc4a4a9de0e
+(1/1) Installing influxdb (1.8.3-r2)
+Executing influxdb-1.8.3-r2.pre-install
+Executing busybox-1.32.1-r2.trigger
+OK: 206 MiB in 15 packages
+Removing intermediate container 0fc4a4a9de0e
+ ---> 4606d0135ebf
 Step 4/7 : RUN		apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
- ---> Using cache
- ---> 6d6e9ee278db
+ ---> Running in db11ab6f25e6
+fetch http://dl-3.alpinelinux.org/alpine/edge/testing/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
+(1/1) Installing telegraf (1.17.0-r0)
+Executing telegraf-1.17.0-r0.pre-install
+Executing busybox-1.32.1-r2.trigger
+OK: 295 MiB in 16 packages
+Removing intermediate container db11ab6f25e6
+ ---> b0f0ed55a258
 Step 5/7 : COPY    influxdb_setup.sh   setup.sh
- ---> Using cache
- ---> 03b29dba9612
+ ---> 8fc54ee870df
 Step 6/7 : COPY	./telegraf.conf /etc/telegraf/telegraf.conf
- ---> Using cache
- ---> cbc73235b2f9
+ ---> 20d2ef9b4187
 Step 7/7 : CMD     ["sh", "/setup.sh"]
- ---> Using cache
- ---> c90325f9ac7e
-Successfully built c90325f9ac7e
+ ---> Running in 8bbf4fb9703a
+Removing intermediate container 8bbf4fb9703a
+ ---> 74796703ab61
+Successfully built 74796703ab61
 Successfully tagged influxdb:latest

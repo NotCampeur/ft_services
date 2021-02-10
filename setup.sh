@@ -25,7 +25,7 @@ ft_check_user_group()
 		SHUTDOWN=6
 		while [ $SHUTDOWN -ne 1 ]
 		do
-			SHUTDOWN= 'expr $SHUTDOWN - 1'
+			SHUTDOWN='expr $SHUTDOWN - 1'
 			echo $SHUTDOWN
 			sleep 1
 		done

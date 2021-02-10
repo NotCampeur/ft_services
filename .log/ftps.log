@@ -1,30 +1,49 @@
-docker build srcs/ftps -t ftps -mardi 9 février 2021, 14:42:47 (UTC+0100)
+docker build srcs/ftps -t ftps -mercredi 10 février 2021, 12:10:10 (UTC+0100)
 Sending build context to Docker daemon  246.3kB
 Step 1/9 : FROM	alpine:latest
  ---> e50c909a8df2
 Step 2/9 : RUN 	apk update
  ---> Using cache
- ---> 726ef64a36ef
+ ---> 7ca67b9728e6
 Step 3/9 : RUN		apk add openssl
- ---> Using cache
- ---> 72e817233ba3
+ ---> Running in 8b4e6c020841
+(1/1) Installing openssl (1.1.1i-r0)
+Executing busybox-1.32.1-r2.trigger
+OK: 6 MiB in 15 packages
+Removing intermediate container 8b4e6c020841
+ ---> 23af4930e12b
 Step 4/9 : RUN		apk add pure-ftpd --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
- ---> Using cache
- ---> 386ba598d278
+ ---> Running in cd5dfeee0815
+fetch http://dl-3.alpinelinux.org/alpine/edge/testing/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
+(1/1) Installing pure-ftpd (1.0.49-r1)
+Executing busybox-1.32.1-r2.trigger
+OK: 7 MiB in 16 packages
+Removing intermediate container cd5dfeee0815
+ ---> ae391045691e
 Step 5/9 : RUN     apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
- ---> Using cache
- ---> df5a043c65d8
+ ---> Running in ec078c622232
+fetch http://dl-3.alpinelinux.org/alpine/edge/testing/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
+(1/1) Installing telegraf (1.17.0-r0)
+Executing telegraf-1.17.0-r0.pre-install
+Executing busybox-1.32.1-r2.trigger
+OK: 96 MiB in 17 packages
+Removing intermediate container ec078c622232
+ ---> a94f6dbb5490
 Step 6/9 : COPY	ftps_setup.sh	setup.sh
- ---> Using cache
- ---> 65f2a75dc022
+ ---> eee1f36f6d9b
 Step 7/9 : COPY	./telegraf.conf /etc/telegraf/telegraf.conf
- ---> Using cache
- ---> 9feb8f81ee2d
+ ---> 9c01db94accf
 Step 8/9 : EXPOSE 21 1200
- ---> Using cache
- ---> e77314838740
+ ---> Running in 87e3e25c3642
+Removing intermediate container 87e3e25c3642
+ ---> 0555aa5b3154
 Step 9/9 : ENTRYPOINT [ "sh", "./setup.sh" ]
- ---> Using cache
- ---> f0e61cc9651a
-Successfully built f0e61cc9651a
+ ---> Running in 33c705e47de8
+Removing intermediate container 33c705e47de8
+ ---> 52dfee1f8b90
+Successfully built 52dfee1f8b90
 Successfully tagged ftps:latest
