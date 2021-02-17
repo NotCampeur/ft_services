@@ -1,4 +1,4 @@
-docker build srcs/nginx -t nginx -mercredi 10 février 2021, 12:06:14 (UTC+0100)
+docker build srcs/nginx -t nginx -mercredi 17 février 2021, 09:48:31 (UTC+0100)
 Sending build context to Docker daemon  1.317MB
 Step 1/12 : FROM 	alpine:latest
 latest: Pulling from library/alpine
@@ -10,64 +10,61 @@ Digest: sha256:08d6ca16c60fe7490c03d10dc339d9fd8ea67c6466dea8d558526b1330a85930
 Status: Downloaded newer image for alpine:latest
  ---> e50c909a8df2
 Step 2/12 : RUN 	apk update 		&& apk add nginx 					openssl
- ---> Running in caf5835e4acf
+ ---> Running in e288f78f06b2
 fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
 fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
-v3.13.1-89-ga861aa92ff [https://dl-cdn.alpinelinux.org/alpine/v3.13/main]
-v3.13.1-88-gd924084049 [https://dl-cdn.alpinelinux.org/alpine/v3.13/community]
-OK: 13878 distinct packages available
+v3.13.1-126-g9235437f75 [https://dl-cdn.alpinelinux.org/alpine/v3.13/main]
+v3.13.1-125-ga879d969bd [https://dl-cdn.alpinelinux.org/alpine/v3.13/community]
+OK: 13881 distinct packages available
 (1/3) Installing pcre (8.44-r0)
 (2/3) Installing nginx (1.18.0-r13)
 Executing nginx-1.18.0-r13.pre-install
 Executing nginx-1.18.0-r13.post-install
-(3/3) Installing openssl (1.1.1i-r0)
+(3/3) Installing openssl (1.1.1j-r0)
 Executing busybox-1.32.1-r2.trigger
 OK: 8 MiB in 17 packages
-Removing intermediate container caf5835e4acf
- ---> 7e74db51eeb0
-Step 3/12 : RUN		apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
- ---> Running in fab41bc435cf
-fetch http://dl-3.alpinelinux.org/alpine/edge/testing/x86_64/APKINDEX.tar.gz
-fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
-fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
+Removing intermediate container e288f78f06b2
+ ---> 133619ecab41
+Step 3/12 : RUN		apk add telegraf
+ ---> Running in 7b5ec5c8e935
 (1/1) Installing telegraf (1.17.0-r0)
 Executing telegraf-1.17.0-r0.pre-install
 Executing busybox-1.32.1-r2.trigger
 OK: 97 MiB in 18 packages
-Removing intermediate container fab41bc435cf
- ---> cafc0b002b55
+Removing intermediate container 7b5ec5c8e935
+ ---> bda6f791ba78
 Step 4/12 : COPY 	nginx.conf		/etc/nginx/
- ---> e29ea427bce3
+ ---> 3fdc12f01ec2
 Step 5/12 : COPY	nginx_setup.sh	setup.sh
- ---> 55e5261dd1a6
+ ---> 0b744872e896
 Step 6/12 : RUN		mkdir -p /etc/nginx/certs
- ---> Running in 87727d5e0328
-Removing intermediate container 87727d5e0328
- ---> e9c83a8d7c82
+ ---> Running in aec2136e78fe
+Removing intermediate container aec2136e78fe
+ ---> 4e0772997cfc
 Step 7/12 : RUN		mkdir -p /run/nginx
- ---> Running in ed87f676dfa5
-Removing intermediate container ed87f676dfa5
- ---> 85e3c1efc0ef
+ ---> Running in 84f0c5fe5fe8
+Removing intermediate container 84f0c5fe5fe8
+ ---> f73d31805592
 Step 8/12 : COPY	page			/page/
- ---> 6eb448ec4566
-Step 9/12 : COPY	./telegraf.conf /etc/telegraf/telegraf.conf
- ---> 3818647a0760
+ ---> 3f5cae2f0e3a
+Step 9/12 : COPY	./telegraf.conf /etc/telegraf.conf
+ ---> f4751647add7
 Step 10/12 : RUN openssl req -x509 -nodes 	-subj '/C=FR/ST=PARIS/L=PARIS/O=42/CN=localhost' 	-days 365 -newkey rsa:2048 	-keyout /etc/ssl/private/nginx-selfsigned.key 	-out /etc/nginx/certs/nginx-selfsigned.crt
- ---> Running in e2d1a6a80fbb
+ ---> Running in dc81717c7eb6
 [91mGenerating a RSA private key
-[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+[0m[91m+
-[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+[0m[91m+
+[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m..+[0m[91m+[0m[91m+[0m[91m+[0m[91m+
+[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.....[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m......[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m++[0m[91m+[0m[91m+[0m[91m+
 [0m[91mwriting new private key to '/etc/ssl/private/nginx-selfsigned.key'
-[0m[91m-----
-[0mRemoving intermediate container e2d1a6a80fbb
- ---> 4c5a39a8a911
+-----
+[0mRemoving intermediate container dc81717c7eb6
+ ---> 1f185c8464ad
 Step 11/12 : EXPOSE 35:80 36:443
- ---> Running in f683540ac900
-Removing intermediate container f683540ac900
- ---> 59762fcd4183
+ ---> Running in c78f877f80c4
+Removing intermediate container c78f877f80c4
+ ---> 2bd8549bff23
 Step 12/12 : ENTRYPOINT ["sh", "./setup.sh"]
- ---> Running in 7352e82dd9e2
-Removing intermediate container 7352e82dd9e2
- ---> 82eac602de5e
-Successfully built 82eac602de5e
+ ---> Running in 9a5f019545e1
+Removing intermediate container 9a5f019545e1
+ ---> 4dcf67253985
+Successfully built 4dcf67253985
 Successfully tagged nginx:latest

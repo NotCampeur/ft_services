@@ -11,10 +11,10 @@ RUN     wget https://dl.grafana.com/oss/release/grafana-7.3.7.linux-amd64.tar.gz
         && tar -zxvf grafana-7.3.7.linux-amd64.tar.gz \
         && rm grafana-7.3.7.linux-amd64.tar.gz
 
-RUN     apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
+RUN     apk add telegraf
 
 COPY    grafana_setup.sh        setup.sh
-COPY	./telegraf.conf         /etc/telegraf/telegraf.conf
+COPY	./telegraf.conf         /etc/telegraf.conf
 COPY    ./grafana.db            /grafana-7.3.7/data/grafana.db
 
 EXPOSE  3000

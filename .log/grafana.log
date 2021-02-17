@@ -1,27 +1,27 @@
-docker build srcs/grafana -t grafana -mercredi 10 février 2021, 12:10:47 (UTC+0100)
-Sending build context to Docker daemon  807.4kB
+docker build srcs/grafana -t grafana -mercredi 17 février 2021, 09:59:21 (UTC+0100)
+Sending build context to Docker daemon  946.7kB
 Step 1/11 : FROM    alpine:latest
  ---> e50c909a8df2
 Step 2/11 : RUN     apk update
  ---> Using cache
- ---> 7ca67b9728e6
+ ---> 0c86e340e76a
 Step 3/11 : RUN     apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main libc6-compat
- ---> Running in 3242d3c406ae
+ ---> Running in 298207b76aec
 fetch http://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
 fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
 fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
 (1/2) Upgrading musl (1.2.2-r0 -> 1.2.2-r1)
 (2/2) Installing libc6-compat (1.2.2-r1)
 OK: 6 MiB in 15 packages
-Removing intermediate container 3242d3c406ae
- ---> a5c02ff2e105
+Removing intermediate container 298207b76aec
+ ---> 7e155fec0ad7
 Step 4/11 : RUN     wget https://dl.grafana.com/oss/release/grafana-7.3.7.linux-amd64.tar.gz         && tar -zxvf grafana-7.3.7.linux-amd64.tar.gz         && rm grafana-7.3.7.linux-amd64.tar.gz
- ---> Running in 514483d187dd
+ ---> Running in 83b2ab2bd2e3
 [91mConnecting to dl.grafana.com (151.101.122.217:443)
 [0m[91msaving to 'grafana-7.3.7.linux-amd64.tar.gz'
-[0m[91mgrafana-7.3.7.linux-   1% |                                | 1041k  0:00:49 ETA
-[0m[91mgrafana-7.3.7.linux- 100% |********************************| 51.6M  0:00:00 ETA
-'grafana-7.3.7.linux-amd64.tar.gz' saved
+[0m[91mgrafana-7.3.7.linux-  16% |*****                           | 8539k  0:00:05 ETA
+[0m[91mgrafana-7.3.7.linux- [0m[91m100% [0m[91m|********************************| [0m[91m51.6M[0m[91m  0:00:00 ETA[0m[91m
+[0m[91m'grafana-7.3.7.linux-amd64.tar.gz' saved
 [0mgrafana-7.3.7/LICENSE
 grafana-7.3.7/README.md
 grafana-7.3.7/NOTICE.md
@@ -2872,36 +2872,33 @@ grafana-7.3.7/scripts/trigger_docker_build.sh
 grafana-7.3.7/scripts/trigger_grafana_packer.sh
 grafana-7.3.7/scripts/trigger_windows_build.sh
 grafana-7.3.7/scripts/version.star
-Removing intermediate container 514483d187dd
- ---> 1334b6cdee41
-Step 5/11 : RUN     apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
- ---> Running in db733cba359b
-fetch http://dl-3.alpinelinux.org/alpine/edge/testing/x86_64/APKINDEX.tar.gz
-fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
-fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
+Removing intermediate container 83b2ab2bd2e3
+ ---> 3997df9b2b0d
+Step 5/11 : RUN     apk add telegraf
+ ---> Running in d2427363793d
 (1/1) Installing telegraf (1.17.0-r0)
 Executing telegraf-1.17.0-r0.pre-install
 Executing busybox-1.32.1-r2.trigger
 OK: 95 MiB in 16 packages
-Removing intermediate container db733cba359b
- ---> 9e99b53373a6
+Removing intermediate container d2427363793d
+ ---> 36d65cb39ff5
 Step 6/11 : COPY    grafana_setup.sh        setup.sh
- ---> f5d8b3ff3cd7
-Step 7/11 : COPY	./telegraf.conf         /etc/telegraf/telegraf.conf
- ---> cf5b00c9e923
+ ---> efc5b6c76a08
+Step 7/11 : COPY	./telegraf.conf         /etc/telegraf.conf
+ ---> 0a2c5b1045dc
 Step 8/11 : COPY    ./grafana.db            /grafana-7.3.7/data/grafana.db
- ---> fbaf2efe1ed2
+ ---> 925dcfc77db4
 Step 9/11 : EXPOSE  3000
- ---> Running in f215839796df
-Removing intermediate container f215839796df
- ---> 7912782e875c
+ ---> Running in 2935f700775e
+Removing intermediate container 2935f700775e
+ ---> 44506fc1130c
 Step 10/11 : WORKDIR /grafana-7.3.7/
- ---> Running in ec0abca281fa
-Removing intermediate container ec0abca281fa
- ---> df1bcf50acf7
+ ---> Running in 42d8faffdd03
+Removing intermediate container 42d8faffdd03
+ ---> 735a39397c60
 Step 11/11 : CMD     ["sh", "/setup.sh"]
- ---> Running in ed84821cc315
-Removing intermediate container ed84821cc315
- ---> cd454077c4ae
-Successfully built cd454077c4ae
+ ---> Running in 5a373b4357f5
+Removing intermediate container 5a373b4357f5
+ ---> 0cb8aa89d2cb
+Successfully built 0cb8aa89d2cb
 Successfully tagged grafana:latest

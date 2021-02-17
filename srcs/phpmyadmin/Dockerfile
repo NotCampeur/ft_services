@@ -35,12 +35,12 @@ RUN		wget http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-
 		&& rm phpMyAdmin-5.0.2-all-languages.tar.gz \
 		&& mv phpMyAdmin-5.0.2-all-languages phpmyadmin
 
-RUN     apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
+RUN     apk add telegraf
 
 COPY	nginx.conf		/etc/nginx/
 COPY	pma_setup.sh	setup.sh
 COPY	config.inc.php	/phpmyadmin/
-COPY	./telegraf.conf /etc/telegraf/telegraf.conf
+COPY	./telegraf.conf /etc/telegraf.conf
 
 RUN		mkdir			/phpmyadmin/tmp
 RUN		chmod 777 		/phpmyadmin/tmp

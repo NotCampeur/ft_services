@@ -1,0 +1,31 @@
+Active Mode:
+    The client issues a PORT command to the server signaling that it will 
+    “actively” provide an IP and port number to open the Data Connection back to the client.
+
+Passive Mode:
+    The client issues a PASV command to indicate that it will wait
+    “passively” for the server to supply an IP and port number,
+    after which the client will create a Data Connection to the server.
+
+
+DOWNLOADING | UPLOADING : 
+
+    Before downloading a file, we should set the local FTP file download directory by using 'lcd' command
+
+    If you dont specify the download directory, the file will be downloaded
+    to the current directory where you were at the time you started the FTP session.
+
+    Now, we can use the 'get' command to download a file
+
+    To download several files we can use wildcards:
+        "mget *.xls"
+
+    We can upload files that are in the local directory where we made the FTP connection.
+
+    To upload a file, we can use 'put' command.
+
+    When the file that you want to upload is not in the local directory,
+    you can use the absolute path starting with "/"
+
+    To upload several files we can use the mput command similar to the mget example from above:
+        mput *.xls

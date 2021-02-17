@@ -1,36 +1,33 @@
-docker build srcs/influxdb -t influxdb -mercredi 10 février 2021, 12:10:22 (UTC+0100)
+docker build srcs/influxdb -t influxdb -mercredi 17 février 2021, 09:57:28 (UTC+0100)
 Sending build context to Docker daemon  241.2kB
 Step 1/7 : FROM    alpine:latest
  ---> e50c909a8df2
 Step 2/7 : RUN     apk update
  ---> Using cache
- ---> 7ca67b9728e6
+ ---> 0c86e340e76a
 Step 3/7 : RUN     apk add influxdb
- ---> Running in 0fc4a4a9de0e
+ ---> Running in 1f94330b4d4c
 (1/1) Installing influxdb (1.8.3-r2)
 Executing influxdb-1.8.3-r2.pre-install
 Executing busybox-1.32.1-r2.trigger
 OK: 206 MiB in 15 packages
-Removing intermediate container 0fc4a4a9de0e
- ---> 4606d0135ebf
-Step 4/7 : RUN		apk add telegraf --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
- ---> Running in db11ab6f25e6
-fetch http://dl-3.alpinelinux.org/alpine/edge/testing/x86_64/APKINDEX.tar.gz
-fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
-fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
+Removing intermediate container 1f94330b4d4c
+ ---> 4c4b2d14ebda
+Step 4/7 : RUN		apk add telegraf
+ ---> Running in 2144ebb4e306
 (1/1) Installing telegraf (1.17.0-r0)
 Executing telegraf-1.17.0-r0.pre-install
 Executing busybox-1.32.1-r2.trigger
 OK: 295 MiB in 16 packages
-Removing intermediate container db11ab6f25e6
- ---> b0f0ed55a258
+Removing intermediate container 2144ebb4e306
+ ---> 27b34d6d6fea
 Step 5/7 : COPY    influxdb_setup.sh   setup.sh
- ---> 8fc54ee870df
-Step 6/7 : COPY	./telegraf.conf /etc/telegraf/telegraf.conf
- ---> 20d2ef9b4187
+ ---> 6a0f02f06a8d
+Step 6/7 : COPY	./telegraf.conf     /etc/telegraf.conf
+ ---> 998d91e976b3
 Step 7/7 : CMD     ["sh", "/setup.sh"]
- ---> Running in 8bbf4fb9703a
-Removing intermediate container 8bbf4fb9703a
- ---> 74796703ab61
-Successfully built 74796703ab61
+ ---> Running in 7b55280332c4
+Removing intermediate container 7b55280332c4
+ ---> 71ab5ae68dc8
+Successfully built 71ab5ae68dc8
 Successfully tagged influxdb:latest
