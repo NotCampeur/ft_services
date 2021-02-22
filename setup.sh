@@ -39,7 +39,8 @@ ft_start_minikube()
 	if [[ $(minikube status > .log/setup.log 2>&1 ; grep -c "Running" ".log/setup.log") -ne 3 ]]
 	then
 		echo -en ${YELLOW}"\tInstalling minikube and Load Balancer..."${DEFAULT}
-		minikube start --driver=docker >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
+		minikube start --driver=docker --cpus=2 --memory=2200 --extra-config=apiserver.service-node-port-range=1-35000 >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
+		# minikube start --driver=docker >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1
 		if [ $? -eq 0 ]
 		then
 			echo -e ${DONE_RETURN}
@@ -48,16 +49,16 @@ ft_start_minikube()
 		fi
 		echo -en ${YELLOW}"\tEnabling addons ..."${DEFAULT}
 		NEXT_RETURN=${DONE_RETURN}
-		minikube addons enable metrics-server >> .log/setup.log ; date >> .log/setup.log
-		if [ $? -ne 0 ]
-		then
-			NEXT_RETURN=${ERROR_RETURN}
-		fi
-		minikube addons enable dashboard >> .log/setup.log ; date >> .log/setup.log
-		if [ $? -ne 0 ]
-		then
-			NEXT_RETURN=${ERROR_RETURN}
-		fi
+		# minikube addons enable metrics-server >> .log/setup.log ; date >> .log/setup.log
+		# if [ $? -ne 0 ]
+		# then
+			# NEXT_RETURN=${ERROR_RETURN}
+		# fi
+		# minikube addons enable dashboard >> .log/setup.log ; date >> .log/setup.log
+		# if [ $? -ne 0 ]
+		# then
+			# NEXT_RETURN=${ERROR_RETURN}
+		# fi
 		echo -e ${NEXT_RETURN}
 		echo -en ${YELLOW}"\tApplying metallb ..."${DEFAULT}
 		NEXT_RETURN=${DONE_RETURN}

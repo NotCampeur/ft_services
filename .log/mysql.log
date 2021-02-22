@@ -1,12 +1,12 @@
-docker build srcs/mysql -t mysql -mercredi 17 février 2021, 09:56:19 (UTC+0100)
+docker build srcs/mysql -t mysql -lundi 22 février 2021, 10:39:13 (UTC+0100)
 Sending build context to Docker daemon    299kB
 Step 1/10 : FROM alpine:latest
- ---> e50c909a8df2
+ ---> 28f6e2705743
 Step 2/10 : RUN 	apk update
  ---> Using cache
- ---> 0c86e340e76a
+ ---> 3c0d3741fc62
 Step 3/10 : RUN		apk add mariadb
- ---> Running in a0b6bf4a8533
+ ---> Running in ae5f8408ff08
 (1/15) Installing mariadb-common (10.5.8-r0)
 (2/15) Installing libaio (0.3.112-r1)
 (3/15) Installing ca-certificates (20191127-r5)
@@ -23,37 +23,37 @@ Step 3/10 : RUN		apk add mariadb
 (14/15) Installing libxml2 (2.9.10-r6)
 (15/15) Installing mariadb (10.5.8-r0)
 Executing mariadb-10.5.8-r0.pre-install
-Executing busybox-1.32.1-r2.trigger
+Executing busybox-1.32.1-r3.trigger
 Executing ca-certificates-20191127-r5.trigger
 OK: 150 MiB in 29 packages
-Removing intermediate container a0b6bf4a8533
- ---> 673060e9ecb9
+Removing intermediate container ae5f8408ff08
+ ---> 2e21b02af2ea
 Step 4/10 : RUN		apk add mariadb-client
- ---> Running in 4da1906a8766
+ ---> Running in 5769931b24ac
 (1/1) Installing mariadb-client (10.5.8-r0)
-Executing busybox-1.32.1-r2.trigger
+Executing busybox-1.32.1-r3.trigger
 OK: 178 MiB in 30 packages
-Removing intermediate container 4da1906a8766
- ---> 3d1d19c79c6c
+Removing intermediate container 5769931b24ac
+ ---> 1fecdc30db73
 Step 5/10 : RUN     apk add telegraf
- ---> Running in f08c203d69ea
+ ---> Running in 7f9cdcfbe688
 (1/1) Installing telegraf (1.17.0-r0)
 Executing telegraf-1.17.0-r0.pre-install
-Executing busybox-1.32.1-r2.trigger
+Executing busybox-1.32.1-r3.trigger
 OK: 267 MiB in 31 packages
-Removing intermediate container f08c203d69ea
- ---> 2c2016d7fa3e
+Removing intermediate container 7f9cdcfbe688
+ ---> 2db8cc99a898
 Step 6/10 : COPY 	mysql_setup.sh		setup.sh
- ---> f30399302c6f
+ ---> e504bc45ca4f
 Step 7/10 : COPY	database_init.sql	init.sql
- ---> 39aa2ec7ea18
+ ---> a452bb4326dd
 Step 8/10 : COPY	wordpress.sql		.
- ---> b1b4f14b3468
+ ---> 6256244a5bdc
 Step 9/10 : COPY	./telegraf.conf     /etc/telegraf.conf
- ---> ce1f93967634
+ ---> 24571495b8ba
 Step 10/10 : CMD ["sh", "./setup.sh"]
- ---> Running in 61255901a5a8
-Removing intermediate container 61255901a5a8
- ---> 3f4d6e6fb4fb
-Successfully built 3f4d6e6fb4fb
+ ---> Running in 4e60e9214dd8
+Removing intermediate container 4e60e9214dd8
+ ---> 522a06c426b1
+Successfully built 522a06c426b1
 Successfully tagged mysql:latest

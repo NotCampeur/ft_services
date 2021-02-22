@@ -5,16 +5,12 @@
 * Pulling base image ...
 * Creating Kubernetes in docker container with (CPUs=2) (4 available), Memory=2200MB (3935MB available) ...
 * Preparing Kubernetes v1.18.0 on Docker 19.03.2 ...
-  - kubeadm.pod-network-cidr=10.244.0.0/16
+  - apiserver.service-node-port-range=1-35000
 * Enabling addons: default-storageclass, storage-provisioner
 * Done! kubectl is now configured to use "minikube"
-mercredi 17 février 2021, 09:48:15 (UTC+0100)
-🌟  The 'metrics-server' addon is enabled
-mercredi 17 février 2021, 09:48:17 (UTC+0100)
-🌟  The 'dashboard' addon is enabled
-mercredi 17 février 2021, 09:48:20 (UTC+0100)
+lundi 22 février 2021, 10:34:32 (UTC+0100)
 namespace/metallb-system created
-mercredi 17 février 2021, 09:48:22 (UTC+0100)
+lundi 22 février 2021, 10:34:47 (UTC+0100)
 podsecuritypolicy.policy/controller created
 podsecuritypolicy.policy/speaker created
 serviceaccount/controller created
@@ -29,39 +25,39 @@ rolebinding.rbac.authorization.k8s.io/config-watcher created
 rolebinding.rbac.authorization.k8s.io/pod-lister created
 daemonset.apps/speaker created
 deployment.apps/controller created
-mercredi 17 février 2021, 09:48:24 (UTC+0100)
+lundi 22 février 2021, 10:34:50 (UTC+0100)
 secret/memberlist created
-mercredi 17 février 2021, 09:48:25 (UTC+0100)
-kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -mercredi 17 février 2021, 09:48:25 (UTC+0100)
+lundi 22 février 2021, 10:34:52 (UTC+0100)
+kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -lundi 22 février 2021, 10:34:52 (UTC+0100)
 configmap/config created
-kubectl delete pods --all -mercredi 17 février 2021, 09:48:26 (UTC+0100)
+kubectl delete pods --all -lundi 22 février 2021, 10:34:53 (UTC+0100)
 No resources found
-kubectl delete deployments --all -mercredi 17 février 2021, 09:48:27 (UTC+0100)
+kubectl delete deployments --all -lundi 22 février 2021, 10:34:53 (UTC+0100)
 No resources found
-kubectl delete svc --all -mercredi 17 février 2021, 09:48:27 (UTC+0100)
+kubectl delete svc --all -lundi 22 février 2021, 10:34:53 (UTC+0100)
 service "kubernetes" deleted
-kubectl delete pvc --all -mercredi 17 février 2021, 09:48:29 (UTC+0100)
+kubectl delete pvc --all -lundi 22 février 2021, 10:34:54 (UTC+0100)
 No resources found
-kubectl apply -f srcs/nginx/nginx-deployment.yaml -mercredi 17 février 2021, 09:59:57 (UTC+0100)
+kubectl apply -f srcs/nginx/nginx-deployment.yaml -lundi 22 février 2021, 10:41:04 (UTC+0100)
 deployment.apps/nginx created
 service/nginx-service created
-kubectl apply -f srcs/wordpress/wordpress-deployment.yaml -mercredi 17 février 2021, 10:00:00 (UTC+0100)
+kubectl apply -f srcs/wordpress/wordpress-deployment.yaml -lundi 22 février 2021, 10:41:10 (UTC+0100)
 deployment.apps/wordpress created
 service/wordpress-service created
-kubectl apply -f srcs/phpmyadmin/phpmyadmin-deployment.yaml -mercredi 17 février 2021, 10:00:01 (UTC+0100)
+kubectl apply -f srcs/phpmyadmin/phpmyadmin-deployment.yaml -lundi 22 février 2021, 10:41:12 (UTC+0100)
 deployment.apps/phpmyadmin created
 service/phpmyadmin-service created
-kubectl apply -f srcs/mysql/mysql-deployment.yaml -mercredi 17 février 2021, 10:00:02 (UTC+0100)
+kubectl apply -f srcs/mysql/mysql-deployment.yaml -lundi 22 février 2021, 10:41:14 (UTC+0100)
 persistentvolumeclaim/mysql created
 deployment.apps/mysql created
 service/mysql-service created
-kubectl apply -f srcs/ftps/ftps-deployment.yaml -mercredi 17 février 2021, 10:00:03 (UTC+0100)
+kubectl apply -f srcs/ftps/ftps-deployment.yaml -lundi 22 février 2021, 10:41:15 (UTC+0100)
 deployment.apps/ftps created
 service/ftps-service created
-kubectl apply -f srcs/influxdb/influxdb-deployment.yaml -mercredi 17 février 2021, 10:00:04 (UTC+0100)
+kubectl apply -f srcs/influxdb/influxdb-deployment.yaml -lundi 22 février 2021, 10:41:17 (UTC+0100)
 persistentvolumeclaim/influxdb created
 deployment.apps/influxdb created
 service/influxdb-service created
-kubectl apply -f srcs/grafana/grafana-deployment.yaml -mercredi 17 février 2021, 10:00:05 (UTC+0100)
+kubectl apply -f srcs/grafana/grafana-deployment.yaml -lundi 22 février 2021, 10:41:19 (UTC+0100)
 deployment.apps/grafana created
 service/grafana-service created
