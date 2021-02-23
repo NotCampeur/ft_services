@@ -36,14 +36,28 @@ ft_check_user_group()
 
 ft_install_lftp()
 {
-	if [ $(lftp --version) -ne 0 ]
+	systemctl status lftp > .log/lftp.log 2>&1 && date >> .log/lftp.log 2>&1
+	if [ $? -ne 0 ]
 	then
 		echo -e ${YELLOW}"\tInstalling and configuring lftp..."${DEFAULT}
-		echo "user42" | sudo -S apt install lftp
+		echo "user42" | sudo -S apt install lftp >> .log/lftp.log 2>&1 ; date >> .log/lftp.log 2>&1
+				if [ $? -ne 0 ]
+		then
+			NEXT_RETURN=${ERROR_RETURN}
+		fi
 		echo "user42" | sudo -S chmod 777 /etc/lftp.conf
+				if [ $? -ne 0 ]
+		then
+			NEXT_RETURN=${ERROR_RETURN}
+		fi
 		echo "set ssl:verify-certificate no" >> /etc/lftp.conf
+				if [ $? -ne 0 ]
+		then
+			NEXT_RETURN=${ERROR_RETURN}
+		fi
+		echo -e ${NEXT_RETURN}
 	else
-		echo -e ${YELLOW}"\tlftp seems to be already install"${DEFAULT}
+		echo -e ${YELLOW}"\tlftp seems to be already installed"${DEFAULT}
 	fi
 }
 
@@ -59,9 +73,6 @@ ft_start_minikube()
 		else
 			echo -e ${ERROR_RETURN}
 		fi
-		echo -en ${YELLOW}"\tEnabling addons ..."${DEFAULT}
-		NEXT_RETURN=${DONE_RETURN}
-		echo -e ${NEXT_RETURN}
 		echo -en ${YELLOW}"\tApplying metallb ..."${DEFAULT}
 		NEXT_RETURN=${DONE_RETURN}
 		kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml >> .log/setup.log 2>&1 ; date >> .log/setup.log 2>&1

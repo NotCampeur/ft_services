@@ -1,0 +1,7 @@
+Unit lftp.service could not be found.
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+E: Impossible d'obtenir le verrou /var/lib/dpkg/lock-frontend - open (11: Ressource temporairement non disponible)
+E: Impossible d'obtenir le verrou de dpkg (/var/lib/dpkg/lock-frontend). Il est possible qu'un autre processus l'utilise.
+mardi 23 février 2021, 09:56:02 (UTC+0100)
