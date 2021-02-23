@@ -21,9 +21,10 @@ echo "admin:password" | chpasswd
 # pure-ftpd flags explanation
 # 
 # -j Create a home directory if needed
+# -B Launch in background
 # -Y Enable the TLS
 # -p Give the port range where ftp can work
 # -P The IP address bound to ftp
 # 
-# pure-ftpd -j -Y 1 -p 1200:1200 -P 172.17.0.2
-pure-ftpd -j -Y 2 -p 1200:1200 -P 172.17.0.2
+pure-ftpd -j -Y 2 -p 1200:1200 -P 172.17.0.2 &
+tail -f /dev/null
