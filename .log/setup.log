@@ -5,12 +5,12 @@
 * Pulling base image ...
 * Creating Kubernetes in docker container with (CPUs=2) (4 available), Memory=2200MB (3935MB available) ...
 * Preparing Kubernetes v1.18.0 on Docker 19.03.2 ...
-  - apiserver.service-node-port-range=1-35000
+  - kubeadm.pod-network-cidr=10.244.0.0/16
 * Enabling addons: default-storageclass, storage-provisioner
 * Done! kubectl is now configured to use "minikube"
-lundi 22 février 2021, 10:34:32 (UTC+0100)
+mardi 23 février 2021, 11:39:34 (UTC+0100)
 namespace/metallb-system created
-lundi 22 février 2021, 10:34:47 (UTC+0100)
+mardi 23 février 2021, 11:39:42 (UTC+0100)
 podsecuritypolicy.policy/controller created
 podsecuritypolicy.policy/speaker created
 serviceaccount/controller created
@@ -25,39 +25,44 @@ rolebinding.rbac.authorization.k8s.io/config-watcher created
 rolebinding.rbac.authorization.k8s.io/pod-lister created
 daemonset.apps/speaker created
 deployment.apps/controller created
-lundi 22 février 2021, 10:34:50 (UTC+0100)
+mardi 23 février 2021, 11:39:45 (UTC+0100)
 secret/memberlist created
-lundi 22 février 2021, 10:34:52 (UTC+0100)
-kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -lundi 22 février 2021, 10:34:52 (UTC+0100)
+mardi 23 février 2021, 11:39:45 (UTC+0100)
+kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -mardi 23 février 2021, 11:39:45 (UTC+0100)
 configmap/config created
-kubectl delete pods --all -lundi 22 février 2021, 10:34:53 (UTC+0100)
+kubectl delete pods --all -mardi 23 février 2021, 11:39:47 (UTC+0100)
 No resources found
-kubectl delete deployments --all -lundi 22 février 2021, 10:34:53 (UTC+0100)
+kubectl delete deployments --all -mardi 23 février 2021, 11:39:47 (UTC+0100)
 No resources found
-kubectl delete svc --all -lundi 22 février 2021, 10:34:53 (UTC+0100)
+kubectl delete svc --all -mardi 23 février 2021, 11:39:47 (UTC+0100)
 service "kubernetes" deleted
-kubectl delete pvc --all -lundi 22 février 2021, 10:34:54 (UTC+0100)
+kubectl delete pvc --all -mardi 23 février 2021, 11:39:48 (UTC+0100)
 No resources found
-kubectl apply -f srcs/nginx/nginx-deployment.yaml -lundi 22 février 2021, 10:41:04 (UTC+0100)
+kubectl apply -f srcs/telegraf/telegraf-deployment.yaml -mardi 23 février 2021, 11:45:56 (UTC+0100)
+service/telegraf-service created
+deployment.apps/telegraf created
+clusterrolebinding.rbac.authorization.k8s.io/telegraf-account created
+serviceaccount/telegraf-account created
+kubectl apply -f srcs/nginx/nginx-deployment.yaml -mardi 23 février 2021, 11:46:00 (UTC+0100)
 deployment.apps/nginx created
 service/nginx-service created
-kubectl apply -f srcs/wordpress/wordpress-deployment.yaml -lundi 22 février 2021, 10:41:10 (UTC+0100)
+kubectl apply -f srcs/wordpress/wordpress-deployment.yaml -mardi 23 février 2021, 11:46:03 (UTC+0100)
 deployment.apps/wordpress created
 service/wordpress-service created
-kubectl apply -f srcs/phpmyadmin/phpmyadmin-deployment.yaml -lundi 22 février 2021, 10:41:12 (UTC+0100)
+kubectl apply -f srcs/phpmyadmin/phpmyadmin-deployment.yaml -mardi 23 février 2021, 11:46:05 (UTC+0100)
 deployment.apps/phpmyadmin created
 service/phpmyadmin-service created
-kubectl apply -f srcs/mysql/mysql-deployment.yaml -lundi 22 février 2021, 10:41:14 (UTC+0100)
+kubectl apply -f srcs/mysql/mysql-deployment.yaml -mardi 23 février 2021, 11:46:06 (UTC+0100)
 persistentvolumeclaim/mysql created
 deployment.apps/mysql created
 service/mysql-service created
-kubectl apply -f srcs/ftps/ftps-deployment.yaml -lundi 22 février 2021, 10:41:15 (UTC+0100)
+kubectl apply -f srcs/ftps/ftps-deployment.yaml -mardi 23 février 2021, 11:46:10 (UTC+0100)
 deployment.apps/ftps created
 service/ftps-service created
-kubectl apply -f srcs/influxdb/influxdb-deployment.yaml -lundi 22 février 2021, 10:41:17 (UTC+0100)
+kubectl apply -f srcs/influxdb/influxdb-deployment.yaml -mardi 23 février 2021, 11:46:12 (UTC+0100)
 persistentvolumeclaim/influxdb created
 deployment.apps/influxdb created
 service/influxdb-service created
-kubectl apply -f srcs/grafana/grafana-deployment.yaml -lundi 22 février 2021, 10:41:19 (UTC+0100)
+kubectl apply -f srcs/grafana/grafana-deployment.yaml -mardi 23 février 2021, 11:46:15 (UTC+0100)
 deployment.apps/grafana created
 service/grafana-service created

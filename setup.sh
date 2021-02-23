@@ -14,7 +14,7 @@ NEXT_RETURN=0
 
 SHUTDOWN=0
 
-services="nginx wordpress phpmyadmin mysql ftps influxdb grafana"
+services="telegraf nginx wordpress phpmyadmin mysql ftps influxdb grafana"
 
 ft_check_user_group()
 {
@@ -25,7 +25,7 @@ ft_check_user_group()
 		SHUTDOWN=6
 		while [ $SHUTDOWN -ne 1 ]
 		do
-			SHUTDOWN='expr $SHUTDOWN - 1'
+			SHUTDOWN=$(( $SHUTDOWN - 1 ))
 			echo $SHUTDOWN
 			sleep 1
 		done
@@ -36,22 +36,23 @@ ft_check_user_group()
 
 ft_install_lftp()
 {
-	systemctl status lftp > .log/lftp.log 2>&1 && date >> .log/lftp.log 2>&1
+	apt-cache policy lftp > .log/lftp.log 2>&1 && date >> .log/lftp.log 2>&1
 	if [ $? -ne 0 ]
 	then
-		echo -e ${YELLOW}"\tInstalling and configuring lftp..."${DEFAULT}
+		echo -en ${YELLOW}"\tInstalling and configuring lftp..."${DEFAULT}
+		NEXT_RETURN=${DONE_RETURN}
 		echo "user42" | sudo -S apt install lftp >> .log/lftp.log 2>&1 ; date >> .log/lftp.log 2>&1
-				if [ $? -ne 0 ]
+		if [ $? -ne 0 ]
 		then
 			NEXT_RETURN=${ERROR_RETURN}
 		fi
 		echo "user42" | sudo -S chmod 777 /etc/lftp.conf
-				if [ $? -ne 0 ]
+		if [ $? -ne 0 ]
 		then
 			NEXT_RETURN=${ERROR_RETURN}
 		fi
 		echo "set ssl:verify-certificate no" >> /etc/lftp.conf
-				if [ $? -ne 0 ]
+		if [ $? -ne 0 ]
 		then
 			NEXT_RETURN=${ERROR_RETURN}
 		fi

@@ -1,46 +1,36 @@
-docker build srcs/ftps -t ftps -lundi 22 février 2021, 10:39:45 (UTC+0100)
-Sending build context to Docker daemon  241.7kB
-Step 1/9 : FROM	alpine:latest
+docker build srcs/ftps -t ftps -mardi 23 février 2021, 11:43:57 (UTC+0100)
+Sending build context to Docker daemon   5.12kB
+Step 1/7 : FROM	alpine:latest
  ---> 28f6e2705743
-Step 2/9 : RUN 	apk update
+Step 2/7 : RUN 	apk update
  ---> Using cache
- ---> 3c0d3741fc62
-Step 3/9 : RUN		apk add openssl
- ---> Running in d806a2098e4b
+ ---> 7fc9aca5a08f
+Step 3/7 : RUN		apk add openssl
+ ---> Running in 8e511dc104e5
 (1/1) Installing openssl (1.1.1j-r0)
 Executing busybox-1.32.1-r3.trigger
 OK: 6 MiB in 15 packages
-Removing intermediate container d806a2098e4b
- ---> f83783b90dbb
-Step 4/9 : RUN		apk add pure-ftpd --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
- ---> Running in 8bfc16df1e98
+Removing intermediate container 8e511dc104e5
+ ---> 4a1027c59198
+Step 4/7 : RUN		apk add pure-ftpd --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
+ ---> Running in 3b9e7d94b869
 fetch http://dl-3.alpinelinux.org/alpine/edge/testing/x86_64/APKINDEX.tar.gz
 fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
 fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
 (1/1) Installing pure-ftpd (1.0.49-r1)
 Executing busybox-1.32.1-r3.trigger
 OK: 7 MiB in 16 packages
-Removing intermediate container 8bfc16df1e98
- ---> 53023f91f62e
-Step 5/9 : RUN     apk add telegraf
- ---> Running in 58dcd8b1a0fe
-(1/1) Installing telegraf (1.17.0-r0)
-Executing telegraf-1.17.0-r0.pre-install
-Executing busybox-1.32.1-r3.trigger
-OK: 96 MiB in 17 packages
-Removing intermediate container 58dcd8b1a0fe
- ---> 15745c21a4e9
-Step 6/9 : COPY	ftps_setup.sh	setup.sh
- ---> 0a42473b8e1f
-Step 7/9 : COPY	./telegraf.conf /etc/telegraf.conf
- ---> 57f7e513b11f
-Step 8/9 : EXPOSE 21 1200
- ---> Running in efce99122d54
-Removing intermediate container efce99122d54
- ---> 4f1905d84e65
-Step 9/9 : ENTRYPOINT [ "sh", "./setup.sh" ]
- ---> Running in aade0ede7b83
-Removing intermediate container aade0ede7b83
- ---> 06f2a75d564b
-Successfully built 06f2a75d564b
+Removing intermediate container 3b9e7d94b869
+ ---> fe4c35ea1a87
+Step 5/7 : COPY	ftps_setup.sh	setup.sh
+ ---> cc78f6845539
+Step 6/7 : EXPOSE 21 1200
+ ---> Running in 7696da4c92c4
+Removing intermediate container 7696da4c92c4
+ ---> dd4b9b98f30c
+Step 7/7 : ENTRYPOINT [ "sh", "./setup.sh" ]
+ ---> Running in fcc663ceac16
+Removing intermediate container fcc663ceac16
+ ---> da66d2d97c0a
+Successfully built da66d2d97c0a
 Successfully tagged ftps:latest

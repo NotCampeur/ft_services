@@ -16,11 +16,10 @@ RUN		apk add php7-json
 RUN		apk add php7-session
 RUN		apk add php7-cgi
 
-RUN		apk add telegraf
 
-RUN		wget https://wordpress.org/latest.tar.gz \
-		&& tar -xvf latest.tar.gz \
-		&& rm latest.tar.gz
+RUN		wget https://wordpress.org/latest.tar.gz
+RUN		tar -xvf latest.tar.gz
+RUN		rm latest.tar.gz
 
 RUN		mkdir -p /wordpress/wp-content/uploads/2021/01
 
@@ -30,7 +29,6 @@ COPY 	wp-config.php		/wordpress/
 COPY 	nginx.conf			/etc/nginx/
 COPY	wordpress_setup.sh	setup.sh
 COPY	qr_code_paypal.png	/wordpress/wp-content/uploads/2021/01
-COPY	./telegraf.conf		/etc/telegraf.conf
 
 # NEEDED BYE THE COMMAND 'NGINX' IN THE NGINX'S SETUP.SH
 RUN		mkdir /run/nginx

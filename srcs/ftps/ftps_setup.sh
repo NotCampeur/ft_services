@@ -3,8 +3,6 @@ mkdir /etc/pure-ftpd
 mkdir /etc/pure-ftpd/conf
 echo "2" > /etc/pure-ftpd/conf/TLS
 
-telegraf --config /etc/telegraf.conf &
-
 mkdir -p /etc/ssl/private/
 
 openssl req -x509 -nodes \

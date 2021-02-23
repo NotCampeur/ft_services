@@ -4,8 +4,6 @@ RUN 	apk update \
 		&& apk add nginx \
 					openssl
 
-RUN		apk add telegraf
-
 COPY 	nginx.conf		/etc/nginx/
 COPY	nginx_setup.sh	setup.sh
 
@@ -16,7 +14,6 @@ RUN		mkdir -p /etc/nginx/certs
 RUN		mkdir -p /run/nginx
 
 COPY	page			/page/
-COPY	./telegraf.conf /etc/telegraf.conf
 
 RUN openssl req -x509 -nodes \
 	-subj '/C=FR/ST=PARIS/L=PARIS/O=42/CN=localhost' \
