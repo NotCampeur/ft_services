@@ -1,87 +1,87 @@
-docker build srcs/wordpress -t wordpress -mardi 23 février 2021, 15:45:15 (UTC+0100)
+docker build srcs/wordpress -t wordpress -mardi 23 février 2021, 19:03:52 (UTC+0100)
 Sending build context to Docker daemon  28.16kB
 Step 1/28 : FROM 	alpine:latest
  ---> 28f6e2705743
 Step 2/28 : RUN 	apk update
  ---> Using cache
- ---> 2f0b1a0090fc
+ ---> da90ddbd2832
 Step 3/28 : RUN		apk add nginx
  ---> Using cache
- ---> 1abb11800250
+ ---> 63faa495196b
 Step 4/28 : RUN		apk add wget
  ---> Using cache
- ---> a5bcd2fda85f
+ ---> c435ac90e439
 Step 5/28 : RUN		apk add php7
  ---> Using cache
- ---> 7e53a58326d6
+ ---> a9d24c6f2435
 Step 6/28 : RUN		apk add php7-common
  ---> Using cache
- ---> 86f232356279
+ ---> 4ea4599cf17f
 Step 7/28 : RUN		apk add php7-fpm
  ---> Using cache
- ---> ce56cec4ef62
+ ---> e8775249581e
 Step 8/28 : RUN		apk add php7-opcache
  ---> Using cache
- ---> d367beefc047
+ ---> c88b15da00f5
 Step 9/28 : RUN		apk add php7-gd
  ---> Using cache
- ---> 745cb5a88c18
+ ---> 170f405cf8fd
 Step 10/28 : RUN		apk add php7-mysqli
  ---> Using cache
- ---> e98dcfdcd406
+ ---> b20e210e8834
 Step 11/28 : RUN		apk add php7-zlib
  ---> Using cache
- ---> 3abc88e7644c
+ ---> d00f8cfd846b
 Step 12/28 : RUN		apk add php7-curl
  ---> Using cache
- ---> 8df0146acde4
+ ---> 076ffb54cc11
 Step 13/28 : RUN		apk add php7-mbstring
  ---> Using cache
- ---> 1b7b7f5e53b9
+ ---> b69ebad25cda
 Step 14/28 : RUN		apk add php7-json
  ---> Using cache
- ---> cf1ad3949b53
+ ---> ba987e43b958
 Step 15/28 : RUN		apk add php7-session
  ---> Using cache
- ---> 4611bc10077b
+ ---> 1d867ffec14e
 Step 16/28 : RUN		apk add php7-cgi
  ---> Using cache
- ---> 131da2ecba48
+ ---> 8ba19205f2cc
 Step 17/28 : RUN		wget https://wordpress.org/latest.tar.gz
  ---> Using cache
- ---> 30ebe7486c85
+ ---> 95bb077f6e76
 Step 18/28 : RUN		tar -xvf latest.tar.gz
  ---> Using cache
- ---> c3b8e5073bc5
+ ---> f8b632f86ade
 Step 19/28 : RUN		rm latest.tar.gz
  ---> Using cache
- ---> cda0888e0e4f
+ ---> ac463cf5f96c
 Step 20/28 : RUN		mkdir -p /wordpress/wp-content/uploads/2021/01
  ---> Using cache
- ---> 834ae05e66c1
+ ---> dc7694479a3e
 Step 21/28 : RUN		chmod 777 -R /wordpress/
  ---> Using cache
- ---> be410befc624
+ ---> 9571fcb30347
 Step 22/28 : COPY 	wp-config.php		/wordpress/
  ---> Using cache
- ---> c3abe54a4560
+ ---> 98122192f924
 Step 23/28 : COPY 	nginx.conf			/etc/nginx/
- ---> Using cache
- ---> fc3a140e216b
+ ---> af3a6cb14ae8
 Step 24/28 : COPY	wordpress_setup.sh	setup.sh
- ---> Using cache
- ---> 23764e64115c
+ ---> c69fd146381e
 Step 25/28 : COPY	qr_code_paypal.png	/wordpress/wp-content/uploads/2021/01
- ---> Using cache
- ---> 42ef09ae9d7a
+ ---> 2c612f35e62c
 Step 26/28 : RUN		mkdir /run/nginx
- ---> Using cache
- ---> acdb347cd357
+ ---> Running in 38e036ce68c3
+Removing intermediate container 38e036ce68c3
+ ---> ae501902e446
 Step 27/28 : EXPOSE 5050
- ---> Using cache
- ---> 2bc2a23b808e
+ ---> Running in 00a757f966ca
+Removing intermediate container 00a757f966ca
+ ---> db4696c9a43d
 Step 28/28 : CMD ["sh", "./setup.sh"]
- ---> Using cache
- ---> eec3eb1e8ae6
-Successfully built eec3eb1e8ae6
+ ---> Running in b3b59e3f3dc4
+Removing intermediate container b3b59e3f3dc4
+ ---> bed87c6ffe5b
+Successfully built bed87c6ffe5b
 Successfully tagged wordpress:latest

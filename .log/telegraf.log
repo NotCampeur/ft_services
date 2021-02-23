@@ -1,33 +1,33 @@
-docker build srcs/telegraf -t telegraf -mardi 23 février 2021, 15:45:15 (UTC+0100)
+docker build srcs/telegraf -t telegraf -mardi 23 février 2021, 19:03:52 (UTC+0100)
 Sending build context to Docker daemon   7.68kB
 Step 1/10 : FROM 	alpine:latest
  ---> 28f6e2705743
 Step 2/10 : RUN			apk update
  ---> Using cache
- ---> 2f0b1a0090fc
+ ---> da90ddbd2832
 Step 3/10 : RUN			apk add wget
  ---> Using cache
- ---> e6feee4263ff
+ ---> a4ec8c6b460c
 Step 4/10 : RUN			apk add libc6-compat
  ---> Using cache
- ---> 0095ceff9d62
+ ---> 59c29219593d
 Step 5/10 : RUN			wget https://dl.influxdata.com/telegraf/releases/telegraf-1.14.0-static_linux_amd64.tar.gz
  ---> Using cache
- ---> 55c27f1f5507
+ ---> df247f3a48fb
 Step 6/10 : RUN         tar xf telegraf-1.14.0-static_linux_amd64.tar.gz
  ---> Using cache
- ---> fabbff97c1a2
+ ---> 7909e49f1e39
 Step 7/10 : RUN         rm telegraf-1.14.0-static_linux_amd64.tar.gz
  ---> Using cache
- ---> b35e04ce7d79
+ ---> eec18a52b2ad
 Step 8/10 : COPY		telegraf.conf       .
  ---> Using cache
- ---> ae3f355cd7ff
+ ---> 301e04b48b73
 Step 9/10 : COPY		telegraf_setup.sh   setup.sh
  ---> Using cache
- ---> c35c5e15e9f9
+ ---> a07631af6033
 Step 10/10 : CMD         ["sh", "./setup.sh"]
  ---> Using cache
- ---> 7ab1e1791e6b
-Successfully built 7ab1e1791e6b
+ ---> bb5006931071
+Successfully built bb5006931071
 Successfully tagged telegraf:latest

@@ -19,10 +19,11 @@ admin | password
 SERVICES : APP
 
 nginx      | nginx
-ftps  	   | pureftp
-wordpress  | php
-phpmyadmin | php
-mysql      | mysql
-influxdb   | influx
-grafana    | grafana
+ftps  	   | pure-ftpd
+wordpress  | php-fpm7 & nginx
+phpmyadmin | php-fpm7 & nginx
+mysql      | mysqld
+influxdb   | influxd
+grafana    | grafana-server
+telegraf   | telegraf
 

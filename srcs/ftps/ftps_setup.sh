@@ -27,4 +27,13 @@ echo "admin:password" | chpasswd
 # -P The IP address bound to ftp
 # 
 pure-ftpd -j -Y 2 -p 1200:1200 -P 172.17.0.2 &
-tail -f /dev/null
+FTPS_IS_UP=1
+while [ $FTPS_IS_UP -eq 1 ]
+do
+	sleep 5
+	ps aux | grep -v "grep" | grep "pure-ftpd"
+	if [ $? -ne 0 ]
+	then
+		FTPS_IS_UP=0
+	fi
+done

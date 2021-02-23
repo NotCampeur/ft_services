@@ -19,3 +19,14 @@ done
 pkill mysqld
 
 /usr/bin/mysqld --user=root --datadir="/var/lib/mysql"
+
+MYSQLD_IS_UP=1
+while [ $MYSQLD_IS_UP -eq 1 ]
+do
+	sleep 5
+	ps aux | grep -v "grep" | grep "/usr/bin/mysqld"
+	if [ $? -ne 0 ]
+	then
+		MYSQLD_IS_UP=0
+	fi
+done

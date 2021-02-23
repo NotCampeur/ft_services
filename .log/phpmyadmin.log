@@ -1,120 +1,120 @@
-docker build srcs/phpmyadmin -t phpmyadmin -mardi 23 février 2021, 15:45:15 (UTC+0100)
+docker build srcs/phpmyadmin -t phpmyadmin -mardi 23 février 2021, 19:03:55 (UTC+0100)
 Sending build context to Docker daemon  8.704kB
 Step 1/39 : FROM 	alpine:latest
  ---> 28f6e2705743
 Step 2/39 : RUN		apk update
  ---> Using cache
- ---> 2f0b1a0090fc
+ ---> da90ddbd2832
 Step 3/39 : RUN		apk add nginx
  ---> Using cache
- ---> 1abb11800250
+ ---> 63faa495196b
 Step 4/39 : RUN		apk add wget
  ---> Using cache
- ---> a5bcd2fda85f
+ ---> c435ac90e439
 Step 5/39 : RUN		apk add php7
  ---> Using cache
- ---> 7e53a58326d6
+ ---> a9d24c6f2435
 Step 6/39 : RUN		apk add php7-fpm
  ---> Using cache
- ---> aac676c42444
+ ---> 30cb4dfa59fa
 Step 7/39 : RUN		apk add php7-common
  ---> Using cache
- ---> 3dcd597c0143
+ ---> 325f784baba9
 Step 8/39 : RUN		apk add php7-iconv
  ---> Using cache
- ---> d853ca841610
+ ---> 685d42034786
 Step 9/39 : RUN		apk add php7-json
  ---> Using cache
- ---> c29567e03e2d
+ ---> 011ace1f4c60
 Step 10/39 : RUN		apk add php7-opcache
  ---> Using cache
- ---> d240fcdd275b
+ ---> fc8eafaf9972
 Step 11/39 : RUN		apk add php7-mbstring
  ---> Using cache
- ---> 2db08eb978c7
+ ---> 93ac6ade1dd1
 Step 12/39 : RUN		apk add php7-zlib
  ---> Using cache
- ---> ee6b43ca5bd5
+ ---> e5206f012518
 Step 13/39 : RUN		apk add php7-session
  ---> Using cache
- ---> 98bdf70dc46e
+ ---> a6c9ad600304
 Step 14/39 : RUN		apk add php7-gd
  ---> Using cache
- ---> 46689496466a
+ ---> 5ec8754ed71f
 Step 15/39 : RUN		apk add php7-curl
  ---> Using cache
- ---> fa1b673a5102
+ ---> f864da5e85bc
 Step 16/39 : RUN		apk add php7-xml
  ---> Using cache
- ---> a763ad1e7b70
+ ---> af27642c06d8
 Step 17/39 : RUN		apk add php7-mysqli
  ---> Using cache
- ---> 6bae13c58c41
+ ---> 7a51ec9e97a0
 Step 18/39 : RUN		apk add php7-imap
  ---> Using cache
- ---> 9d184929a77a
+ ---> 10a5d894b064
 Step 19/39 : RUN		apk add php7-cgi
  ---> Using cache
- ---> a19873a7fb15
+ ---> 11a0db4b92e2
 Step 20/39 : RUN		apk add php7-pdo
  ---> Using cache
- ---> 6cc0aa6fe952
+ ---> 179254f3b156
 Step 21/39 : RUN		apk add php7-pdo_mysql
  ---> Using cache
- ---> 480dc6f62c4b
+ ---> d8f2513d8a39
 Step 22/39 : RUN		apk add php7-soap
  ---> Using cache
- ---> 9aee3fbb0afd
+ ---> 992003bd628c
 Step 23/39 : RUN		apk add php7-xmlrpc
  ---> Using cache
- ---> a5a5e8c66ed8
+ ---> e02824e17144
 Step 24/39 : RUN		apk add php7-posix
  ---> Using cache
- ---> c8fbef51dcc7
+ ---> a877e0bbaa5b
 Step 25/39 : RUN		apk add php7-mcrypt
  ---> Using cache
- ---> 9456406a7a54
+ ---> 2aa00abbf239
 Step 26/39 : RUN		apk add php7-gettext
  ---> Using cache
- ---> 56eebf5f4c08
+ ---> 3d1a4c643d8c
 Step 27/39 : RUN		apk add php7-ldap
  ---> Using cache
- ---> 6fe16d57bb5f
+ ---> b4b8d68bf011
 Step 28/39 : RUN		apk add php7-ctype
  ---> Using cache
- ---> 1665142ed234
+ ---> 2b89dcc9bb30
 Step 29/39 : RUN		apk add php7-dom
  ---> Using cache
- ---> 65e02f2e806f
+ ---> b43fc1ae10c0
 Step 30/39 : RUN		apk add fcgi
  ---> Using cache
- ---> efb741a44cd9
+ ---> fd58614248fd
 Step 31/39 : RUN		wget http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.2-all-languages.tar.gz 		&& tar -zxvf phpMyAdmin-5.0.2-all-languages.tar.gz 		&& rm phpMyAdmin-5.0.2-all-languages.tar.gz 		&& mv phpMyAdmin-5.0.2-all-languages phpmyadmin
  ---> Using cache
- ---> a6001afa12a5
+ ---> 796264f138c2
 Step 32/39 : COPY	nginx.conf		/etc/nginx/
  ---> Using cache
- ---> 6133d8350b89
+ ---> 3e5c930d1faf
 Step 33/39 : COPY	pma_setup.sh	setup.sh
  ---> Using cache
- ---> 692cba601795
+ ---> beaf24a6d1fa
 Step 34/39 : COPY	config.inc.php	/phpmyadmin/
  ---> Using cache
- ---> 3d84c14c6bdb
+ ---> c21d9caa65f2
 Step 35/39 : RUN		mkdir			/phpmyadmin/tmp
  ---> Using cache
- ---> 421b3f3a7c19
+ ---> 404a2102c8cf
 Step 36/39 : RUN		chmod 777 		/phpmyadmin/tmp
  ---> Using cache
- ---> 54e8c9ad1205
+ ---> 2800b239a5cc
 Step 37/39 : RUN		mkdir			/run/nginx
  ---> Using cache
- ---> cc9f4c878c79
+ ---> 6ccea2e5b9c5
 Step 38/39 : EXPOSE	5000
  ---> Using cache
- ---> 56fcc5542337
+ ---> 589094875fdf
 Step 39/39 : CMD		["sh", "./setup.sh" ]
  ---> Using cache
- ---> 052f2b3f72e4
-Successfully built 052f2b3f72e4
+ ---> 4e409eabb846
+Successfully built 4e409eabb846
 Successfully tagged phpmyadmin:latest
