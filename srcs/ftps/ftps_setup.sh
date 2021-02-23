@@ -1,7 +1,4 @@
-# pure-ftpd -B
-
 	# FORCE THE USE OF A TLS SESSION FOR PURE_FTPD
-# echo "1" > /etc/pure-ftpd/conf/TLS
 mkdir /etc/pure-ftpd
 mkdir /etc/pure-ftpd/conf
 echo "2" > /etc/pure-ftpd/conf/TLS
@@ -32,5 +29,3 @@ echo "admin:password" | chpasswd
 # 
 # pure-ftpd -j -Y 1 -p 1200:1200 -P 172.17.0.2
 pure-ftpd -j -Y 2 -p 1200:1200 -P 172.17.0.2
-# pure-ftpd restart
-# tail -f /dev/null
