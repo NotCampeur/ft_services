@@ -1,24 +1,36 @@
-docker build srcs/ftps -t ftps -mardi 23 février 2021, 19:03:55 (UTC+0100)
+docker build srcs/ftps -t ftps -mardi 23 février 2021, 20:21:24 (UTC+0100)
 Sending build context to Docker daemon   5.12kB
 Step 1/7 : FROM	alpine:latest
  ---> 28f6e2705743
 Step 2/7 : RUN 	apk update
  ---> Using cache
- ---> da90ddbd2832
+ ---> fcfd3e18fdd2
 Step 3/7 : RUN		apk add openssl
- ---> Using cache
- ---> 9d73cf46143d
+ ---> Running in 9e98be6cfcbe
+(1/1) Installing openssl (1.1.1j-r0)
+Executing busybox-1.32.1-r3.trigger
+OK: 6 MiB in 15 packages
+Removing intermediate container 9e98be6cfcbe
+ ---> 5ba34c442ccb
 Step 4/7 : RUN		apk add pure-ftpd --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted --no-cache
- ---> Using cache
- ---> 3a344ae9254b
+ ---> Running in 95c2d144c3d8
+fetch http://dl-3.alpinelinux.org/alpine/edge/testing/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.13/community/x86_64/APKINDEX.tar.gz
+(1/1) Installing pure-ftpd (1.0.49-r1)
+Executing busybox-1.32.1-r3.trigger
+OK: 7 MiB in 16 packages
+Removing intermediate container 95c2d144c3d8
+ ---> 5713bb81c674
 Step 5/7 : COPY	ftps_setup.sh	setup.sh
- ---> Using cache
- ---> 394c02ebe321
+ ---> ab38cdcb8612
 Step 6/7 : EXPOSE 21 1200
- ---> Using cache
- ---> edb7936aedb8
+ ---> Running in 883373eb882b
+Removing intermediate container 883373eb882b
+ ---> f0064e0f2a40
 Step 7/7 : ENTRYPOINT [ "sh", "./setup.sh" ]
- ---> Using cache
- ---> aa19e1ca7cbf
-Successfully built aa19e1ca7cbf
+ ---> Running in 9f2e2112fca9
+Removing intermediate container 9f2e2112fca9
+ ---> cd6d176a47e0
+Successfully built cd6d176a47e0
 Successfully tagged ftps:latest

@@ -1,65 +1,68 @@
-m01
-host: Running
-kubelet: Running
-apiserver: Running
-kubeconfig: Configured
-
-kubectl delete pods --all -mardi 23 février 2021, 19:02:33 (UTC+0100)
-pod "ftps-9467dfb7d-dr2nr" deleted
-pod "grafana-747dd5985b-g7v47" deleted
-pod "influxdb-74c5f7c88f-hbvt4" deleted
-pod "mysql-7b9967cb7-dv4d8" deleted
-pod "nginx-785b56b869-zd2wj" deleted
-pod "phpmyadmin-5b9bd8578b-2mjcr" deleted
-pod "telegraf-57f89456b4-r7wnm" deleted
-pod "wordpress-688bf46b8f-jj5qp" deleted
-kubectl delete deployments --all -mardi 23 février 2021, 19:03:11 (UTC+0100)
-deployment.apps "ftps" deleted
-deployment.apps "grafana" deleted
-deployment.apps "influxdb" deleted
-deployment.apps "mysql" deleted
-deployment.apps "nginx" deleted
-deployment.apps "phpmyadmin" deleted
-deployment.apps "telegraf" deleted
-deployment.apps "wordpress" deleted
-kubectl delete svc --all -mardi 23 février 2021, 19:03:12 (UTC+0100)
-service "ftps-service" deleted
-service "grafana-service" deleted
-service "influxdb-service" deleted
+* There is no local cluster named "minikube"
+  - To fix this, run: minikube start
+* minikube v1.9.0 on Ubuntu 18.04
+* Using the docker driver based on user configuration
+* Pulling base image ...
+* Creating Kubernetes in docker container with (CPUs=2) (4 available), Memory=2200MB (8046MB available) ...
+* Preparing Kubernetes v1.18.0 on Docker 19.03.2 ...
+  - kubeadm.pod-network-cidr=10.244.0.0/16
+* Enabling addons: default-storageclass, storage-provisioner
+* Done! kubectl is now configured to use "minikube"
+mardi 23 février 2021, 20:16:58 (UTC+0100)
+namespace/metallb-system created
+mardi 23 février 2021, 20:16:59 (UTC+0100)
+podsecuritypolicy.policy/controller created
+podsecuritypolicy.policy/speaker created
+serviceaccount/controller created
+serviceaccount/speaker created
+clusterrole.rbac.authorization.k8s.io/metallb-system:controller created
+clusterrole.rbac.authorization.k8s.io/metallb-system:speaker created
+role.rbac.authorization.k8s.io/config-watcher created
+role.rbac.authorization.k8s.io/pod-lister created
+clusterrolebinding.rbac.authorization.k8s.io/metallb-system:controller created
+clusterrolebinding.rbac.authorization.k8s.io/metallb-system:speaker created
+rolebinding.rbac.authorization.k8s.io/config-watcher created
+rolebinding.rbac.authorization.k8s.io/pod-lister created
+daemonset.apps/speaker created
+deployment.apps/controller created
+mardi 23 février 2021, 20:17:00 (UTC+0100)
+secret/memberlist created
+mardi 23 février 2021, 20:17:00 (UTC+0100)
+kubectl apply -f srcs/load_balancer/metallb-deployment.yaml -mardi 23 février 2021, 20:17:00 (UTC+0100)
+configmap/config created
+kubectl delete pods --all -mardi 23 février 2021, 20:17:00 (UTC+0100)
+No resources found
+kubectl delete deployments --all -mardi 23 février 2021, 20:17:00 (UTC+0100)
+No resources found
+kubectl delete svc --all -mardi 23 février 2021, 20:17:00 (UTC+0100)
 service "kubernetes" deleted
-service "mysql-service" deleted
-service "nginx-service" deleted
-service "phpmyadmin-service" deleted
-service "telegraf-service" deleted
-service "wordpress-service" deleted
-kubectl delete pvc --all -mardi 23 février 2021, 19:03:13 (UTC+0100)
-persistentvolumeclaim "influxdb" deleted
-persistentvolumeclaim "mysql" deleted
-kubectl apply -f srcs/telegraf/telegraf-deployment.yaml -mardi 23 février 2021, 19:03:56 (UTC+0100)
+kubectl delete pvc --all -mardi 23 février 2021, 20:17:00 (UTC+0100)
+No resources found
+kubectl apply -f srcs/telegraf/telegraf-deployment.yaml -mardi 23 février 2021, 20:23:29 (UTC+0100)
 service/telegraf-service created
 deployment.apps/telegraf created
-clusterrolebinding.rbac.authorization.k8s.io/telegraf-account unchanged
-serviceaccount/telegraf-account unchanged
-kubectl apply -f srcs/nginx/nginx-deployment.yaml -mardi 23 février 2021, 19:03:56 (UTC+0100)
+clusterrolebinding.rbac.authorization.k8s.io/telegraf-account created
+serviceaccount/telegraf-account created
+kubectl apply -f srcs/nginx/nginx-deployment.yaml -mardi 23 février 2021, 20:23:29 (UTC+0100)
 deployment.apps/nginx created
 service/nginx-service created
-kubectl apply -f srcs/wordpress/wordpress-deployment.yaml -mardi 23 février 2021, 19:03:56 (UTC+0100)
+kubectl apply -f srcs/wordpress/wordpress-deployment.yaml -mardi 23 février 2021, 20:23:30 (UTC+0100)
 deployment.apps/wordpress created
 service/wordpress-service created
-kubectl apply -f srcs/phpmyadmin/phpmyadmin-deployment.yaml -mardi 23 février 2021, 19:03:57 (UTC+0100)
+kubectl apply -f srcs/phpmyadmin/phpmyadmin-deployment.yaml -mardi 23 février 2021, 20:23:30 (UTC+0100)
 deployment.apps/phpmyadmin created
 service/phpmyadmin-service created
-kubectl apply -f srcs/mysql/mysql-deployment.yaml -mardi 23 février 2021, 19:03:57 (UTC+0100)
+kubectl apply -f srcs/mysql/mysql-deployment.yaml -mardi 23 février 2021, 20:23:30 (UTC+0100)
 persistentvolumeclaim/mysql created
 deployment.apps/mysql created
 service/mysql-service created
-kubectl apply -f srcs/ftps/ftps-deployment.yaml -mardi 23 février 2021, 19:03:58 (UTC+0100)
+kubectl apply -f srcs/ftps/ftps-deployment.yaml -mardi 23 février 2021, 20:23:31 (UTC+0100)
 deployment.apps/ftps created
 service/ftps-service created
-kubectl apply -f srcs/influxdb/influxdb-deployment.yaml -mardi 23 février 2021, 19:03:58 (UTC+0100)
+kubectl apply -f srcs/influxdb/influxdb-deployment.yaml -mardi 23 février 2021, 20:23:31 (UTC+0100)
 persistentvolumeclaim/influxdb created
 deployment.apps/influxdb created
 service/influxdb-service created
-kubectl apply -f srcs/grafana/grafana-deployment.yaml -mardi 23 février 2021, 19:03:59 (UTC+0100)
+kubectl apply -f srcs/grafana/grafana-deployment.yaml -mardi 23 février 2021, 20:23:32 (UTC+0100)
 deployment.apps/grafana created
 service/grafana-service created

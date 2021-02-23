@@ -1,12 +1,35 @@
 lftp:
-  Installé : 4.8.1-1ubuntu0.2
+  Installé : (aucun)
   Candidat : 4.8.1-1ubuntu0.2
  Table de version :
- *** 4.8.1-1ubuntu0.2 500
+     4.8.1-1ubuntu0.2 500
         500 http://fr.archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages
-        100 /var/lib/dpkg/status
      4.8.1-1ubuntu0.1 500
         500 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages
      4.8.1-1 500
         500 http://fr.archive.ubuntu.com/ubuntu bionic/main amd64 Packages
-mardi 23 février 2021, 19:02:32 (UTC+0100)
+mardi 23 février 2021, 20:15:54 (UTC+0100)
+[sudo] Mot de passe de user42 : 
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Lecture des listes de paquets…
+Construction de l'arbre des dépendances…
+Lecture des informations d'état…
+Les NOUVEAUX paquets suivants seront installés :
+  lftp
+0 mis à jour, 1 nouvellement installés, 0 à enlever et 410 non mis à jour.
+Il est nécessaire de prendre 561 ko dans les archives.
+Après cette opération, 1 675 ko d'espace disque supplémentaires seront utilisés.
+Réception de :1 http://fr.archive.ubuntu.com/ubuntu bionic-updates/main amd64 lftp amd64 4.8.1-1ubuntu0.2 [561 kB]
+561 ko réceptionnés en 1s (522 ko/s)
+Sélection du paquet lftp précédemment désélectionné.
+(Lecture de la base de données... (Lecture de la base de données... 5%(Lecture de la base de données... 10%(Lecture de la base de données... 15%(Lecture de la base de données... 20%(Lecture de la base de données... 25%(Lecture de la base de données... 30%(Lecture de la base de données... 35%(Lecture de la base de données... 40%(Lecture de la base de données... 45%(Lecture de la base de données... 50%(Lecture de la base de données... 55%(Lecture de la base de données... 60%(Lecture de la base de données... 65%(Lecture de la base de données... 70%(Lecture de la base de données... 75%(Lecture de la base de données... 80%(Lecture de la base de données... 85%(Lecture de la base de données... 90%(Lecture de la base de données... 95%(Lecture de la base de données... 100%(Lecture de la base de données... 246043 fichiers et répertoires déjà installés.)
+Préparation du dépaquetage de .../lftp_4.8.1-1ubuntu0.2_amd64.deb ...
+Dépaquetage de lftp (4.8.1-1ubuntu0.2) ...
+Paramétrage de lftp (4.8.1-1ubuntu0.2) ...
+Traitement des actions différées (« triggers ») pour mime-support (3.60ubuntu1) ...
+Traitement des actions différées (« triggers ») pour desktop-file-utils (0.23-1ubuntu3.18.04.2) ...
+Traitement des actions différées (« triggers ») pour man-db (2.8.3-2ubuntu0.1) ...
+Traitement des actions différées (« triggers ») pour gnome-menus (3.13.3-11ubuntu1.1) ...
+Traitement des actions différées (« triggers ») pour hicolor-icon-theme (0.17-2) ...
+mardi 23 février 2021, 20:16:07 (UTC+0100)

@@ -37,7 +37,7 @@ ft_check_user_group()
 ft_install_lftp()
 {
 	apt-cache policy lftp > .log/lftp.log 2>&1 && date >> .log/lftp.log 2>&1
-	if [ $? -ne 0 ]
+	if [ $(grep -c ": (aucun)" .log/lftp.log) -ne 0 ]
 	then
 		echo -en ${YELLOW}"\tInstalling and configuring lftp..."${DEFAULT}
 		NEXT_RETURN=${DONE_RETURN}
@@ -168,6 +168,8 @@ ft_run_container()
 
 
 
+echo -e ${BLUE}"[ LFTP ]"${DEFAULT}
+ft_install_lftp
 
 echo -e ${BLUE}"[ Check the docker user group ]"${DEFAULT}
 ft_check_user_group
@@ -175,8 +177,6 @@ ft_check_user_group
 if [ $SHUTDOWN -eq 0 ]
 then
 {
-	echo -e ${BLUE}"[ LFTP ]"${DEFAULT}
-	ft_install_lftp
 
 	echo -e ${BLUE}"[ Minikube | Metallb ]"${DEFAULT}
 	ft_start_minikube

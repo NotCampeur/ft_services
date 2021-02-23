@@ -1,18 +1,23 @@
-docker build srcs/influxdb -t influxdb -mardi 23 février 2021, 19:03:55 (UTC+0100)
+docker build srcs/influxdb -t influxdb -mardi 23 février 2021, 20:21:31 (UTC+0100)
 Sending build context to Docker daemon  4.608kB
 Step 1/5 : FROM    alpine:latest
  ---> 28f6e2705743
 Step 2/5 : RUN     apk update
  ---> Using cache
- ---> da90ddbd2832
+ ---> fcfd3e18fdd2
 Step 3/5 : RUN     apk add influxdb
- ---> Using cache
- ---> 9d7fb82070a6
+ ---> Running in 7633420ab18a
+(1/1) Installing influxdb (1.8.3-r2)
+Executing influxdb-1.8.3-r2.pre-install
+Executing busybox-1.32.1-r3.trigger
+OK: 206 MiB in 15 packages
+Removing intermediate container 7633420ab18a
+ ---> 7f11afa630e2
 Step 4/5 : COPY    influxdb_setup.sh   setup.sh
- ---> Using cache
- ---> 4163ad1c51be
+ ---> 35b76c7ead24
 Step 5/5 : CMD     ["sh", "/setup.sh"]
- ---> Using cache
- ---> 4c6a00715459
-Successfully built 4c6a00715459
+ ---> Running in 4a21e60791a2
+Removing intermediate container 4a21e60791a2
+ ---> 0acc73ab534f
+Successfully built 0acc73ab534f
 Successfully tagged influxdb:latest
