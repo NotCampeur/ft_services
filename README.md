@@ -1,4 +1,4 @@
-# ft_solo_services
+# ft_services
 
 A 42 school's project.
 
